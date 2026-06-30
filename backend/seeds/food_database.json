@@ -1,0 +1,4795 @@
+[
+  {
+    "name": "Beef Tacos Variant 0",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 481.7005068745018,
+    "protein": 23.555534544389992,
+    "carbohydrates": 72.26096844915347,
+    "fat": 11.068965572306645,
+    "fiber": 13.03271122681916,
+    "sugar": 4.669863470824861,
+    "sodium": 956.9540997902575,
+    "potassium": 460.4909115506858,
+    "calcium": 240.2452751255627,
+    "iron": 14.294316318431742,
+    "vitamin_a": 890.909624274157,
+    "vitamin_b": 5.354102334011831,
+    "vitamin_c": 15.08523386716244,
+    "vitamin_d": 4.596871042524744,
+    "vitamin_e": 2.1478249292030416,
+    "cholesterol": 19.876725740133583,
+    "omega_3": 1.5483327507172489,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Seafood",
+      "Soy"
+    ],
+    "cooking_time": 36,
+    "difficulty": "Hard",
+    "price": "Medium",
+    "rating": 3.7441876048880216,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Diabetes",
+      "Heart Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Dal Tadka Variant 1",
+    "image": "https://via.placeholder.com/300x200?text=Dal+Tadka",
+    "category": "Lunch",
+    "cuisine": "Indian",
+    "calories": 174.92100827470733,
+    "protein": 27.54611915491696,
+    "carbohydrates": 22.19219067036974,
+    "fat": 35.9649513431387,
+    "fiber": 12.590147393227422,
+    "sugar": 22.674172640992968,
+    "sodium": 1471.2065393039472,
+    "potassium": 807.762499135446,
+    "calcium": 442.9651532958236,
+    "iron": 8.043701043748841,
+    "vitamin_a": 184.7404946983756,
+    "vitamin_b": 1.3546511095605984,
+    "vitamin_c": 52.58530674873887,
+    "vitamin_d": 7.271455088143979,
+    "vitamin_e": 0.502239738142547,
+    "cholesterol": 0,
+    "omega_3": 1.8975614330788724,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg"
+    ],
+    "cooking_time": 42,
+    "difficulty": "Medium",
+    "price": "Medium",
+    "rating": 4.884762871860769,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "High Cholesterol"
+    ],
+    "avoid_for": [
+      "High Cholesterol",
+      "Heart Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Chicken Tikka Masala Variant 2",
+    "image": "https://via.placeholder.com/300x200?text=Chicken+Tikka+Masala",
+    "category": "Dinner",
+    "cuisine": "Indian",
+    "calories": 633.2034872689198,
+    "protein": 44.78292045698263,
+    "carbohydrates": 73.14943780820512,
+    "fat": 30.985259583903584,
+    "fiber": 7.065438493906979,
+    "sugar": 27.388413995772723,
+    "sodium": 1388.7832415578532,
+    "potassium": 984.4718239534384,
+    "calcium": 300.0327544802992,
+    "iron": 13.183390962428449,
+    "vitamin_a": 828.8770494116112,
+    "vitamin_b": 8.826750291979925,
+    "vitamin_c": 10.64917257721978,
+    "vitamin_d": 3.1515468640196675,
+    "vitamin_e": 6.861883483228018,
+    "cholesterol": 40.9581862473709,
+    "omega_3": 0.5793524654224518,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 17,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.032235672813944,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Kidney Disease"
+    ],
+    "avoid_for": [
+      "Kidney Disease",
+      "Heart Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Avocado Toast Variant 3",
+    "image": "https://via.placeholder.com/300x200?text=Avocado+Toast",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 445.9923571275016,
+    "protein": 39.53498288691393,
+    "carbohydrates": 65.2453411553154,
+    "fat": 30.482191065760805,
+    "fiber": 8.564703473827045,
+    "sugar": 27.400477574065082,
+    "sodium": 423.5007554158602,
+    "potassium": 558.9827618816352,
+    "calcium": 288.17449190412157,
+    "iron": 2.5453483072847414,
+    "vitamin_a": 352.1386200122372,
+    "vitamin_b": 1.9381355572718406,
+    "vitamin_c": 43.570520616990606,
+    "vitamin_d": 2.2908059097222266,
+    "vitamin_e": 7.556531508923314,
+    "cholesterol": 0,
+    "omega_3": 1.8198055343712105,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Lactose"
+    ],
+    "cooking_time": 16,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.601674669853268,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "Hypertension",
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Quinoa Salad Variant 4",
+    "image": "https://via.placeholder.com/300x200?text=Quinoa+Salad",
+    "category": "Lunch",
+    "cuisine": "Mediterranean",
+    "calories": 639.9253597991685,
+    "protein": 24.058508161057112,
+    "carbohydrates": 40.03634910278846,
+    "fat": 14.838137107817797,
+    "fiber": 3.91396562589669,
+    "sugar": 13.939605987094222,
+    "sodium": 990.5294160366371,
+    "potassium": 684.3576559590543,
+    "calcium": 263.9196341908179,
+    "iron": 11.54840539751503,
+    "vitamin_a": 441.4406632453096,
+    "vitamin_b": 2.9136536297040183,
+    "vitamin_c": 47.69753612728559,
+    "vitamin_d": 1.3098741764539412,
+    "vitamin_e": 7.504471638283235,
+    "cholesterol": 0,
+    "omega_3": 1.3069624862155584,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Lactose"
+    ],
+    "cooking_time": 11,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.40232927699119,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Hypertension",
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "Heart Disease",
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Avocado Toast Variant 5",
+    "image": "https://via.placeholder.com/300x200?text=Avocado+Toast",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 576.1647497091362,
+    "protein": 45.94309507146574,
+    "carbohydrates": 35.815031494330285,
+    "fat": 24.264575675444153,
+    "fiber": 14.05788416036298,
+    "sugar": 18.853404278929144,
+    "sodium": 1106.9410919373315,
+    "potassium": 957.2930592734957,
+    "calcium": 482.84330038526593,
+    "iron": 10.357638244815814,
+    "vitamin_a": 417.0366664733791,
+    "vitamin_b": 0.995534790605338,
+    "vitamin_c": 8.145052209833825,
+    "vitamin_d": 2.836588336477747,
+    "vitamin_e": 7.568621839353817,
+    "cholesterol": 0,
+    "omega_3": 0.6956682668410303,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Gluten",
+      "Peanut"
+    ],
+    "cooking_time": 17,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.466414204537749,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "Hypertension"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Sushi Roll Variant 6",
+    "image": "https://via.placeholder.com/300x200?text=Sushi+Roll",
+    "category": "Lunch",
+    "cuisine": "Japanese",
+    "calories": 106.23554880161093,
+    "protein": 38.77501836162071,
+    "carbohydrates": 72.85012983752547,
+    "fat": 11.047602996810403,
+    "fiber": 1.8984897077877803,
+    "sugar": 21.72883777001853,
+    "sodium": 959.2011462810657,
+    "potassium": 227.23301463731036,
+    "calcium": 369.514365040168,
+    "iron": 4.560499042692147,
+    "vitamin_a": 908.0815224184281,
+    "vitamin_b": 4.5917265249927395,
+    "vitamin_c": 49.765309599885185,
+    "vitamin_d": 8.384023461895202,
+    "vitamin_e": 4.59330841215905,
+    "cholesterol": 10.953498918126936,
+    "omega_3": 0.6763342329972832,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Gluten",
+      "Tree Nut"
+    ],
+    "cooking_time": 31,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 3.6040383046767186,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Hypertension",
+      "Diabetes"
+    ],
+    "avoid_for": [
+      "Diabetes"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Quinoa Salad Variant 7",
+    "image": "https://via.placeholder.com/300x200?text=Quinoa+Salad",
+    "category": "Lunch",
+    "cuisine": "Mediterranean",
+    "calories": 685.0262609980227,
+    "protein": 11.43511519403026,
+    "carbohydrates": 11.519001141908538,
+    "fat": 2.6058903820628476,
+    "fiber": 12.947502506766856,
+    "sugar": 9.466721265329944,
+    "sodium": 1421.9643945743182,
+    "potassium": 849.7621055016904,
+    "calcium": 430.6500579988056,
+    "iron": 8.232280018814265,
+    "vitamin_a": 551.1548741745947,
+    "vitamin_b": 6.9525721769260995,
+    "vitamin_c": 9.961762808407592,
+    "vitamin_d": 8.987423942818854,
+    "vitamin_e": 5.335909397818062,
+    "cholesterol": 0,
+    "omega_3": 1.2626575320391837,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 25,
+    "difficulty": "Medium",
+    "price": "Medium",
+    "rating": 3.597486141375659,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Hypertension"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 8",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 235.4036939126766,
+    "protein": 40.34883359514564,
+    "carbohydrates": 66.79591824963151,
+    "fat": 25.80723395680949,
+    "fiber": 8.408265595553317,
+    "sugar": 21.120998855073303,
+    "sodium": 1182.6569669308412,
+    "potassium": 755.247764645472,
+    "calcium": 467.94151933422734,
+    "iron": 7.858833505178019,
+    "vitamin_a": 107.33899096502664,
+    "vitamin_b": 7.142352056622072,
+    "vitamin_c": 36.17176791999347,
+    "vitamin_d": 3.4095617205006032,
+    "vitamin_e": 3.6237037988612277,
+    "cholesterol": 24.938684845471982,
+    "omega_3": 0.6677715848970329,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 48,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 3.9421704115237826,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Kidney Disease",
+      "Diabetes"
+    ],
+    "avoid_for": [
+      "Heart Disease",
+      "Diabetes"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Oatmeal with Berries Variant 9",
+    "image": "https://via.placeholder.com/300x200?text=Oatmeal+with+Berries",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 271.64320187454354,
+    "protein": 8.850644661024395,
+    "carbohydrates": 16.371863428467016,
+    "fat": 29.91905048498457,
+    "fiber": 8.331520175899723,
+    "sugar": 25.968332652216066,
+    "sodium": 1304.1861155899155,
+    "potassium": 138.57213322931588,
+    "calcium": 461.28723653642703,
+    "iron": 11.381957384070853,
+    "vitamin_a": 127.57256058134558,
+    "vitamin_b": 4.298621880677498,
+    "vitamin_c": 47.02034883616002,
+    "vitamin_d": 6.7053034612283415,
+    "vitamin_e": 1.1689865938898503,
+    "cholesterol": 0,
+    "omega_3": 0.7232825851315143,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg",
+      "Seafood"
+    ],
+    "cooking_time": 49,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 4.601599906776768,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "High Cholesterol",
+      "Heart Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Beef Tacos Variant 10",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 400.1608499190172,
+    "protein": 14.547439891845409,
+    "carbohydrates": 12.955785815340633,
+    "fat": 8.917077683762022,
+    "fiber": 12.30907231880142,
+    "sugar": 19.960187186384083,
+    "sodium": 1036.142023767573,
+    "potassium": 929.8477621657679,
+    "calcium": 43.18887557036536,
+    "iron": 11.971327748523374,
+    "vitamin_a": 519.9555889193413,
+    "vitamin_b": 1.0231821443900568,
+    "vitamin_c": 30.979183526748365,
+    "vitamin_d": 8.299956908060443,
+    "vitamin_e": 5.127706585196736,
+    "cholesterol": 43.459740333779116,
+    "omega_3": 1.9464375030178227,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg"
+    ],
+    "cooking_time": 28,
+    "difficulty": "Hard",
+    "price": "Medium",
+    "rating": 4.159220481384129,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Diabetes"
+    ],
+    "avoid_for": [
+      "Hypertension"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 11",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 557.7162105466255,
+    "protein": 31.727077908997032,
+    "carbohydrates": 53.122302001507926,
+    "fat": 24.605714144905882,
+    "fiber": 13.295429127357968,
+    "sugar": 11.724222940665316,
+    "sodium": 1498.8984134701936,
+    "potassium": 371.7000406576943,
+    "calcium": 61.436855230201424,
+    "iron": 11.383676723983475,
+    "vitamin_a": 154.61262183958735,
+    "vitamin_b": 5.201480638522163,
+    "vitamin_c": 8.892276067877148,
+    "vitamin_d": 9.909846720763817,
+    "vitamin_e": 5.558375829210245,
+    "cholesterol": 48.17997914470915,
+    "omega_3": 1.957150402809507,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg"
+    ],
+    "cooking_time": 27,
+    "difficulty": "Easy",
+    "price": "High",
+    "rating": 4.168610951102736,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Hypertension",
+      "Kidney Disease",
+      "High Cholesterol"
+    ],
+    "avoid_for": [
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Avocado Toast Variant 12",
+    "image": "https://via.placeholder.com/300x200?text=Avocado+Toast",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 600.53929628532,
+    "protein": 16.728598607307767,
+    "carbohydrates": 86.8200400008082,
+    "fat": 38.52797784705322,
+    "fiber": 11.44569383684681,
+    "sugar": 5.492604664875402,
+    "sodium": 817.5679610653006,
+    "potassium": 360.0975529297468,
+    "calcium": 388.3515016129113,
+    "iron": 11.339263703644413,
+    "vitamin_a": 447.74057948528656,
+    "vitamin_b": 1.8810066814957171,
+    "vitamin_c": 12.796232570463339,
+    "vitamin_d": 6.00457680217747,
+    "vitamin_e": 7.368068797633009,
+    "cholesterol": 0,
+    "omega_3": 1.2302598206178692,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 53,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.347146489163177,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Pasta Primavera Variant 13",
+    "image": "https://via.placeholder.com/300x200?text=Pasta+Primavera",
+    "category": "Dinner",
+    "cuisine": "Italian",
+    "calories": 148.29445952036008,
+    "protein": 39.551246242544416,
+    "carbohydrates": 12.762383996317382,
+    "fat": 15.798212396259046,
+    "fiber": 10.91143339838212,
+    "sugar": 22.24614656682889,
+    "sodium": 1433.6649594131966,
+    "potassium": 589.0841087703906,
+    "calcium": 204.750989632502,
+    "iron": 2.7098880369155895,
+    "vitamin_a": 218.444266911472,
+    "vitamin_b": 3.3972327807789995,
+    "vitamin_c": 3.305585437339287,
+    "vitamin_d": 8.514260300917103,
+    "vitamin_e": 0.20400913663671139,
+    "cholesterol": 50.84632441868106,
+    "omega_3": 0.8100506672393337,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Peanut"
+    ],
+    "cooking_time": 34,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 4.626955174614122,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "High Cholesterol"
+    ],
+    "avoid_for": [
+      "Hypertension"
+    ],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Pasta Primavera Variant 14",
+    "image": "https://via.placeholder.com/300x200?text=Pasta+Primavera",
+    "category": "Dinner",
+    "cuisine": "Italian",
+    "calories": 490.72509729995926,
+    "protein": 32.43085842287607,
+    "carbohydrates": 54.35297688668345,
+    "fat": 31.421730031924476,
+    "fiber": 10.256481872983157,
+    "sugar": 9.249689810157314,
+    "sodium": 436.06690732323756,
+    "potassium": 224.6076872605829,
+    "calcium": 479.2455855361778,
+    "iron": 13.819198723842323,
+    "vitamin_a": 392.81748449789865,
+    "vitamin_b": 9.380340979712871,
+    "vitamin_c": 5.017702203499486,
+    "vitamin_d": 2.483160039957223,
+    "vitamin_e": 9.487853293999674,
+    "cholesterol": 70.87854896994135,
+    "omega_3": 1.7864762453775522,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 40,
+    "difficulty": "Medium",
+    "price": "Medium",
+    "rating": 4.417607673333359,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Diabetes",
+      "High Cholesterol"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Avocado Toast Variant 15",
+    "image": "https://via.placeholder.com/300x200?text=Avocado+Toast",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 650.8903802009966,
+    "protein": 23.60494716182691,
+    "carbohydrates": 20.233017488920446,
+    "fat": 11.43174735166895,
+    "fiber": 1.1012458857681084,
+    "sugar": 3.5653228661595655,
+    "sodium": 900.7059682639037,
+    "potassium": 386.2457662592049,
+    "calcium": 195.92137734614494,
+    "iron": 5.575810842203803,
+    "vitamin_a": 768.8882544805118,
+    "vitamin_b": 0.5685600203790919,
+    "vitamin_c": 94.50388561224675,
+    "vitamin_d": 3.7567473854218605,
+    "vitamin_e": 2.0572892566172154,
+    "cholesterol": 0,
+    "omega_3": 0.7880710914933966,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 25,
+    "difficulty": "Medium",
+    "price": "Low",
+    "rating": 4.145879808952067,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "Kidney Disease",
+      "Diabetes"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Chicken Tikka Masala Variant 16",
+    "image": "https://via.placeholder.com/300x200?text=Chicken+Tikka+Masala",
+    "category": "Dinner",
+    "cuisine": "Indian",
+    "calories": 713.1661170353474,
+    "protein": 23.908999579758728,
+    "carbohydrates": 70.81339482273388,
+    "fat": 38.12613529429314,
+    "fiber": 4.3269312339356185,
+    "sugar": 2.9507454438126093,
+    "sodium": 174.8057543410016,
+    "potassium": 569.6082139818259,
+    "calcium": 79.70242148951255,
+    "iron": 2.6009074855769763,
+    "vitamin_a": 25.694547492486898,
+    "vitamin_b": 3.062636554445306,
+    "vitamin_c": 82.64654254996937,
+    "vitamin_d": 2.40817485155734,
+    "vitamin_e": 2.9328769126958365,
+    "cholesterol": 79.94112179982851,
+    "omega_3": 1.6760471727039297,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Lactose",
+      "Tree Nut"
+    ],
+    "cooking_time": 47,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 3.9619777996869066,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "Hypertension",
+      "Kidney Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Pasta Primavera Variant 17",
+    "image": "https://via.placeholder.com/300x200?text=Pasta+Primavera",
+    "category": "Dinner",
+    "cuisine": "Italian",
+    "calories": 413.67140083187815,
+    "protein": 40.06850098996439,
+    "carbohydrates": 38.619008197975035,
+    "fat": 22.07944437888294,
+    "fiber": 5.069444958896491,
+    "sugar": 9.996352439920182,
+    "sodium": 577.6582978418659,
+    "potassium": 859.7161528348466,
+    "calcium": 197.5302152923176,
+    "iron": 3.8217982131987265,
+    "vitamin_a": 482.1850032420212,
+    "vitamin_b": 7.418859352100054,
+    "vitamin_c": 12.81343582001001,
+    "vitamin_d": 0.27200225324796823,
+    "vitamin_e": 9.699640351489304,
+    "cholesterol": 90.3310619303511,
+    "omega_3": 0.14477708876225215,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 46,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.660206374202882,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Heart Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Quinoa Salad Variant 18",
+    "image": "https://via.placeholder.com/300x200?text=Quinoa+Salad",
+    "category": "Lunch",
+    "cuisine": "Mediterranean",
+    "calories": 277.8331647727372,
+    "protein": 36.986219240926076,
+    "carbohydrates": 20.212985526734915,
+    "fat": 18.997299794863757,
+    "fiber": 1.8732872149097712,
+    "sugar": 19.818000683481205,
+    "sodium": 101.60069869089018,
+    "potassium": 222.7471962321551,
+    "calcium": 285.99810277583344,
+    "iron": 4.424529958034499,
+    "vitamin_a": 122.71113254567878,
+    "vitamin_b": 2.855113334964541,
+    "vitamin_c": 2.7067740086780145,
+    "vitamin_d": 2.3600182915097823,
+    "vitamin_e": 6.25159028165114,
+    "cholesterol": 0,
+    "omega_3": 0.5794144107946899,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 28,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 4.156995613886769,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Tofu Stir Fry Variant 19",
+    "image": "https://via.placeholder.com/300x200?text=Tofu+Stir+Fry",
+    "category": "Dinner",
+    "cuisine": "Chinese",
+    "calories": 556.6219904672419,
+    "protein": 17.532252816160902,
+    "carbohydrates": 78.9589595000258,
+    "fat": 23.04787924805591,
+    "fiber": 12.219619874266254,
+    "sugar": 24.603585196639074,
+    "sodium": 698.1461607482563,
+    "potassium": 652.3983589589328,
+    "calcium": 268.5853047503594,
+    "iron": 13.253289923668307,
+    "vitamin_a": 555.6959607798898,
+    "vitamin_b": 4.487212360435042,
+    "vitamin_c": 18.583899618533728,
+    "vitamin_d": 3.2718399871136103,
+    "vitamin_e": 4.800123028054495,
+    "cholesterol": 0,
+    "omega_3": 1.5740112677878684,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 27,
+    "difficulty": "Medium",
+    "price": "Medium",
+    "rating": 3.6377910527165245,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "High Cholesterol",
+      "Obesity",
+      "Kidney Disease"
+    ],
+    "avoid_for": [
+      "Heart Disease",
+      "Hypertension"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Tofu Stir Fry Variant 20",
+    "image": "https://via.placeholder.com/300x200?text=Tofu+Stir+Fry",
+    "category": "Dinner",
+    "cuisine": "Chinese",
+    "calories": 377.4051427025152,
+    "protein": 19.230913841353388,
+    "carbohydrates": 56.506299105738144,
+    "fat": 8.173218703707885,
+    "fiber": 13.934499082610765,
+    "sugar": 16.896781795835746,
+    "sodium": 1023.1379621829168,
+    "potassium": 355.9397237414911,
+    "calcium": 440.3381706346774,
+    "iron": 4.893103098485369,
+    "vitamin_a": 907.4187023854338,
+    "vitamin_b": 0.2775710959874611,
+    "vitamin_c": 5.047884585468165,
+    "vitamin_d": 6.941070648828224,
+    "vitamin_e": 7.129638227817595,
+    "cholesterol": 0,
+    "omega_3": 0.3988762550802656,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Soy"
+    ],
+    "cooking_time": 21,
+    "difficulty": "Hard",
+    "price": "High",
+    "rating": 4.31625128665185,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Hypertension",
+      "Kidney Disease"
+    ],
+    "avoid_for": [
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Beef Tacos Variant 21",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 256.43039891047096,
+    "protein": 39.33852249836207,
+    "carbohydrates": 77.03574994383418,
+    "fat": 11.062517177855428,
+    "fiber": 8.275868678121789,
+    "sugar": 25.87236502894888,
+    "sodium": 849.594277552709,
+    "potassium": 796.4544100456267,
+    "calcium": 435.004932600288,
+    "iron": 1.2496731726351908,
+    "vitamin_a": 819.1844318386253,
+    "vitamin_b": 1.961954835148556,
+    "vitamin_c": 13.74991072984887,
+    "vitamin_d": 2.7560793645805637,
+    "vitamin_e": 6.799337076615314,
+    "cholesterol": 17.990346396315882,
+    "omega_3": 1.5763245367694023,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Tree Nut"
+    ],
+    "cooking_time": 26,
+    "difficulty": "Hard",
+    "price": "High",
+    "rating": 3.925359527521503,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Kidney Disease",
+      "Diabetes"
+    ],
+    "avoid_for": [
+      "Heart Disease",
+      "Diabetes"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Beef Tacos Variant 22",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 128.36032909215535,
+    "protein": 45.17548003115795,
+    "carbohydrates": 26.909915999244866,
+    "fat": 22.225057777852182,
+    "fiber": 5.112097251475004,
+    "sugar": 27.25030781323233,
+    "sodium": 1312.500301241459,
+    "potassium": 506.89262279049484,
+    "calcium": 305.8525530081827,
+    "iron": 3.6464494028758994,
+    "vitamin_a": 83.41895926387267,
+    "vitamin_b": 3.269052442904541,
+    "vitamin_c": 73.2066783846123,
+    "vitamin_d": 6.3994360164753115,
+    "vitamin_e": 2.364048808411087,
+    "cholesterol": 20.350523438942048,
+    "omega_3": 0.11315562712863425,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Gluten"
+    ],
+    "cooking_time": 35,
+    "difficulty": "Easy",
+    "price": "High",
+    "rating": 3.7365709781973093,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Obesity"
+    ],
+    "avoid_for": [
+      "Diabetes",
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Pasta Primavera Variant 23",
+    "image": "https://via.placeholder.com/300x200?text=Pasta+Primavera",
+    "category": "Dinner",
+    "cuisine": "Italian",
+    "calories": 261.87720701836236,
+    "protein": 31.44256088120002,
+    "carbohydrates": 72.91398429246847,
+    "fat": 38.609721302147136,
+    "fiber": 13.575549570538149,
+    "sugar": 23.387198049304693,
+    "sodium": 1080.906356282217,
+    "potassium": 628.8251119896062,
+    "calcium": 311.169768108321,
+    "iron": 1.9465455635130653,
+    "vitamin_a": 380.5759765540075,
+    "vitamin_b": 1.009139237629667,
+    "vitamin_c": 29.981574430583546,
+    "vitamin_d": 6.609923281930566,
+    "vitamin_e": 4.11931497408503,
+    "cholesterol": 24.699846562973182,
+    "omega_3": 1.3827507957271092,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 14,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.326069044167142,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Diabetes",
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Oatmeal with Berries Variant 24",
+    "image": "https://via.placeholder.com/300x200?text=Oatmeal+with+Berries",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 731.8136892368808,
+    "protein": 35.860924915657705,
+    "carbohydrates": 88.93772764949412,
+    "fat": 6.3191809690869265,
+    "fiber": 4.110667075302519,
+    "sugar": 19.909324824234858,
+    "sodium": 961.3097139137908,
+    "potassium": 309.4702847333107,
+    "calcium": 250.96280752663787,
+    "iron": 8.924803628826377,
+    "vitamin_a": 919.9977652489529,
+    "vitamin_b": 1.5910076439497478,
+    "vitamin_c": 71.0699117251691,
+    "vitamin_d": 6.1272545222372985,
+    "vitamin_e": 6.365641077465424,
+    "cholesterol": 0,
+    "omega_3": 0.10523783471364245,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 42,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.040368305847975,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "High Cholesterol",
+      "Hypertension",
+      "Obesity"
+    ],
+    "avoid_for": [
+      "Hypertension",
+      "Heart Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 25",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 479.1335202625451,
+    "protein": 5.585708004058921,
+    "carbohydrates": 97.65714915490783,
+    "fat": 21.85206133129756,
+    "fiber": 8.669447369236382,
+    "sugar": 13.043209661110456,
+    "sodium": 613.2549198033626,
+    "potassium": 927.3483739829692,
+    "calcium": 251.90656518821334,
+    "iron": 10.132741182362064,
+    "vitamin_a": 538.0841378169839,
+    "vitamin_b": 0.2558629650628097,
+    "vitamin_c": 38.35717451514188,
+    "vitamin_d": 2.484029531921598,
+    "vitamin_e": 8.258767883671164,
+    "cholesterol": 31.324231418000224,
+    "omega_3": 1.7916994190448419,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 47,
+    "difficulty": "Easy",
+    "price": "High",
+    "rating": 4.098246388594883,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Hypertension",
+      "Obesity"
+    ],
+    "avoid_for": [
+      "Heart Disease",
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Quinoa Salad Variant 26",
+    "image": "https://via.placeholder.com/300x200?text=Quinoa+Salad",
+    "category": "Lunch",
+    "cuisine": "Mediterranean",
+    "calories": 649.3904069674741,
+    "protein": 49.817053904050404,
+    "carbohydrates": 35.732024077161824,
+    "fat": 16.54018041285623,
+    "fiber": 3.1093102526103906,
+    "sugar": 19.503897667653813,
+    "sodium": 647.8039209320549,
+    "potassium": 212.1279175210509,
+    "calcium": 384.2710942693707,
+    "iron": 1.9114507250808062,
+    "vitamin_a": 30.62370105114043,
+    "vitamin_b": 2.347101588259087,
+    "vitamin_c": 50.39752217352874,
+    "vitamin_d": 9.31984028152742,
+    "vitamin_e": 2.4422555548534373,
+    "cholesterol": 0,
+    "omega_3": 1.843586877868672,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Soy",
+      "Peanut"
+    ],
+    "cooking_time": 28,
+    "difficulty": "Easy",
+    "price": "Low",
+    "rating": 3.9906997348054607,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "Heart Disease",
+      "High Cholesterol"
+    ],
+    "avoid_for": [
+      "Heart Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Beef Tacos Variant 27",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 435.0690040051838,
+    "protein": 37.31228967771888,
+    "carbohydrates": 65.97897595823443,
+    "fat": 21.775622443104137,
+    "fiber": 3.8407377808200964,
+    "sugar": 16.392700196038483,
+    "sodium": 1312.6722626727733,
+    "potassium": 638.4170949718697,
+    "calcium": 241.5238507167485,
+    "iron": 9.566677521909117,
+    "vitamin_a": 289.9455693990407,
+    "vitamin_b": 0.27051616751918917,
+    "vitamin_c": 74.49732088768725,
+    "vitamin_d": 2.3770913411179873,
+    "vitamin_e": 2.585916244555743,
+    "cholesterol": 37.24495550924167,
+    "omega_3": 0.7794977401525702,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg",
+      "Seafood"
+    ],
+    "cooking_time": 42,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 4.115108246772965,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Kidney Disease"
+    ],
+    "avoid_for": [
+      "Diabetes",
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Pasta Primavera Variant 28",
+    "image": "https://via.placeholder.com/300x200?text=Pasta+Primavera",
+    "category": "Dinner",
+    "cuisine": "Italian",
+    "calories": 214.6237921026164,
+    "protein": 28.48869922526374,
+    "carbohydrates": 81.25593762265771,
+    "fat": 4.197478906183724,
+    "fiber": 10.679292223312823,
+    "sugar": 8.811599047063389,
+    "sodium": 344.3184570253437,
+    "potassium": 816.9327425026565,
+    "calcium": 480.3333313074262,
+    "iron": 9.562428260753995,
+    "vitamin_a": 369.89473340832313,
+    "vitamin_b": 2.7898044261919264,
+    "vitamin_c": 37.92246183005115,
+    "vitamin_d": 4.789518625807279,
+    "vitamin_e": 7.5516740070103525,
+    "cholesterol": 29.119785857784898,
+    "omega_3": 0.24015158670707626,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Tree Nut"
+    ],
+    "cooking_time": 18,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 3.5733687610645735,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Kidney Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Greek Yogurt Variant 29",
+    "image": "https://via.placeholder.com/300x200?text=Greek+Yogurt",
+    "category": "Snack",
+    "cuisine": "Mediterranean",
+    "calories": 314.8908985989183,
+    "protein": 17.66392224703493,
+    "carbohydrates": 58.57169647094649,
+    "fat": 23.687025821709536,
+    "fiber": 1.4908730245986925,
+    "sugar": 27.216484513623083,
+    "sodium": 664.1712655059421,
+    "potassium": 338.56904656570356,
+    "calcium": 449.41196641412165,
+    "iron": 4.5328834256676185,
+    "vitamin_a": 951.8066234961171,
+    "vitamin_b": 5.8904016947252735,
+    "vitamin_c": 56.15949178230585,
+    "vitamin_d": 2.7749786788075195,
+    "vitamin_e": 6.850771277750737,
+    "cholesterol": 81.03536454473445,
+    "omega_3": 0.9486423530454373,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg"
+    ],
+    "cooking_time": 30,
+    "difficulty": "Medium",
+    "price": "Low",
+    "rating": 4.373327116348073,
+    "meal_type": [
+      "Snack"
+    ],
+    "suitable_for": [
+      "Heart Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Oatmeal with Berries Variant 30",
+    "image": "https://via.placeholder.com/300x200?text=Oatmeal+with+Berries",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 675.6333449191179,
+    "protein": 17.44938707148637,
+    "carbohydrates": 80.67387345111709,
+    "fat": 38.65495018181032,
+    "fiber": 2.968907472453801,
+    "sugar": 3.873287489794903,
+    "sodium": 582.1544212352,
+    "potassium": 388.9893182127541,
+    "calcium": 317.90259239838286,
+    "iron": 14.394598844449671,
+    "vitamin_a": 433.9785518233258,
+    "vitamin_b": 5.778439741668057,
+    "vitamin_c": 41.228044588465394,
+    "vitamin_d": 6.8946165028155795,
+    "vitamin_e": 7.3001662007144645,
+    "cholesterol": 0,
+    "omega_3": 1.2977217954931357,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 9,
+    "difficulty": "Hard",
+    "price": "High",
+    "rating": 3.5078010115081644,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "High Cholesterol"
+    ],
+    "avoid_for": [
+      "Hypertension",
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Sushi Roll Variant 31",
+    "image": "https://via.placeholder.com/300x200?text=Sushi+Roll",
+    "category": "Lunch",
+    "cuisine": "Japanese",
+    "calories": 526.3116275453692,
+    "protein": 27.144782558726792,
+    "carbohydrates": 96.42879175824179,
+    "fat": 26.268419944693306,
+    "fiber": 4.926901416450698,
+    "sugar": 19.191060565429602,
+    "sodium": 1148.190047283759,
+    "potassium": 734.8037426264749,
+    "calcium": 296.32310528949455,
+    "iron": 3.776301506241046,
+    "vitamin_a": 504.48096874779446,
+    "vitamin_b": 1.6096723761324905,
+    "vitamin_c": 93.56766027172321,
+    "vitamin_d": 5.391001149353682,
+    "vitamin_e": 2.422003189953342,
+    "cholesterol": 32.84374342479606,
+    "omega_3": 1.0993392904759811,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Seafood",
+      "Peanut"
+    ],
+    "cooking_time": 33,
+    "difficulty": "Easy",
+    "price": "Medium",
+    "rating": 4.875377708805084,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "High Cholesterol",
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "High Cholesterol",
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Dal Tadka Variant 32",
+    "image": "https://via.placeholder.com/300x200?text=Dal+Tadka",
+    "category": "Lunch",
+    "cuisine": "Indian",
+    "calories": 413.8889242937328,
+    "protein": 14.486578702733148,
+    "carbohydrates": 65.09742087911687,
+    "fat": 38.15874180352506,
+    "fiber": 14.140099294810291,
+    "sugar": 9.679350171987897,
+    "sodium": 1256.6115938151047,
+    "potassium": 520.9725700808126,
+    "calcium": 431.47166506407217,
+    "iron": 11.579277325967215,
+    "vitamin_a": 617.9732914495368,
+    "vitamin_b": 0.6599481600715784,
+    "vitamin_c": 90.0451917511214,
+    "vitamin_d": 5.356827431355602,
+    "vitamin_e": 9.23910959132815,
+    "cholesterol": 0,
+    "omega_3": 1.8503294122714988,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Peanut",
+      "Gluten"
+    ],
+    "cooking_time": 42,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 4.7731894461572475,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Heart Disease",
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "Diabetes"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Tofu Stir Fry Variant 33",
+    "image": "https://via.placeholder.com/300x200?text=Tofu+Stir+Fry",
+    "category": "Dinner",
+    "cuisine": "Chinese",
+    "calories": 251.43302766978243,
+    "protein": 16.4242847624891,
+    "carbohydrates": 54.95891577030894,
+    "fat": 14.624194124985134,
+    "fiber": 2.4523230031265473,
+    "sugar": 26.937705862742206,
+    "sodium": 634.3698228159025,
+    "potassium": 415.08162084357275,
+    "calcium": 70.70252722043925,
+    "iron": 14.985083035938032,
+    "vitamin_a": 975.4852786038542,
+    "vitamin_b": 3.7821469109422545,
+    "vitamin_c": 4.7741754347003,
+    "vitamin_d": 6.345410386171619,
+    "vitamin_e": 8.623449873617346,
+    "cholesterol": 0,
+    "omega_3": 1.9220600725900732,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Peanut"
+    ],
+    "cooking_time": 5,
+    "difficulty": "Medium",
+    "price": "Low",
+    "rating": 3.7732118031692643,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Kidney Disease",
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Beef Tacos Variant 34",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 516.4904188461676,
+    "protein": 14.131949879689516,
+    "carbohydrates": 97.2128003001458,
+    "fat": 19.842998566077604,
+    "fiber": 6.846964607713791,
+    "sugar": 4.683485113406302,
+    "sodium": 768.8123779346274,
+    "potassium": 876.7292625637639,
+    "calcium": 139.85305444359852,
+    "iron": 7.90916204015315,
+    "vitamin_a": 701.1449914362022,
+    "vitamin_b": 9.687285637233586,
+    "vitamin_c": 29.40865641791862,
+    "vitamin_d": 8.303738339558723,
+    "vitamin_e": 6.17286612684265,
+    "cholesterol": 2.817470984234449,
+    "omega_3": 1.8997243868642208,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 39,
+    "difficulty": "Hard",
+    "price": "Medium",
+    "rating": 4.652364526132663,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "High Cholesterol",
+      "Hypertension",
+      "Kidney Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Chicken Tikka Masala Variant 35",
+    "image": "https://via.placeholder.com/300x200?text=Chicken+Tikka+Masala",
+    "category": "Dinner",
+    "cuisine": "Indian",
+    "calories": 790.6556306647582,
+    "protein": 46.74887912057887,
+    "carbohydrates": 86.49640755321172,
+    "fat": 38.72497072552635,
+    "fiber": 3.2781587684001234,
+    "sugar": 22.210804531675855,
+    "sodium": 221.24998807969519,
+    "potassium": 859.406366143223,
+    "calcium": 165.40852792769923,
+    "iron": 5.762159333354036,
+    "vitamin_a": 702.7184949268607,
+    "vitamin_b": 2.8993279442646145,
+    "vitamin_c": 16.867847899485188,
+    "vitamin_d": 0.37968964655253123,
+    "vitamin_e": 9.682301162921425,
+    "cholesterol": 43.4636560695807,
+    "omega_3": 1.1338871073425456,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Seafood"
+    ],
+    "cooking_time": 19,
+    "difficulty": "Easy",
+    "price": "High",
+    "rating": 3.748508376684612,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Kidney Disease",
+      "High Cholesterol"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Greek Yogurt Variant 36",
+    "image": "https://via.placeholder.com/300x200?text=Greek+Yogurt",
+    "category": "Snack",
+    "cuisine": "Mediterranean",
+    "calories": 322.1198842366091,
+    "protein": 13.556764018270162,
+    "carbohydrates": 74.75852880941888,
+    "fat": 39.995341655127305,
+    "fiber": 10.58541185543892,
+    "sugar": 4.940389340610766,
+    "sodium": 1231.7713346677688,
+    "potassium": 890.588823842278,
+    "calcium": 433.1192512569804,
+    "iron": 5.028625775016744,
+    "vitamin_a": 920.569600671415,
+    "vitamin_b": 3.960497973912205,
+    "vitamin_c": 28.427362791943935,
+    "vitamin_d": 9.249887174505446,
+    "vitamin_e": 2.5039518623714665,
+    "cholesterol": 49.55926645888034,
+    "omega_3": 1.2922622698561648,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 33,
+    "difficulty": "Medium",
+    "price": "Low",
+    "rating": 4.865178571891775,
+    "meal_type": [
+      "Snack"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Hypertension",
+      "Obesity"
+    ],
+    "avoid_for": [
+      "Hypertension"
+    ],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Pasta Primavera Variant 37",
+    "image": "https://via.placeholder.com/300x200?text=Pasta+Primavera",
+    "category": "Dinner",
+    "cuisine": "Italian",
+    "calories": 270.9432775205793,
+    "protein": 45.042704509648075,
+    "carbohydrates": 71.53032973485105,
+    "fat": 3.6258636481750957,
+    "fiber": 8.413438912325603,
+    "sugar": 25.840230709178535,
+    "sodium": 389.59565987092344,
+    "potassium": 968.3013110311064,
+    "calcium": 231.84517304677144,
+    "iron": 4.039049357442231,
+    "vitamin_a": 963.6319062377022,
+    "vitamin_b": 6.1413369240554525,
+    "vitamin_c": 76.09956680554208,
+    "vitamin_d": 0.671778484381309,
+    "vitamin_e": 7.567389522108167,
+    "cholesterol": 54.37307779047135,
+    "omega_3": 1.48758176721369,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 52,
+    "difficulty": "Medium",
+    "price": "Medium",
+    "rating": 3.73477172794094,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Kidney Disease",
+      "High Cholesterol",
+      "Obesity"
+    ],
+    "avoid_for": [
+      "Hypertension"
+    ],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Quinoa Salad Variant 38",
+    "image": "https://via.placeholder.com/300x200?text=Quinoa+Salad",
+    "category": "Lunch",
+    "cuisine": "Mediterranean",
+    "calories": 239.88644533092452,
+    "protein": 29.387809112335727,
+    "carbohydrates": 50.9148165276539,
+    "fat": 34.75674499379454,
+    "fiber": 12.050293356784515,
+    "sugar": 25.312693300097614,
+    "sodium": 1189.0694770090563,
+    "potassium": 665.7468766999375,
+    "calcium": 119.78554038025118,
+    "iron": 5.869844277470293,
+    "vitamin_a": 596.0618137893335,
+    "vitamin_b": 0.5254262142355537,
+    "vitamin_c": 94.73168082590637,
+    "vitamin_d": 6.500735574751346,
+    "vitamin_e": 2.2921923975705774,
+    "cholesterol": 0,
+    "omega_3": 0.16626771460660872,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Soy"
+    ],
+    "cooking_time": 19,
+    "difficulty": "Medium",
+    "price": "Low",
+    "rating": 3.8751338250294354,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Diabetes",
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "Kidney Disease",
+      "Heart Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Chicken Tikka Masala Variant 39",
+    "image": "https://via.placeholder.com/300x200?text=Chicken+Tikka+Masala",
+    "category": "Dinner",
+    "cuisine": "Indian",
+    "calories": 596.9809521655772,
+    "protein": 35.057432184003986,
+    "carbohydrates": 74.7242308537536,
+    "fat": 30.337924715489976,
+    "fiber": 14.9057373207028,
+    "sugar": 26.778685584492482,
+    "sodium": 1366.199648826591,
+    "potassium": 160.88895209889074,
+    "calcium": 331.53337102147884,
+    "iron": 8.825139024498096,
+    "vitamin_a": 258.07383474263656,
+    "vitamin_b": 5.128175559134914,
+    "vitamin_c": 5.058304970685901,
+    "vitamin_d": 6.351659890920752,
+    "vitamin_e": 9.949018312562766,
+    "cholesterol": 56.195298783713895,
+    "omega_3": 1.3527891620512649,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Gluten"
+    ],
+    "cooking_time": 44,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 3.6026367974837656,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Heart Disease",
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 40",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 637.0651834164828,
+    "protein": 35.677330464599464,
+    "carbohydrates": 62.932110677241816,
+    "fat": 6.290483090367127,
+    "fiber": 2.887556383354571,
+    "sugar": 19.187209517635477,
+    "sodium": 1101.3152296966596,
+    "potassium": 685.540495472119,
+    "calcium": 353.22241796181106,
+    "iron": 4.363412678288351,
+    "vitamin_a": 471.8735236647819,
+    "vitamin_b": 5.6569242026878825,
+    "vitamin_c": 65.72979055625838,
+    "vitamin_d": 4.440809416288233,
+    "vitamin_e": 3.0906625987345415,
+    "cholesterol": 88.19962147168079,
+    "omega_3": 1.761583698067733,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Peanut"
+    ],
+    "cooking_time": 44,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.378026549926103,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Kidney Disease"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Quinoa Salad Variant 41",
+    "image": "https://via.placeholder.com/300x200?text=Quinoa+Salad",
+    "category": "Lunch",
+    "cuisine": "Mediterranean",
+    "calories": 329.28543022130566,
+    "protein": 6.10794407890494,
+    "carbohydrates": 40.190417492029624,
+    "fat": 3.8814298791925794,
+    "fiber": 6.86972520345774,
+    "sugar": 26.283126617110987,
+    "sodium": 634.4631999905502,
+    "potassium": 144.2286166547969,
+    "calcium": 351.618937567192,
+    "iron": 9.746405892090564,
+    "vitamin_a": 645.5497917085685,
+    "vitamin_b": 8.564417860081894,
+    "vitamin_c": 61.984546870696136,
+    "vitamin_d": 1.0247323236080519,
+    "vitamin_e": 6.874298172717083,
+    "cholesterol": 0,
+    "omega_3": 0.7368793790753143,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg"
+    ],
+    "cooking_time": 25,
+    "difficulty": "Hard",
+    "price": "Medium",
+    "rating": 4.473734212634884,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "High Cholesterol"
+    ],
+    "avoid_for": [
+      "Hypertension"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Greek Yogurt Variant 42",
+    "image": "https://via.placeholder.com/300x200?text=Greek+Yogurt",
+    "category": "Snack",
+    "cuisine": "Mediterranean",
+    "calories": 129.93200063308552,
+    "protein": 42.68009148153272,
+    "carbohydrates": 44.59467230297341,
+    "fat": 17.156630868210684,
+    "fiber": 3.403253239802784,
+    "sugar": 14.65938259362677,
+    "sodium": 987.7140209541706,
+    "potassium": 611.3216102695956,
+    "calcium": 106.69950689956002,
+    "iron": 4.559948020730868,
+    "vitamin_a": 735.8076108585227,
+    "vitamin_b": 0.8915927697653436,
+    "vitamin_c": 83.86347724961767,
+    "vitamin_d": 9.523605461590625,
+    "vitamin_e": 0.8204477341009064,
+    "cholesterol": 62.49668692881416,
+    "omega_3": 1.149902623058245,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg"
+    ],
+    "cooking_time": 40,
+    "difficulty": "Medium",
+    "price": "Medium",
+    "rating": 4.213908218321546,
+    "meal_type": [
+      "Snack"
+    ],
+    "suitable_for": [
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "Heart Disease",
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Avocado Toast Variant 43",
+    "image": "https://via.placeholder.com/300x200?text=Avocado+Toast",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 559.4412608135967,
+    "protein": 39.47371183488031,
+    "carbohydrates": 42.846763987478994,
+    "fat": 12.270260091337125,
+    "fiber": 8.17425369334606,
+    "sugar": 13.443977383066224,
+    "sodium": 979.0080476638157,
+    "potassium": 643.404849430368,
+    "calcium": 269.60338839273066,
+    "iron": 4.3206829810692735,
+    "vitamin_a": 357.73685526134426,
+    "vitamin_b": 1.302778548000858,
+    "vitamin_c": 66.64208470234443,
+    "vitamin_d": 3.6948031087613895,
+    "vitamin_e": 4.306766154808063,
+    "cholesterol": 0,
+    "omega_3": 1.1730060701539993,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Soy"
+    ],
+    "cooking_time": 59,
+    "difficulty": "Hard",
+    "price": "Medium",
+    "rating": 4.485693989207432,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Avocado Toast Variant 44",
+    "image": "https://via.placeholder.com/300x200?text=Avocado+Toast",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 219.06822661950443,
+    "protein": 16.75266398343503,
+    "carbohydrates": 32.87255604580465,
+    "fat": 7.11367020073082,
+    "fiber": 12.288874975703518,
+    "sugar": 12.044392991191554,
+    "sodium": 846.0994687769497,
+    "potassium": 607.9672308782758,
+    "calcium": 372.63863158443024,
+    "iron": 3.231895112927794,
+    "vitamin_a": 746.6754926229519,
+    "vitamin_b": 3.3262636512175003,
+    "vitamin_c": 18.0191633072174,
+    "vitamin_d": 1.4944124391874614,
+    "vitamin_e": 6.2365027560916175,
+    "cholesterol": 0,
+    "omega_3": 0.5959726660995661,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg",
+      "Tree Nut"
+    ],
+    "cooking_time": 30,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.509668984640998,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Diabetes",
+      "Heart Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Beef Tacos Variant 45",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 789.9279767216536,
+    "protein": 33.82779644353582,
+    "carbohydrates": 55.5135926102293,
+    "fat": 19.08319948222482,
+    "fiber": 12.972985324473989,
+    "sugar": 6.770030473775043,
+    "sodium": 1115.7487036942066,
+    "potassium": 476.7508150251718,
+    "calcium": 213.6012613145003,
+    "iron": 8.456019779263366,
+    "vitamin_a": 724.7259167751295,
+    "vitamin_b": 0.20563627094020154,
+    "vitamin_c": 65.23221417234843,
+    "vitamin_d": 0.9572141319959715,
+    "vitamin_e": 7.216807414077289,
+    "cholesterol": 21.769344563515737,
+    "omega_3": 1.6174289554309178,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Gluten"
+    ],
+    "cooking_time": 18,
+    "difficulty": "Easy",
+    "price": "Low",
+    "rating": 4.421617884716744,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Hypertension"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Oatmeal with Berries Variant 46",
+    "image": "https://via.placeholder.com/300x200?text=Oatmeal+with+Berries",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 409.07752710983135,
+    "protein": 19.735504047179084,
+    "carbohydrates": 66.06252113276167,
+    "fat": 22.287537698860262,
+    "fiber": 5.347273468598185,
+    "sugar": 19.17637418953596,
+    "sodium": 1011.3668255904086,
+    "potassium": 326.2884398559211,
+    "calcium": 47.744092766822575,
+    "iron": 9.297701581957073,
+    "vitamin_a": 878.3081906829169,
+    "vitamin_b": 4.703484466256639,
+    "vitamin_c": 49.96116529105829,
+    "vitamin_d": 8.462729460446386,
+    "vitamin_e": 6.635903648541016,
+    "cholesterol": 0,
+    "omega_3": 0.33219812109782687,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Lactose",
+      "Tree Nut"
+    ],
+    "cooking_time": 8,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 3.7498723163887915,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "Hypertension",
+      "Kidney Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Chicken Tikka Masala Variant 47",
+    "image": "https://via.placeholder.com/300x200?text=Chicken+Tikka+Masala",
+    "category": "Dinner",
+    "cuisine": "Indian",
+    "calories": 439.5362548318195,
+    "protein": 13.41701814858505,
+    "carbohydrates": 33.08025772307929,
+    "fat": 29.175345559811664,
+    "fiber": 14.707104150784025,
+    "sugar": 13.150291523634724,
+    "sodium": 973.160100247299,
+    "potassium": 359.6437690801837,
+    "calcium": 378.36536855899374,
+    "iron": 5.734376221178884,
+    "vitamin_a": 412.84938360988457,
+    "vitamin_b": 3.350560071219192,
+    "vitamin_c": 47.0890051856849,
+    "vitamin_d": 3.9548166612142666,
+    "vitamin_e": 1.1333205840407234,
+    "cholesterol": 29.639474227746867,
+    "omega_3": 1.2420263499723092,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Lactose"
+    ],
+    "cooking_time": 39,
+    "difficulty": "Easy",
+    "price": "High",
+    "rating": 4.290021780844119,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "Kidney Disease",
+      "Heart Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 48",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 651.0876056412851,
+    "protein": 35.33867785202595,
+    "carbohydrates": 91.08586457272479,
+    "fat": 21.862329560145504,
+    "fiber": 10.605097276708522,
+    "sugar": 3.2769335744378587,
+    "sodium": 334.4679770644517,
+    "potassium": 708.5459238922837,
+    "calcium": 268.40867024636344,
+    "iron": 8.312488445721497,
+    "vitamin_a": 796.6205004926638,
+    "vitamin_b": 3.2703240054224016,
+    "vitamin_c": 11.284418147297991,
+    "vitamin_d": 8.97879874595778,
+    "vitamin_e": 0.29874974261785314,
+    "cholesterol": 5.022644278927013,
+    "omega_3": 1.625698886388698,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Peanut",
+      "Soy"
+    ],
+    "cooking_time": 52,
+    "difficulty": "Medium",
+    "price": "Low",
+    "rating": 4.579934686422959,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Diabetes"
+    ],
+    "avoid_for": [
+      "Heart Disease",
+      "Diabetes"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Quinoa Salad Variant 49",
+    "image": "https://via.placeholder.com/300x200?text=Quinoa+Salad",
+    "category": "Lunch",
+    "cuisine": "Mediterranean",
+    "calories": 515.5881301981897,
+    "protein": 18.753003782329625,
+    "carbohydrates": 23.958802477464953,
+    "fat": 3.4982229384269248,
+    "fiber": 3.670251052705659,
+    "sugar": 7.4189530645477815,
+    "sodium": 109.5500387067886,
+    "potassium": 873.1849185938242,
+    "calcium": 48.86666732503302,
+    "iron": 1.5269245541383902,
+    "vitamin_a": 519.5721087985638,
+    "vitamin_b": 0.2690304215004713,
+    "vitamin_c": 39.477421768472546,
+    "vitamin_d": 6.6024572334549445,
+    "vitamin_e": 3.2225097577671615,
+    "cholesterol": 0,
+    "omega_3": 1.6760669964488524,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Lactose"
+    ],
+    "cooking_time": 11,
+    "difficulty": "Medium",
+    "price": "Medium",
+    "rating": 4.496836783096814,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Kidney Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Oatmeal with Berries Variant 50",
+    "image": "https://via.placeholder.com/300x200?text=Oatmeal+with+Berries",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 631.1004521330631,
+    "protein": 44.19179531125564,
+    "carbohydrates": 83.25548792385642,
+    "fat": 33.65563050487373,
+    "fiber": 1.9086887357956352,
+    "sugar": 29.092105742399486,
+    "sodium": 65.17269612926752,
+    "potassium": 308.2900480289344,
+    "calcium": 438.7279373776264,
+    "iron": 6.578098030845808,
+    "vitamin_a": 954.3128694020731,
+    "vitamin_b": 0.853464586450251,
+    "vitamin_c": 91.60013298807604,
+    "vitamin_d": 2.232130663836439,
+    "vitamin_e": 4.431190142767082,
+    "cholesterol": 0,
+    "omega_3": 0.22234080840303516,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 20,
+    "difficulty": "Hard",
+    "price": "High",
+    "rating": 4.964526029339098,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "Diabetes"
+    ],
+    "avoid_for": [
+      "Kidney Disease",
+      "Hypertension"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Greek Yogurt Variant 51",
+    "image": "https://via.placeholder.com/300x200?text=Greek+Yogurt",
+    "category": "Snack",
+    "cuisine": "Mediterranean",
+    "calories": 733.4486305627646,
+    "protein": 38.18700643574828,
+    "carbohydrates": 40.01028522793252,
+    "fat": 30.447483855983887,
+    "fiber": 13.871950420000239,
+    "sugar": 14.41514548650095,
+    "sodium": 984.8600659946865,
+    "potassium": 653.6360115705687,
+    "calcium": 31.004552855198728,
+    "iron": 13.124432439741723,
+    "vitamin_a": 198.28224925142757,
+    "vitamin_b": 8.064004194053254,
+    "vitamin_c": 46.402953449429816,
+    "vitamin_d": 1.059884653972878,
+    "vitamin_e": 5.454555029394424,
+    "cholesterol": 91.13584786700048,
+    "omega_3": 0.07369815097662236,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Lactose",
+      "Egg"
+    ],
+    "cooking_time": 32,
+    "difficulty": "Medium",
+    "price": "Medium",
+    "rating": 4.699374790236813,
+    "meal_type": [
+      "Snack"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Hypertension",
+      "Obesity"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Tofu Stir Fry Variant 52",
+    "image": "https://via.placeholder.com/300x200?text=Tofu+Stir+Fry",
+    "category": "Dinner",
+    "cuisine": "Chinese",
+    "calories": 511.80500439899214,
+    "protein": 42.85902732986398,
+    "carbohydrates": 99.82445072065508,
+    "fat": 21.301241318106662,
+    "fiber": 2.875645192750744,
+    "sugar": 24.884760551831693,
+    "sodium": 1056.5338097600372,
+    "potassium": 110.12407787113442,
+    "calcium": 104.3665222296677,
+    "iron": 10.835191934432146,
+    "vitamin_a": 611.6643450001415,
+    "vitamin_b": 5.838378373686389,
+    "vitamin_c": 18.664794454589195,
+    "vitamin_d": 0.9783897941402786,
+    "vitamin_e": 6.536344304598439,
+    "cholesterol": 0,
+    "omega_3": 1.4262670023139763,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 53,
+    "difficulty": "Hard",
+    "price": "High",
+    "rating": 4.37874811279611,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "High Cholesterol",
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Greek Yogurt Variant 53",
+    "image": "https://via.placeholder.com/300x200?text=Greek+Yogurt",
+    "category": "Snack",
+    "cuisine": "Mediterranean",
+    "calories": 254.4061327812261,
+    "protein": 29.053447294448112,
+    "carbohydrates": 82.85344948864454,
+    "fat": 4.602997187960182,
+    "fiber": 12.8761724704174,
+    "sugar": 17.181295870662428,
+    "sodium": 1113.790597767714,
+    "potassium": 825.0118192353463,
+    "calcium": 156.61597972158478,
+    "iron": 7.04706242624785,
+    "vitamin_a": 716.4154228704388,
+    "vitamin_b": 9.563777293589293,
+    "vitamin_c": 81.54089907351013,
+    "vitamin_d": 4.413540246356136,
+    "vitamin_e": 2.7703071064639073,
+    "cholesterol": 82.56757661260818,
+    "omega_3": 0.032514157873876126,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 58,
+    "difficulty": "Easy",
+    "price": "Medium",
+    "rating": 4.665896569899159,
+    "meal_type": [
+      "Snack"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Heart Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Beef Tacos Variant 54",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 737.585880174415,
+    "protein": 6.956455151759382,
+    "carbohydrates": 17.8522637475005,
+    "fat": 24.379406643125915,
+    "fiber": 7.283011988805223,
+    "sugar": 6.683577864120645,
+    "sodium": 635.5295498322099,
+    "potassium": 338.248548950639,
+    "calcium": 422.33192705530814,
+    "iron": 13.802967528191138,
+    "vitamin_a": 898.3977354822377,
+    "vitamin_b": 7.515606536831553,
+    "vitamin_c": 90.24546905444973,
+    "vitamin_d": 3.2164883867603065,
+    "vitamin_e": 9.897135616325256,
+    "cholesterol": 44.987941095413234,
+    "omega_3": 0.47870825977149534,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Peanut"
+    ],
+    "cooking_time": 35,
+    "difficulty": "Medium",
+    "price": "Medium",
+    "rating": 4.411259098529376,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Diabetes"
+    ],
+    "avoid_for": [
+      "Diabetes"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Pasta Primavera Variant 55",
+    "image": "https://via.placeholder.com/300x200?text=Pasta+Primavera",
+    "category": "Dinner",
+    "cuisine": "Italian",
+    "calories": 665.8744364512569,
+    "protein": 29.0216684562396,
+    "carbohydrates": 49.18750657155212,
+    "fat": 36.00618265864073,
+    "fiber": 5.453341288527366,
+    "sugar": 17.569179974865886,
+    "sodium": 792.1369922389068,
+    "potassium": 476.2703905546713,
+    "calcium": 355.2798158431717,
+    "iron": 7.160157422302656,
+    "vitamin_a": 976.4653781576649,
+    "vitamin_b": 2.6621082520491535,
+    "vitamin_c": 94.30253405927725,
+    "vitamin_d": 3.5113271717098318,
+    "vitamin_e": 7.66713831194201,
+    "cholesterol": 32.94972893945083,
+    "omega_3": 1.4654952148741338,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 50,
+    "difficulty": "Hard",
+    "price": "High",
+    "rating": 4.748633722870953,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Beef Tacos Variant 56",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 243.58834856857038,
+    "protein": 13.146488394039094,
+    "carbohydrates": 41.15326265684233,
+    "fat": 24.318772532024383,
+    "fiber": 10.35213797433478,
+    "sugar": 5.744331488831446,
+    "sodium": 674.4982072906366,
+    "potassium": 606.8502689856431,
+    "calcium": 78.98786190368244,
+    "iron": 5.915655815511295,
+    "vitamin_a": 573.4587495930574,
+    "vitamin_b": 9.030965375508673,
+    "vitamin_c": 58.41282092888588,
+    "vitamin_d": 0.5639256043541985,
+    "vitamin_e": 8.679193648583324,
+    "cholesterol": 61.02068692501047,
+    "omega_3": 1.7221406761153222,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg",
+      "Lactose"
+    ],
+    "cooking_time": 52,
+    "difficulty": "Hard",
+    "price": "High",
+    "rating": 3.9024853313528896,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "High Cholesterol"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Pasta Primavera Variant 57",
+    "image": "https://via.placeholder.com/300x200?text=Pasta+Primavera",
+    "category": "Dinner",
+    "cuisine": "Italian",
+    "calories": 725.4652914479957,
+    "protein": 29.198362584091754,
+    "carbohydrates": 64.28794515063286,
+    "fat": 12.018209330893,
+    "fiber": 9.607657843958032,
+    "sugar": 9.648032276753213,
+    "sodium": 1148.246973002723,
+    "potassium": 958.9723468828207,
+    "calcium": 291.04476110984683,
+    "iron": 9.81188167243913,
+    "vitamin_a": 909.9903951242827,
+    "vitamin_b": 0.8035321479303992,
+    "vitamin_c": 55.18498196205079,
+    "vitamin_d": 8.709310164621941,
+    "vitamin_e": 8.186728785779165,
+    "cholesterol": 26.27765566266984,
+    "omega_3": 1.6160592635145417,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Soy"
+    ],
+    "cooking_time": 5,
+    "difficulty": "Easy",
+    "price": "Low",
+    "rating": 4.429120160150178,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "High Cholesterol",
+      "Obesity"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Chicken Tikka Masala Variant 58",
+    "image": "https://via.placeholder.com/300x200?text=Chicken+Tikka+Masala",
+    "category": "Dinner",
+    "cuisine": "Indian",
+    "calories": 671.6624351977753,
+    "protein": 43.90280094560809,
+    "carbohydrates": 97.03752689163,
+    "fat": 25.125697478704563,
+    "fiber": 13.76750104670507,
+    "sugar": 21.593061715946003,
+    "sodium": 635.4286106939232,
+    "potassium": 366.6473347826992,
+    "calcium": 341.5676114866463,
+    "iron": 11.555173900318312,
+    "vitamin_a": 646.6672646473106,
+    "vitamin_b": 6.65524957991437,
+    "vitamin_c": 12.734208250234824,
+    "vitamin_d": 5.508175001961327,
+    "vitamin_e": 0.8734193665802792,
+    "cholesterol": 61.04252752517554,
+    "omega_3": 1.0055738781776418,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg"
+    ],
+    "cooking_time": 37,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 4.250283698130382,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Diabetes",
+      "Heart Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Pasta Primavera Variant 59",
+    "image": "https://via.placeholder.com/300x200?text=Pasta+Primavera",
+    "category": "Dinner",
+    "cuisine": "Italian",
+    "calories": 397.00059947814884,
+    "protein": 25.38201745849564,
+    "carbohydrates": 33.604594576162086,
+    "fat": 37.265596099081286,
+    "fiber": 5.092618656115107,
+    "sugar": 11.206022520140422,
+    "sodium": 502.4509048280848,
+    "potassium": 507.9780855877487,
+    "calcium": 438.4050402205201,
+    "iron": 2.10314052017376,
+    "vitamin_a": 14.82524948221753,
+    "vitamin_b": 3.343469256050118,
+    "vitamin_c": 17.697233288965297,
+    "vitamin_d": 2.4286935663033073,
+    "vitamin_e": 0.38270416998008927,
+    "cholesterol": 36.23966388235084,
+    "omega_3": 1.9688694361025996,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Tree Nut"
+    ],
+    "cooking_time": 52,
+    "difficulty": "Hard",
+    "price": "Medium",
+    "rating": 4.176459629141354,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Hypertension",
+      "Kidney Disease"
+    ],
+    "avoid_for": [
+      "Heart Disease"
+    ],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Greek Yogurt Variant 60",
+    "image": "https://via.placeholder.com/300x200?text=Greek+Yogurt",
+    "category": "Snack",
+    "cuisine": "Mediterranean",
+    "calories": 132.31369072930656,
+    "protein": 49.864607630424565,
+    "carbohydrates": 18.59709969922776,
+    "fat": 6.0125217120000904,
+    "fiber": 2.1329561035167695,
+    "sugar": 2.608889184759385,
+    "sodium": 1112.3024698916438,
+    "potassium": 558.8840921022997,
+    "calcium": 110.68018839130067,
+    "iron": 12.167467455603425,
+    "vitamin_a": 904.0677202533492,
+    "vitamin_b": 9.487711372797099,
+    "vitamin_c": 88.86400079066281,
+    "vitamin_d": 4.35383816024255,
+    "vitamin_e": 0.6629947850362305,
+    "cholesterol": 86.85662404250006,
+    "omega_3": 0.5691559484948086,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Gluten",
+      "Lactose"
+    ],
+    "cooking_time": 49,
+    "difficulty": "Easy",
+    "price": "Low",
+    "rating": 3.929738368260467,
+    "meal_type": [
+      "Snack"
+    ],
+    "suitable_for": [
+      "High Cholesterol",
+      "Obesity",
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "Heart Disease",
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Quinoa Salad Variant 61",
+    "image": "https://via.placeholder.com/300x200?text=Quinoa+Salad",
+    "category": "Lunch",
+    "cuisine": "Mediterranean",
+    "calories": 532.6641523196301,
+    "protein": 11.786096737673379,
+    "carbohydrates": 46.94408152020864,
+    "fat": 29.950674065000666,
+    "fiber": 8.193493406018604,
+    "sugar": 26.8829889749827,
+    "sodium": 789.5740588233425,
+    "potassium": 982.0672911020034,
+    "calcium": 211.34712106218424,
+    "iron": 9.65320644530925,
+    "vitamin_a": 967.8690080083842,
+    "vitamin_b": 8.680757680200186,
+    "vitamin_c": 49.474099832578,
+    "vitamin_d": 6.322891411176465,
+    "vitamin_e": 5.176328934781628,
+    "cholesterol": 0,
+    "omega_3": 1.4896524873949568,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Seafood"
+    ],
+    "cooking_time": 39,
+    "difficulty": "Medium",
+    "price": "Medium",
+    "rating": 4.199090049678687,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Hypertension",
+      "Obesity"
+    ],
+    "avoid_for": [
+      "Heart Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Avocado Toast Variant 62",
+    "image": "https://via.placeholder.com/300x200?text=Avocado+Toast",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 250.85892942855833,
+    "protein": 20.657168527294974,
+    "carbohydrates": 28.401714239052207,
+    "fat": 18.0685893651901,
+    "fiber": 13.14827075929648,
+    "sugar": 25.082373294487468,
+    "sodium": 748.7180249431616,
+    "potassium": 704.8191376684039,
+    "calcium": 281.9926613628141,
+    "iron": 5.877363222643335,
+    "vitamin_a": 986.824951035723,
+    "vitamin_b": 8.289134854497656,
+    "vitamin_c": 85.02888973280885,
+    "vitamin_d": 7.355260988232926,
+    "vitamin_e": 4.131457563249992,
+    "cholesterol": 0,
+    "omega_3": 0.8714793983175126,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Tree Nut"
+    ],
+    "cooking_time": 52,
+    "difficulty": "Medium",
+    "price": "Low",
+    "rating": 3.9571979858071806,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "Diabetes"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Chicken Tikka Masala Variant 63",
+    "image": "https://via.placeholder.com/300x200?text=Chicken+Tikka+Masala",
+    "category": "Dinner",
+    "cuisine": "Indian",
+    "calories": 341.14655695050624,
+    "protein": 19.662134506712114,
+    "carbohydrates": 73.24927118151349,
+    "fat": 29.87862919241079,
+    "fiber": 2.1651754511120926,
+    "sugar": 27.998141774928992,
+    "sodium": 1234.612582688413,
+    "potassium": 818.0830786325779,
+    "calcium": 71.53831502877361,
+    "iron": 10.629427352897729,
+    "vitamin_a": 56.67920523063774,
+    "vitamin_b": 3.709762379342638,
+    "vitamin_c": 60.860674117925065,
+    "vitamin_d": 4.153554112565484,
+    "vitamin_e": 1.0782638252555343,
+    "cholesterol": 53.47104464707447,
+    "omega_3": 0.08229696389552532,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Tree Nut"
+    ],
+    "cooking_time": 53,
+    "difficulty": "Hard",
+    "price": "Medium",
+    "rating": 3.5811816487455506,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "High Cholesterol"
+    ],
+    "avoid_for": [
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Oatmeal with Berries Variant 64",
+    "image": "https://via.placeholder.com/300x200?text=Oatmeal+with+Berries",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 164.05943210993854,
+    "protein": 31.512890094077292,
+    "carbohydrates": 77.50221850652026,
+    "fat": 29.534926447270756,
+    "fiber": 8.582824593235252,
+    "sugar": 20.804993480420237,
+    "sodium": 317.84817060790834,
+    "potassium": 170.73342249633566,
+    "calcium": 314.3616122998217,
+    "iron": 5.972633377119926,
+    "vitamin_a": 636.0067929243303,
+    "vitamin_b": 0.35405536931794046,
+    "vitamin_c": 82.37490214249524,
+    "vitamin_d": 3.868431730968862,
+    "vitamin_e": 2.2557078249298423,
+    "cholesterol": 0,
+    "omega_3": 0.5803225609136566,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 55,
+    "difficulty": "Medium",
+    "price": "Low",
+    "rating": 4.559643414424036,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "Heart Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Beef Tacos Variant 65",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 520.0083380646364,
+    "protein": 25.02467997925864,
+    "carbohydrates": 68.24991710359154,
+    "fat": 15.544686042540981,
+    "fiber": 3.9815903380764315,
+    "sugar": 1.6773156532829954,
+    "sodium": 113.19271485886063,
+    "potassium": 912.9044164896972,
+    "calcium": 216.80744912098024,
+    "iron": 10.778985218917237,
+    "vitamin_a": 580.1345558835865,
+    "vitamin_b": 2.378980583810306,
+    "vitamin_c": 13.755788415815772,
+    "vitamin_d": 7.857438031012457,
+    "vitamin_e": 3.122094501355175,
+    "cholesterol": 81.89687913985412,
+    "omega_3": 0.5116865699966386,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 28,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 4.789774910945799,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "Heart Disease",
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Greek Yogurt Variant 66",
+    "image": "https://via.placeholder.com/300x200?text=Greek+Yogurt",
+    "category": "Snack",
+    "cuisine": "Mediterranean",
+    "calories": 798.2550591951014,
+    "protein": 26.893485973774343,
+    "carbohydrates": 23.202466233080393,
+    "fat": 13.532683200518756,
+    "fiber": 4.867664024886846,
+    "sugar": 15.978123788398065,
+    "sodium": 714.9357479510187,
+    "potassium": 202.94978624029756,
+    "calcium": 251.8828099217406,
+    "iron": 3.0246148838537708,
+    "vitamin_a": 421.33173432306313,
+    "vitamin_b": 3.447638901093656,
+    "vitamin_c": 62.954793229123574,
+    "vitamin_d": 0.22358161449830938,
+    "vitamin_e": 2.9729268542374268,
+    "cholesterol": 18.96873079429613,
+    "omega_3": 1.3933693581978894,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Soy",
+      "Egg"
+    ],
+    "cooking_time": 16,
+    "difficulty": "Easy",
+    "price": "Low",
+    "rating": 3.6622436030487835,
+    "meal_type": [
+      "Snack"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Kidney Disease",
+      "Diabetes"
+    ],
+    "avoid_for": [
+      "Heart Disease"
+    ],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Pasta Primavera Variant 67",
+    "image": "https://via.placeholder.com/300x200?text=Pasta+Primavera",
+    "category": "Dinner",
+    "cuisine": "Italian",
+    "calories": 379.8686771753553,
+    "protein": 39.90088909973316,
+    "carbohydrates": 78.90998784789376,
+    "fat": 29.4452373333856,
+    "fiber": 8.720928356067162,
+    "sugar": 26.179513458539898,
+    "sodium": 929.4179387202213,
+    "potassium": 199.45554005417375,
+    "calcium": 31.784938841844035,
+    "iron": 7.445846219117334,
+    "vitamin_a": 700.1673209952036,
+    "vitamin_b": 2.3286639009051555,
+    "vitamin_c": 7.031617217714336,
+    "vitamin_d": 9.207740068142018,
+    "vitamin_e": 1.3395149054519406,
+    "cholesterol": 67.25767944012046,
+    "omega_3": 0.47863258894553296,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Lactose",
+      "Egg"
+    ],
+    "cooking_time": 18,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 4.563481540083958,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "Kidney Disease",
+      "Diabetes"
+    ],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Quinoa Salad Variant 68",
+    "image": "https://via.placeholder.com/300x200?text=Quinoa+Salad",
+    "category": "Lunch",
+    "cuisine": "Mediterranean",
+    "calories": 384.8274738880795,
+    "protein": 32.689832936036424,
+    "carbohydrates": 10.495266217777058,
+    "fat": 8.082124937826388,
+    "fiber": 1.7946781188091876,
+    "sugar": 23.948709454710123,
+    "sodium": 1153.4776108689678,
+    "potassium": 937.0854440083776,
+    "calcium": 302.91815743773066,
+    "iron": 1.7216157191561707,
+    "vitamin_a": 213.47467929350572,
+    "vitamin_b": 2.2587162547359685,
+    "vitamin_c": 64.92940779652434,
+    "vitamin_d": 7.721770276049915,
+    "vitamin_e": 1.2286673412043736,
+    "cholesterol": 0,
+    "omega_3": 1.6418980335028683,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Gluten",
+      "Lactose"
+    ],
+    "cooking_time": 53,
+    "difficulty": "Hard",
+    "price": "High",
+    "rating": 3.8662099681839965,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Heart Disease",
+      "Diabetes"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 69",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 771.999492168793,
+    "protein": 40.61966886111577,
+    "carbohydrates": 82.43958121122297,
+    "fat": 5.150133203864242,
+    "fiber": 14.268001139099429,
+    "sugar": 17.46789426186455,
+    "sodium": 1491.7217378286678,
+    "potassium": 423.25447970012004,
+    "calcium": 169.47665280391143,
+    "iron": 7.7384161285468975,
+    "vitamin_a": 91.3935876973796,
+    "vitamin_b": 7.234452225633749,
+    "vitamin_c": 66.8470930367949,
+    "vitamin_d": 8.685871246960083,
+    "vitamin_e": 1.7278039567622983,
+    "cholesterol": 11.081388405353444,
+    "omega_3": 0.6943682986856516,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg",
+      "Peanut"
+    ],
+    "cooking_time": 56,
+    "difficulty": "Easy",
+    "price": "Low",
+    "rating": 4.985232046017698,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Diabetes"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Beef Tacos Variant 70",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 608.1483212645517,
+    "protein": 16.63224285220162,
+    "carbohydrates": 99.80663283661899,
+    "fat": 28.993592934347436,
+    "fiber": 8.955597826917076,
+    "sugar": 22.21268597464724,
+    "sodium": 768.4679968257126,
+    "potassium": 378.3072475035548,
+    "calcium": 388.5155498406698,
+    "iron": 12.85688936026053,
+    "vitamin_a": 766.2254596423295,
+    "vitamin_b": 8.302509246798195,
+    "vitamin_c": 44.3224508379814,
+    "vitamin_d": 3.2036115824655518,
+    "vitamin_e": 4.432306681767378,
+    "cholesterol": 79.62620103093579,
+    "omega_3": 1.9149588833377766,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Gluten"
+    ],
+    "cooking_time": 7,
+    "difficulty": "Medium",
+    "price": "Low",
+    "rating": 3.933273556707622,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Heart Disease",
+      "High Cholesterol"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 71",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 695.382997978286,
+    "protein": 9.767014465313856,
+    "carbohydrates": 17.78133219370117,
+    "fat": 38.97414814975267,
+    "fiber": 11.62584477482669,
+    "sugar": 6.413525192197396,
+    "sodium": 1100.327506483719,
+    "potassium": 414.57355700782335,
+    "calcium": 199.1984102269251,
+    "iron": 4.696355187123098,
+    "vitamin_a": 868.9521823596086,
+    "vitamin_b": 2.433965550430226,
+    "vitamin_c": 93.04682708765345,
+    "vitamin_d": 2.120694466048947,
+    "vitamin_e": 2.1622585062481505,
+    "cholesterol": 16.381378678460333,
+    "omega_3": 0.4369478255495409,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg",
+      "Peanut"
+    ],
+    "cooking_time": 20,
+    "difficulty": "Hard",
+    "price": "High",
+    "rating": 4.530899445712626,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Kidney Disease",
+      "Obesity",
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Sushi Roll Variant 72",
+    "image": "https://via.placeholder.com/300x200?text=Sushi+Roll",
+    "category": "Lunch",
+    "cuisine": "Japanese",
+    "calories": 680.893381301238,
+    "protein": 33.17933759380496,
+    "carbohydrates": 19.014815146902368,
+    "fat": 6.8568833115335295,
+    "fiber": 9.878199264951583,
+    "sugar": 18.846722638439353,
+    "sodium": 780.833619479976,
+    "potassium": 565.6957379336109,
+    "calcium": 474.2069884643841,
+    "iron": 6.883193503610123,
+    "vitamin_a": 935.3182131497381,
+    "vitamin_b": 3.4022195848243832,
+    "vitamin_c": 81.12337876872884,
+    "vitamin_d": 3.682808096065232,
+    "vitamin_e": 8.161739370666982,
+    "cholesterol": 73.88801819522857,
+    "omega_3": 0.4984091114817808,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 43,
+    "difficulty": "Easy",
+    "price": "Low",
+    "rating": 3.8151271521528147,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Kidney Disease"
+    ],
+    "avoid_for": [
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Tofu Stir Fry Variant 73",
+    "image": "https://via.placeholder.com/300x200?text=Tofu+Stir+Fry",
+    "category": "Dinner",
+    "cuisine": "Chinese",
+    "calories": 689.550612987864,
+    "protein": 39.29819703882189,
+    "carbohydrates": 44.246217843106514,
+    "fat": 6.929961142744448,
+    "fiber": 4.2448880728703635,
+    "sugar": 26.18588102821798,
+    "sodium": 299.8554300555231,
+    "potassium": 663.2706963126815,
+    "calcium": 271.8896581461603,
+    "iron": 5.570961104467398,
+    "vitamin_a": 232.56503416078468,
+    "vitamin_b": 9.278003959211887,
+    "vitamin_c": 83.83642236483178,
+    "vitamin_d": 2.044463502540308,
+    "vitamin_e": 8.971315756882483,
+    "cholesterol": 0,
+    "omega_3": 1.6813067431500188,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Peanut"
+    ],
+    "cooking_time": 60,
+    "difficulty": "Easy",
+    "price": "Medium",
+    "rating": 4.7972909661835885,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Kidney Disease"
+    ],
+    "avoid_for": [
+      "High Cholesterol",
+      "Hypertension"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Tofu Stir Fry Variant 74",
+    "image": "https://via.placeholder.com/300x200?text=Tofu+Stir+Fry",
+    "category": "Dinner",
+    "cuisine": "Chinese",
+    "calories": 155.2150941375786,
+    "protein": 9.575241767599437,
+    "carbohydrates": 77.86879905189396,
+    "fat": 35.9359267002776,
+    "fiber": 4.779534713899133,
+    "sugar": 3.88265715573809,
+    "sodium": 1304.6307343149197,
+    "potassium": 248.2109623354033,
+    "calcium": 490.0641119306155,
+    "iron": 9.46536315393707,
+    "vitamin_a": 509.96278256606496,
+    "vitamin_b": 2.370079365723633,
+    "vitamin_c": 86.53645069247672,
+    "vitamin_d": 8.9681036878399,
+    "vitamin_e": 9.42378871802934,
+    "cholesterol": 0,
+    "omega_3": 1.928440962780069,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Soy"
+    ],
+    "cooking_time": 46,
+    "difficulty": "Easy",
+    "price": "Low",
+    "rating": 4.930820398345265,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "Obesity",
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 75",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 568.9026488583294,
+    "protein": 20.017503184707728,
+    "carbohydrates": 62.05652087760376,
+    "fat": 34.270613493653535,
+    "fiber": 7.188002148008798,
+    "sugar": 11.148778230918527,
+    "sodium": 438.39318603814485,
+    "potassium": 409.17268645906637,
+    "calcium": 360.7311658252428,
+    "iron": 11.620050824389677,
+    "vitamin_a": 290.97842939859197,
+    "vitamin_b": 4.995543450524301,
+    "vitamin_c": 43.41486687688969,
+    "vitamin_d": 9.087480577868636,
+    "vitamin_e": 8.09786883236111,
+    "cholesterol": 69.2484597225959,
+    "omega_3": 0.04458715852577466,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg",
+      "Tree Nut"
+    ],
+    "cooking_time": 56,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 3.6814834278244675,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "High Cholesterol",
+      "Diabetes"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 76",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 653.2032907106562,
+    "protein": 8.251649672579752,
+    "carbohydrates": 41.738680594365405,
+    "fat": 37.19868395826446,
+    "fiber": 9.076093571421302,
+    "sugar": 25.455249004449524,
+    "sodium": 674.9745996129018,
+    "potassium": 599.0500358705298,
+    "calcium": 489.8187699449685,
+    "iron": 14.466431578292456,
+    "vitamin_a": 246.16792362122752,
+    "vitamin_b": 4.7516327143050985,
+    "vitamin_c": 96.13037010354573,
+    "vitamin_d": 5.804007508837039,
+    "vitamin_e": 9.046183357636053,
+    "cholesterol": 36.41305401655143,
+    "omega_3": 1.834930600836918,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Gluten",
+      "Tree Nut"
+    ],
+    "cooking_time": 45,
+    "difficulty": "Easy",
+    "price": "High",
+    "rating": 3.9812673892843353,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Hypertension",
+      "Obesity"
+    ],
+    "avoid_for": [
+      "Hypertension",
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Quinoa Salad Variant 77",
+    "image": "https://via.placeholder.com/300x200?text=Quinoa+Salad",
+    "category": "Lunch",
+    "cuisine": "Mediterranean",
+    "calories": 266.4808269459538,
+    "protein": 5.862492528634029,
+    "carbohydrates": 76.67870280404757,
+    "fat": 15.618404080329263,
+    "fiber": 11.443160446966122,
+    "sugar": 17.625840693125298,
+    "sodium": 1065.7784366861692,
+    "potassium": 487.7690916558061,
+    "calcium": 28.08475913622944,
+    "iron": 7.252015508466679,
+    "vitamin_a": 327.85739347768805,
+    "vitamin_b": 4.439452970218472,
+    "vitamin_c": 82.35726108923109,
+    "vitamin_d": 2.927103883330947,
+    "vitamin_e": 6.458782555461502,
+    "cholesterol": 0,
+    "omega_3": 0.9313895512460071,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Soy"
+    ],
+    "cooking_time": 6,
+    "difficulty": "Hard",
+    "price": "Medium",
+    "rating": 4.349585584619783,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "High Cholesterol"
+    ],
+    "avoid_for": [
+      "Heart Disease",
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Beef Tacos Variant 78",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 282.08920083195676,
+    "protein": 11.828550933589042,
+    "carbohydrates": 42.74211485052978,
+    "fat": 2.2647231090824627,
+    "fiber": 3.347018075745834,
+    "sugar": 26.312847555552835,
+    "sodium": 1182.6246070354134,
+    "potassium": 475.5933458996719,
+    "calcium": 66.71077790459755,
+    "iron": 5.763465653600728,
+    "vitamin_a": 743.3906320858874,
+    "vitamin_b": 2.907225579685976,
+    "vitamin_c": 86.2231311820947,
+    "vitamin_d": 0.7009160076097909,
+    "vitamin_e": 8.610970461922966,
+    "cholesterol": 28.329122203809433,
+    "omega_3": 0.5578498669860101,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Lactose"
+    ],
+    "cooking_time": 44,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.991094672906211,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "Hypertension",
+      "Kidney Disease"
+    ],
+    "avoid_for": [
+      "High Cholesterol",
+      "Diabetes"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Avocado Toast Variant 79",
+    "image": "https://via.placeholder.com/300x200?text=Avocado+Toast",
+    "category": "Breakfast",
+    "cuisine": "American",
+    "calories": 222.44636305699385,
+    "protein": 15.27998438352892,
+    "carbohydrates": 92.2426721872406,
+    "fat": 6.127583117963193,
+    "fiber": 1.0304963764584485,
+    "sugar": 16.567873566808146,
+    "sodium": 817.546126213854,
+    "potassium": 651.242948636348,
+    "calcium": 267.67392227658,
+    "iron": 14.979345007744394,
+    "vitamin_a": 373.8129790469734,
+    "vitamin_b": 6.8481732825271155,
+    "vitamin_c": 76.43716550592312,
+    "vitamin_d": 9.593555967622018,
+    "vitamin_e": 9.124178738071196,
+    "cholesterol": 0,
+    "omega_3": 0.10752962219842788,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 21,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.91392132440571,
+    "meal_type": [
+      "Breakfast"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "Hypertension",
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 80",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 291.1030572987611,
+    "protein": 6.899003812065919,
+    "carbohydrates": 24.652012698054733,
+    "fat": 29.894181828722566,
+    "fiber": 13.372117925863522,
+    "sugar": 3.064958199125864,
+    "sodium": 336.0161505757446,
+    "potassium": 835.4710953694434,
+    "calcium": 272.9169397672118,
+    "iron": 8.66466273285602,
+    "vitamin_a": 287.8277474690416,
+    "vitamin_b": 5.592384025265743,
+    "vitamin_c": 32.215133046813726,
+    "vitamin_d": 8.61348680269973,
+    "vitamin_e": 6.221706762320643,
+    "cholesterol": 40.63966856036687,
+    "omega_3": 0.12623300768251933,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Lactose",
+      "Soy"
+    ],
+    "cooking_time": 7,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 4.0533233237883985,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "High Cholesterol",
+      "Kidney Disease",
+      "Diabetes"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Tofu Stir Fry Variant 81",
+    "image": "https://via.placeholder.com/300x200?text=Tofu+Stir+Fry",
+    "category": "Dinner",
+    "cuisine": "Chinese",
+    "calories": 680.3387822050323,
+    "protein": 9.659601532500606,
+    "carbohydrates": 92.74983653590523,
+    "fat": 39.81404478918591,
+    "fiber": 9.745241005722148,
+    "sugar": 25.65727501983973,
+    "sodium": 382.44959173374224,
+    "potassium": 190.41990843392972,
+    "calcium": 107.73454539130483,
+    "iron": 2.2395845357801862,
+    "vitamin_a": 608.8081651705743,
+    "vitamin_b": 2.1696900842964806,
+    "vitamin_c": 76.7839142312089,
+    "vitamin_d": 2.2282975469443844,
+    "vitamin_e": 0.12740697978858795,
+    "cholesterol": 0,
+    "omega_3": 1.2837388977471587,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Tree Nut",
+      "Peanut"
+    ],
+    "cooking_time": 36,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 4.60138744941718,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Kidney Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Chicken Tikka Masala Variant 82",
+    "image": "https://via.placeholder.com/300x200?text=Chicken+Tikka+Masala",
+    "category": "Dinner",
+    "cuisine": "Indian",
+    "calories": 443.13791290848843,
+    "protein": 37.53326123037035,
+    "carbohydrates": 95.03820504519034,
+    "fat": 18.92789116999619,
+    "fiber": 9.951281408675918,
+    "sugar": 20.9332884394691,
+    "sodium": 240.40397311610107,
+    "potassium": 740.9456409167074,
+    "calcium": 471.84201266087683,
+    "iron": 7.308429908783799,
+    "vitamin_a": 256.8943434731801,
+    "vitamin_b": 9.74520713668666,
+    "vitamin_c": 50.45875711299036,
+    "vitamin_d": 6.109624662593732,
+    "vitamin_e": 2.3907734504669254,
+    "cholesterol": 28.838832747762176,
+    "omega_3": 0.8496495836384772,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Peanut"
+    ],
+    "cooking_time": 23,
+    "difficulty": "Easy",
+    "price": "High",
+    "rating": 4.620560176731412,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "Obesity",
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "Hypertension",
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Greek Yogurt Variant 83",
+    "image": "https://via.placeholder.com/300x200?text=Greek+Yogurt",
+    "category": "Snack",
+    "cuisine": "Mediterranean",
+    "calories": 338.9691061790007,
+    "protein": 14.771270403634986,
+    "carbohydrates": 26.44497336274211,
+    "fat": 18.047661210241877,
+    "fiber": 14.487892870273932,
+    "sugar": 11.33628950878117,
+    "sodium": 407.8294784070053,
+    "potassium": 555.8597979010201,
+    "calcium": 480.2281048193977,
+    "iron": 4.130819877203303,
+    "vitamin_a": 471.7268472058257,
+    "vitamin_b": 1.8155772682958071,
+    "vitamin_c": 44.22695241769572,
+    "vitamin_d": 0.2204678056161291,
+    "vitamin_e": 5.728051536362524,
+    "cholesterol": 94.4860706862348,
+    "omega_3": 0.13406770579996619,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 39,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 3.680141235620779,
+    "meal_type": [
+      "Snack"
+    ],
+    "suitable_for": [
+      "Kidney Disease",
+      "High Cholesterol"
+    ],
+    "avoid_for": [
+      "Heart Disease",
+      "Hypertension"
+    ],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Beef Tacos Variant 84",
+    "image": "https://via.placeholder.com/300x200?text=Beef+Tacos",
+    "category": "Lunch",
+    "cuisine": "Mexican",
+    "calories": 386.76540631278056,
+    "protein": 5.215788396926523,
+    "carbohydrates": 50.36352448284582,
+    "fat": 5.683380445909471,
+    "fiber": 10.015557695488349,
+    "sugar": 1.5038392040199726,
+    "sodium": 875.6970456344552,
+    "potassium": 125.04592368428746,
+    "calcium": 115.65583180996371,
+    "iron": 6.111361246175719,
+    "vitamin_a": 21.19629907626375,
+    "vitamin_b": 2.980332065337683,
+    "vitamin_c": 59.74160419866846,
+    "vitamin_d": 2.070661775606024,
+    "vitamin_e": 8.289825411331762,
+    "cholesterol": 60.92203262671747,
+    "omega_3": 1.8729218272846588,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 27,
+    "difficulty": "Medium",
+    "price": "Medium",
+    "rating": 3.7877776412249338,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "Hypertension",
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 85",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 441.368728603396,
+    "protein": 16.250664857314128,
+    "carbohydrates": 70.21077730920561,
+    "fat": 35.62954615924215,
+    "fiber": 13.776196891539168,
+    "sugar": 4.0486526275280745,
+    "sodium": 877.7803363903437,
+    "potassium": 654.5694469618812,
+    "calcium": 258.4934948440326,
+    "iron": 12.234678619235607,
+    "vitamin_a": 742.986853182523,
+    "vitamin_b": 5.883645456444283,
+    "vitamin_c": 45.95246760857772,
+    "vitamin_d": 9.866666707548662,
+    "vitamin_e": 7.65664067023507,
+    "cholesterol": 76.24502361092463,
+    "omega_3": 1.575856632507588,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 15,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.903689216364475,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Diabetes"
+    ],
+    "avoid_for": [
+      "Heart Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Tofu Stir Fry Variant 86",
+    "image": "https://via.placeholder.com/300x200?text=Tofu+Stir+Fry",
+    "category": "Dinner",
+    "cuisine": "Chinese",
+    "calories": 704.1007556064797,
+    "protein": 15.742776833790058,
+    "carbohydrates": 64.99798858139017,
+    "fat": 23.13827884258761,
+    "fiber": 3.196664896746745,
+    "sugar": 9.232976126977393,
+    "sodium": 459.60051579229304,
+    "potassium": 243.50367863902855,
+    "calcium": 402.8101024741282,
+    "iron": 10.984823764869642,
+    "vitamin_a": 452.54403797774654,
+    "vitamin_b": 3.009965045806342,
+    "vitamin_c": 52.25876438922252,
+    "vitamin_d": 5.21346317729815,
+    "vitamin_e": 2.0973205679410545,
+    "cholesterol": 0,
+    "omega_3": 0.47776597405045407,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Tree Nut",
+      "Soy"
+    ],
+    "cooking_time": 55,
+    "difficulty": "Medium",
+    "price": "High",
+    "rating": 4.433492303106641,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "High Cholesterol"
+    ],
+    "avoid_for": [
+      "Kidney Disease",
+      "Hypertension"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Tofu Stir Fry Variant 87",
+    "image": "https://via.placeholder.com/300x200?text=Tofu+Stir+Fry",
+    "category": "Dinner",
+    "cuisine": "Chinese",
+    "calories": 162.76815606334887,
+    "protein": 42.91415323067524,
+    "carbohydrates": 57.3964025632464,
+    "fat": 28.920808264030413,
+    "fiber": 5.844241408993817,
+    "sugar": 25.05837027800886,
+    "sodium": 111.16774352717911,
+    "potassium": 771.449115851426,
+    "calcium": 246.602445695668,
+    "iron": 11.852463350708671,
+    "vitamin_a": 921.7388969875017,
+    "vitamin_b": 8.859448556808045,
+    "vitamin_c": 56.51339613336205,
+    "vitamin_d": 1.2824306095272242,
+    "vitamin_e": 8.433928660661618,
+    "cholesterol": 0,
+    "omega_3": 1.6342200650794343,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Peanut"
+    ],
+    "cooking_time": 12,
+    "difficulty": "Hard",
+    "price": "High",
+    "rating": 4.02242852844355,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "Obesity",
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Chicken Tikka Masala Variant 88",
+    "image": "https://via.placeholder.com/300x200?text=Chicken+Tikka+Masala",
+    "category": "Dinner",
+    "cuisine": "Indian",
+    "calories": 765.4991529265648,
+    "protein": 35.32260477705746,
+    "carbohydrates": 94.03710522771787,
+    "fat": 28.647372992594217,
+    "fiber": 8.27069520719029,
+    "sugar": 26.187515211239425,
+    "sodium": 528.0832133493593,
+    "potassium": 442.4924959201489,
+    "calcium": 216.17020603027555,
+    "iron": 13.04277217949497,
+    "vitamin_a": 285.46741945044715,
+    "vitamin_b": 0.694330530724907,
+    "vitamin_c": 31.30646089751431,
+    "vitamin_d": 3.6257951725771664,
+    "vitamin_e": 4.84517661158516,
+    "cholesterol": 60.228218804898816,
+    "omega_3": 1.9266094415938813,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg",
+      "Soy"
+    ],
+    "cooking_time": 53,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 4.263207969563997,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Hypertension"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Pasta Primavera Variant 89",
+    "image": "https://via.placeholder.com/300x200?text=Pasta+Primavera",
+    "category": "Dinner",
+    "cuisine": "Italian",
+    "calories": 699.2840925448388,
+    "protein": 23.533227235212472,
+    "carbohydrates": 73.40249835976036,
+    "fat": 15.627220311041414,
+    "fiber": 2.9770281552324454,
+    "sugar": 8.682407487300123,
+    "sodium": 402.44127198477065,
+    "potassium": 243.09326411040604,
+    "calcium": 413.4849256140168,
+    "iron": 14.550307703810741,
+    "vitamin_a": 344.4334882612482,
+    "vitamin_b": 2.506586969643986,
+    "vitamin_c": 24.698691282265294,
+    "vitamin_d": 0.6922723903583017,
+    "vitamin_e": 1.5951957202798406,
+    "cholesterol": 70.62398155066982,
+    "omega_3": 1.7848265515221615,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Tree Nut"
+    ],
+    "cooking_time": 60,
+    "difficulty": "Easy",
+    "price": "Low",
+    "rating": 4.646818201813269,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Hypertension",
+      "Heart Disease",
+      "Kidney Disease"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Tofu Stir Fry Variant 90",
+    "image": "https://via.placeholder.com/300x200?text=Tofu+Stir+Fry",
+    "category": "Dinner",
+    "cuisine": "Chinese",
+    "calories": 788.2925161498212,
+    "protein": 10.243819232823938,
+    "carbohydrates": 61.423026303679194,
+    "fat": 21.15825429185185,
+    "fiber": 12.684410845346402,
+    "sugar": 3.392437981603945,
+    "sodium": 135.48785081745177,
+    "potassium": 407.30520806879684,
+    "calcium": 363.07059191992164,
+    "iron": 8.912380368703266,
+    "vitamin_a": 513.2858609577222,
+    "vitamin_b": 1.950619229469468,
+    "vitamin_c": 97.27381790318445,
+    "vitamin_d": 1.7880766388924207,
+    "vitamin_e": 7.524014675548844,
+    "cholesterol": 0,
+    "omega_3": 0.93431663447148,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Lactose"
+    ],
+    "cooking_time": 20,
+    "difficulty": "Medium",
+    "price": "Low",
+    "rating": 4.408439320427611,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Obesity",
+      "Kidney Disease"
+    ],
+    "avoid_for": [
+      "Diabetes",
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Tofu Stir Fry Variant 91",
+    "image": "https://via.placeholder.com/300x200?text=Tofu+Stir+Fry",
+    "category": "Dinner",
+    "cuisine": "Chinese",
+    "calories": 396.50962601488396,
+    "protein": 35.710252571711266,
+    "carbohydrates": 80.80171396106259,
+    "fat": 34.82789746181242,
+    "fiber": 8.444633359577196,
+    "sugar": 1.104477286744384,
+    "sodium": 1005.9526821940113,
+    "potassium": 137.7022790368678,
+    "calcium": 108.5697399209591,
+    "iron": 6.626976180144454,
+    "vitamin_a": 307.32702295528355,
+    "vitamin_b": 0.02694715280945781,
+    "vitamin_c": 78.58937291772115,
+    "vitamin_d": 8.915698777638697,
+    "vitamin_e": 5.213283865691559,
+    "cholesterol": 0,
+    "omega_3": 1.8655017366893032,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Lactose",
+      "Seafood"
+    ],
+    "cooking_time": 26,
+    "difficulty": "Easy",
+    "price": "Medium",
+    "rating": 4.000375752354461,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Kidney Disease",
+      "Hypertension"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 92",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 563.1627683021077,
+    "protein": 11.554087573450222,
+    "carbohydrates": 38.88325644894121,
+    "fat": 25.817710816621986,
+    "fiber": 11.346447893037778,
+    "sugar": 29.248085636354517,
+    "sodium": 562.537407733731,
+    "potassium": 505.91809510292603,
+    "calcium": 437.5828660705973,
+    "iron": 3.2349398595526884,
+    "vitamin_a": 875.0577884128697,
+    "vitamin_b": 4.459197312161823,
+    "vitamin_c": 64.51136594157938,
+    "vitamin_d": 5.980283791905277,
+    "vitamin_e": 1.6790563301640393,
+    "cholesterol": 7.372980419809727,
+    "omega_3": 0.4433323857162119,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Gluten"
+    ],
+    "cooking_time": 47,
+    "difficulty": "Hard",
+    "price": "High",
+    "rating": 4.67391234298663,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Heart Disease",
+      "Kidney Disease"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Greek Yogurt Variant 93",
+    "image": "https://via.placeholder.com/300x200?text=Greek+Yogurt",
+    "category": "Snack",
+    "cuisine": "Mediterranean",
+    "calories": 234.0113640255472,
+    "protein": 15.671895132547299,
+    "carbohydrates": 74.82062927011599,
+    "fat": 16.874578533654898,
+    "fiber": 8.859974624833967,
+    "sugar": 21.936516665481864,
+    "sodium": 1357.2929771478969,
+    "potassium": 341.23073366371295,
+    "calcium": 226.06211389078592,
+    "iron": 6.957523755318798,
+    "vitamin_a": 903.449745839493,
+    "vitamin_b": 4.503919939059947,
+    "vitamin_c": 10.268406552123698,
+    "vitamin_d": 5.822201381847174,
+    "vitamin_e": 8.721208833345383,
+    "cholesterol": 92.12570468617996,
+    "omega_3": 0.8210478033990272,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Seafood",
+      "Egg"
+    ],
+    "cooking_time": 54,
+    "difficulty": "Medium",
+    "price": "Low",
+    "rating": 4.773023737150412,
+    "meal_type": [
+      "Snack"
+    ],
+    "suitable_for": [
+      "Hypertension"
+    ],
+    "avoid_for": [
+      "Hypertension"
+    ],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Chicken Tikka Masala Variant 94",
+    "image": "https://via.placeholder.com/300x200?text=Chicken+Tikka+Masala",
+    "category": "Dinner",
+    "cuisine": "Indian",
+    "calories": 224.604930425692,
+    "protein": 12.978859149883993,
+    "carbohydrates": 57.64640115502051,
+    "fat": 38.44633003827391,
+    "fiber": 14.937527329005897,
+    "sugar": 21.318547957088647,
+    "sodium": 1437.433218054928,
+    "potassium": 464.62653668091724,
+    "calcium": 215.98840869843352,
+    "iron": 12.303526849792437,
+    "vitamin_a": 603.9578580592612,
+    "vitamin_b": 3.837962916707239,
+    "vitamin_c": 80.32134324820616,
+    "vitamin_d": 1.3886691848946708,
+    "vitamin_e": 5.364757146112513,
+    "cholesterol": 18.01135039141074,
+    "omega_3": 1.4334247889560556,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg"
+    ],
+    "cooking_time": 12,
+    "difficulty": "Medium",
+    "price": "Low",
+    "rating": 3.6414675197493365,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "Heart Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Dal Tadka Variant 95",
+    "image": "https://via.placeholder.com/300x200?text=Dal+Tadka",
+    "category": "Lunch",
+    "cuisine": "Indian",
+    "calories": 104.22317062137114,
+    "protein": 49.0964603552285,
+    "carbohydrates": 36.54826167447282,
+    "fat": 20.585441280794242,
+    "fiber": 4.216344844769322,
+    "sugar": 22.689090621234726,
+    "sodium": 798.6965966828446,
+    "potassium": 770.3379385176577,
+    "calcium": 101.10329781161637,
+    "iron": 1.7154600431360658,
+    "vitamin_a": 756.9513178386039,
+    "vitamin_b": 3.3347599241497026,
+    "vitamin_c": 78.31045841185794,
+    "vitamin_d": 1.991307640679415,
+    "vitamin_e": 3.67785197779971,
+    "cholesterol": 0,
+    "omega_3": 0.9007802998143217,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg"
+    ],
+    "cooking_time": 34,
+    "difficulty": "Easy",
+    "price": "High",
+    "rating": 4.211885691482767,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Obesity",
+      "High Cholesterol"
+    ],
+    "avoid_for": [
+      "Hypertension"
+    ],
+    "diet_type": [
+      "Vegetarian",
+      "Vegan"
+    ]
+  },
+  {
+    "name": "Sushi Roll Variant 96",
+    "image": "https://via.placeholder.com/300x200?text=Sushi+Roll",
+    "category": "Lunch",
+    "cuisine": "Japanese",
+    "calories": 409.2968950347956,
+    "protein": 32.438153406459364,
+    "carbohydrates": 50.83103709927136,
+    "fat": 6.410060898570308,
+    "fiber": 12.54554414502752,
+    "sugar": 7.504917491275269,
+    "sodium": 1480.407725984185,
+    "potassium": 338.07818274280135,
+    "calcium": 494.37092033653937,
+    "iron": 5.479730209578536,
+    "vitamin_a": 994.7626083101751,
+    "vitamin_b": 1.1085352010887761,
+    "vitamin_c": 62.79679492792272,
+    "vitamin_d": 3.274709581923654,
+    "vitamin_e": 2.067459658101175,
+    "cholesterol": 67.46029258198676,
+    "omega_3": 1.5293490590505379,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Tree Nut",
+      "Peanut"
+    ],
+    "cooking_time": 60,
+    "difficulty": "Hard",
+    "price": "Low",
+    "rating": 4.770397580492798,
+    "meal_type": [
+      "Lunch"
+    ],
+    "suitable_for": [
+      "Diabetes",
+      "Obesity"
+    ],
+    "avoid_for": [
+      "Kidney Disease"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Greek Yogurt Variant 97",
+    "image": "https://via.placeholder.com/300x200?text=Greek+Yogurt",
+    "category": "Snack",
+    "cuisine": "Mediterranean",
+    "calories": 794.6386030657492,
+    "protein": 16.0806535540408,
+    "carbohydrates": 42.79166617076739,
+    "fat": 8.243281194610688,
+    "fiber": 1.1334679521863125,
+    "sugar": 17.026486301260142,
+    "sodium": 220.18777356590755,
+    "potassium": 542.4769403852689,
+    "calcium": 448.6144693993897,
+    "iron": 8.750665756044933,
+    "vitamin_a": 814.7363365740747,
+    "vitamin_b": 0.7695129836822845,
+    "vitamin_c": 58.43895904745147,
+    "vitamin_d": 9.32019769016046,
+    "vitamin_e": 9.554039302007505,
+    "cholesterol": 45.63943206925154,
+    "omega_3": 0.395560690171612,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Seafood"
+    ],
+    "cooking_time": 9,
+    "difficulty": "Medium",
+    "price": "Medium",
+    "rating": 4.812105018504782,
+    "meal_type": [
+      "Snack"
+    ],
+    "suitable_for": [
+      "Hypertension",
+      "Obesity",
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "Heart Disease",
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Vegetarian"
+    ]
+  },
+  {
+    "name": "Grilled Salmon Variant 98",
+    "image": "https://via.placeholder.com/300x200?text=Grilled+Salmon",
+    "category": "Dinner",
+    "cuisine": "American",
+    "calories": 213.0659709501565,
+    "protein": 27.630983036448235,
+    "carbohydrates": 93.38040765864527,
+    "fat": 35.62052589394997,
+    "fiber": 3.213879296303661,
+    "sugar": 3.7400800204121425,
+    "sodium": 1391.3144074107709,
+    "potassium": 764.6715709177759,
+    "calcium": 395.8228241543917,
+    "iron": 5.803269864163838,
+    "vitamin_a": 285.7343277756441,
+    "vitamin_b": 3.074032494149843,
+    "vitamin_c": 66.50624471353363,
+    "vitamin_d": 8.533747604957085,
+    "vitamin_e": 0.37439037925982466,
+    "cholesterol": 63.76471367940629,
+    "omega_3": 0.5112107368164114,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [
+      "Egg",
+      "Gluten"
+    ],
+    "cooking_time": 58,
+    "difficulty": "Hard",
+    "price": "High",
+    "rating": 3.8069094870027,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Kidney Disease",
+      "Obesity",
+      "Hypertension"
+    ],
+    "avoid_for": [],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  },
+  {
+    "name": "Chicken Tikka Masala Variant 99",
+    "image": "https://via.placeholder.com/300x200?text=Chicken+Tikka+Masala",
+    "category": "Dinner",
+    "cuisine": "Indian",
+    "calories": 110.99950663419219,
+    "protein": 23.963582584528893,
+    "carbohydrates": 71.81378510739842,
+    "fat": 22.42994587466553,
+    "fiber": 10.502249051234214,
+    "sugar": 24.995917682361526,
+    "sodium": 1395.0342233170577,
+    "potassium": 739.012239960372,
+    "calcium": 372.7576857734987,
+    "iron": 9.448425727434813,
+    "vitamin_a": 615.4268666922271,
+    "vitamin_b": 0.37275614576500193,
+    "vitamin_c": 44.80306292772733,
+    "vitamin_d": 6.181237776316921,
+    "vitamin_e": 4.555718604341204,
+    "cholesterol": 39.75835751328539,
+    "omega_3": 0.2371684590486438,
+    "ingredients": [
+      "Ingredient A",
+      "Ingredient B",
+      "Ingredient C"
+    ],
+    "allergens": [],
+    "cooking_time": 15,
+    "difficulty": "Easy",
+    "price": "High",
+    "rating": 3.71088205096893,
+    "meal_type": [
+      "Dinner"
+    ],
+    "suitable_for": [
+      "Kidney Disease",
+      "Heart Disease"
+    ],
+    "avoid_for": [
+      "High Cholesterol"
+    ],
+    "diet_type": [
+      "Non-Vegetarian"
+    ]
+  }
+]
