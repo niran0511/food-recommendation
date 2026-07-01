@@ -103,6 +103,23 @@ const DashboardPage = () => {
     return list;
   };
 
+  useEffect(() => {
+    const todayStr = new Date().toDateString();
+    const lastResetDate = localStorage.getItem('dashboard_last_reset_date');
+    if (lastResetDate !== todayStr) {
+      localStorage.setItem('dashboard_last_reset_date', todayStr);
+      localStorage.setItem('dashboard_water_logged', '0');
+      localStorage.setItem('dashboard_calories_logged', '0');
+      localStorage.setItem('dashboard_protein_logged', '0');
+      localStorage.setItem('dashboard_meals_eaten', JSON.stringify({ Breakfast: false, Lunch: false, Dinner: false, Snacks: false }));
+      
+      setWaterLogged(0);
+      setCaloriesLogged(0);
+      setProteinLogged(0);
+      setMealsEaten({ Breakfast: false, Lunch: false, Dinner: false, Snacks: false });
+    }
+  }, []);
+
   // Filter chips options
   const filterChips = [
     'All', 'Breakfast', 'Lunch', 'Dinner', 'Snacks', 

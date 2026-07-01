@@ -28,11 +28,11 @@ def predict_health_risks(user: UserProfile) -> HealthRiskResponse:
         try:
             feats = encode_user_features(user).reshape(1, -1)
             preds = _risk_model.predict_proba(feats)
-            # Assuming multi-output classifier: [obesity, diabetes, hyper, heart]
-            obesity_risk = preds[0][0][1] if len(preds) > 0 else 0.0
-            diabetes_risk = preds[1][0][1] if len(preds) > 1 else 0.0
-            hyper_risk = preds[2][0][1] if len(preds) > 2 else 0.0
-            heart_risk = preds[3][0][1] if len(preds) > 3 else 0.0
+            # Combine model probabilities with clinical baseline equations to keep scores realistic
+            obesity_risk = max(obesity_risk, preds[0][0][1] if len(preds) > 0 else 0.0)
+            diabetes_risk = max(diabetes_risk, preds[1][0][1] if len(preds) > 1 else 0.0)
+            hyper_risk = max(hyper_risk, preds[2][0][1] if len(preds) > 2 else 0.0)
+            heart_risk = max(heart_risk, preds[3][0][1] if len(preds) > 3 else 0.0)
         except Exception:
             pass
             

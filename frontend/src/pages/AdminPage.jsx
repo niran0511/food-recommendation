@@ -7,7 +7,7 @@ import {
   Plus, Edit, Loader, Check, X, ShieldAlert, Clock,
   Settings, Search, FileDown, Activity, Dna, Settings2, 
   TrendingUp, LogOut, LayoutDashboard, Database, Tags, 
-  ActivitySquare, FileSpreadsheet
+  ActivitySquare, FileSpreadsheet, Stethoscope
 } from 'lucide-react';
 import { Bar, Pie, Line, Doughnut } from 'react-chartjs-2';
 import {
@@ -49,6 +49,7 @@ const AdminPage = () => {
   const [foods, setFoods] = useState([]);
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [adminAppointments, setAdminAppointments] = useState([]);
 
   // Search & pagination
   const [userSearch, setUserSearch] = useState('');
@@ -121,11 +122,25 @@ const AdminPage = () => {
       } else if (activeTab === 'logs') {
         const res = await api.get('/admin/recommendations/logs');
         setLogs(res.data.data.logs || []);
+      } else if (activeTab === 'appointments') {
+        const res = await api.get('/appointments/admin');
+        setAdminAppointments(res.data.data || []);
       }
     } catch (e) {
-      toast.error("Failed to load admin logs");
+      toast.error("Failed to load admin dashboard details");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleUpdateAppointmentStatus = async (apptId, status) => {
+    try {
+      await api.put(`/appointments/admin/${apptId}/status`, { status });
+      toast.success(`Appointment status updated to ${status}!`);
+      const res = await api.get('/appointments/admin');
+      setAdminAppointments(res.data.data || []);
+    } catch (e) {
+      toast.error("Failed to update status");
     }
   };
 
@@ -390,6 +405,7 @@ const AdminPage = () => {
           <SidebarLink active={activeTab === 'foods'} label="Food Database" icon={<Apple size={18} />} onClick={() => { setActiveTab('foods'); setFoodPage(1); }} />
           <SidebarLink active={activeTab === 'categories'} label="Cuisines & Tags" icon={<Tags size={18} />} onClick={() => setActiveTab('categories')} />
           <SidebarLink active={activeTab === 'diseases'} label="Disease Settings" icon={<Dna size={18} />} onClick={() => setActiveTab('diseases')} />
+          <SidebarLink active={activeTab === 'appointments'} label="Consultation Bookings" icon={<Stethoscope size={18} />} onClick={() => setActiveTab('appointments')} />
           <SidebarLink active={activeTab === 'logs'} label="AI Engine Logs" icon={<Clock size={18} />} onClick={() => setActiveTab('logs')} />
           <SidebarLink active={activeTab === 'reports'} label="Reports Export" icon={<FileSpreadsheet size={18} />} onClick={() => setActiveTab('reports')} />
         </nav>
@@ -698,6 +714,76 @@ const AdminPage = () => {
                   <ReportGeneratorCard title="User Demographics CSV" desc="Exports BMI counts, health goals, and registration timeline metrics." onClick={() => downloadCSVReport('users')} />
                   <ReportGeneratorCard title="Food Nutrition catalog CSV" desc="Exports caloric targets, fiber profiles, and suitable diseases." onClick={() => downloadCSVReport('foods')} />
                   <ReportGeneratorCard title="Medical Guidelines Config CSV" desc="Exports dietary rules maps for active diabetes and hypertension checks." onClick={() => downloadCSVReport('diseases')} />
+                </div>
+              )}
+
+              {/* TAB 8: APPOINTMENTS CONSULTATIONS */}
+              {activeTab === 'appointments' && (
+                <div className="space-y-6">
+                  <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                    <div className="p-6 border-b border-slate-800">
+                      <h3 className="font-bold text-sm text-slate-200">Consultation Bookings Management</h3>
+                    </div>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-left border-collapse text-xs">
+                        <thead>
+                          <tr className="bg-slate-850 text-slate-400 border-b border-slate-800">
+                            <th className="p-4 uppercase tracking-wider font-bold">User</th>
+                            <th className="p-4 uppercase tracking-wider font-bold">Practitioner Details</th>
+                            <th className="p-4 uppercase tracking-wider font-bold">Time Slot</th>
+                            <th className="p-4 uppercase tracking-wider font-bold">Clinical Focus</th>
+                            <th className="p-4 uppercase tracking-wider font-bold">Status</th>
+                            <th className="p-4 uppercase tracking-wider font-bold text-right">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {adminAppointments.length === 0 ? (
+                            <tr>
+                              <td colSpan="6" className="p-6 text-center text-slate-500 font-bold">No consultation requests logged yet.</td>
+                            </tr>
+                          ) : (
+                            adminAppointments.map(ap => (
+                              <tr key={ap._id} className="border-b border-slate-800 hover:bg-slate-850/50">
+                                <td className="p-4 font-bold text-slate-100">{ap.userName}</td>
+                                <td className="p-4 text-slate-350 font-bold">
+                                  {ap.doctorName}
+                                  <span className="block text-[10px] text-amber-500 font-extrabold">{ap.specialty}</span>
+                                </td>
+                                <td className="p-4 text-slate-400 font-semibold">
+                                  {ap.date}
+                                  <span className="block text-[10px] text-slate-500 font-bold">{ap.time}</span>
+                                </td>
+                                <td className="p-4 text-slate-450 italic truncate max-w-[200px]">{ap.reason}</td>
+                                <td className="p-4">
+                                  {ap.status === 'accepted' && <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[8px] font-extrabold uppercase">Accepted</span>}
+                                  {ap.status === 'rejected' && <span className="px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-500 text-[8px] font-extrabold uppercase">Rejected</span>}
+                                  {ap.status === 'pending' && <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 text-[8px] font-extrabold uppercase animate-pulse">Pending</span>}
+                                </td>
+                                <td className="p-4 text-right space-x-2">
+                                  {ap.status === 'pending' && (
+                                    <>
+                                      <button 
+                                        onClick={() => handleUpdateAppointmentStatus(ap._id, 'accepted')}
+                                        className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-[10px] font-black uppercase tracking-wide cursor-pointer transition-all active:scale-95"
+                                      >
+                                        Accept
+                                      </button>
+                                      <button 
+                                        onClick={() => handleUpdateAppointmentStatus(ap._id, 'rejected')}
+                                        className="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-[10px] font-black uppercase tracking-wide cursor-pointer transition-all active:scale-95"
+                                      >
+                                        Reject
+                                      </button>
+                                    </>
+                                  )}
+                                </td>
+                              </tr>
+                            ))
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               )}
 

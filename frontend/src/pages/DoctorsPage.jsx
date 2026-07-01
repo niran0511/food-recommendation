@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { api } from '../services/api';
 import { Heart, Stethoscope, Phone, Clock, MapPin, Calendar, CheckCircle2, Search, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
@@ -13,6 +14,22 @@ const DoctorsPage = () => {
   const [bookingReason, setBookingReason] = useState('');
   const [bookedAppointments, setBookedAppointments] = useState([]);
   const [searchSpecialist, setSearchSpecialist] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        setLoading(true);
+        const res = await api.get('/appointments');
+        setBookedAppointments(res.data.data);
+      } catch (err) {
+        console.error("Failed to load appointments", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAppointments();
+  }, []);
 
   // Sample medical practitioners database
   const doctorsDatabase = [
@@ -62,7 +79,7 @@ const DoctorsPage = () => {
     }
   ];
 
-  // Filter doctors based on search queries or user diseases list
+  // Filter doctors based on search queries
   const filteredDoctors = doctorsDatabase.filter(doc => {
     const term = searchSpecialist.toLowerCase();
     return doc.name.toLowerCase().includes(term) || 
@@ -70,30 +87,34 @@ const DoctorsPage = () => {
            doc.location.toLowerCase().includes(term);
   });
 
-  const handleBookingSubmit = (e) => {
+  const handleBookingSubmit = async (e) => {
     e.preventDefault();
     if (!bookingDate || !bookingTime) {
       toast.error("Please fill in appointment date and time");
       return;
     }
     
-    const newAppointment = {
-      id: Date.now(),
-      doctor: selectedDoctor.name,
-      specialty: selectedDoctor.specialty,
-      date: bookingDate,
-      time: bookingTime,
-      reason: bookingReason || "General consultation setup"
-    };
-
-    setBookedAppointments(prev => [newAppointment, ...prev]);
-    toast.success(`Successfully booked appointment with ${selectedDoctor.name}!`);
-    setIsBookingOpen(false);
-    
-    // Clear states
-    setBookingDate('');
-    setBookingTime('');
-    setBookingReason('');
+    try {
+      const res = await api.post('/appointments', {
+        doctorName: selectedDoctor.name,
+        specialty: selectedDoctor.specialty,
+        date: bookingDate,
+        time: bookingTime,
+        reason: bookingReason || "General consultation setup"
+      });
+      
+      setBookedAppointments(prev => [res.data.data, ...prev]);
+      toast.success(`Successfully booked appointment with ${selectedDoctor.name}!`);
+      setIsBookingOpen(false);
+      
+      // Clear states
+      setBookingDate('');
+      setBookingTime('');
+      setBookingReason('');
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to schedule appointment");
+    }
   };
 
   return (
@@ -130,7 +151,7 @@ const DoctorsPage = () => {
             {filteredDoctors.map((doc) => (
               <div 
                 key={doc.id}
-                className="bg-white dark:bg-slate-950/30 border border-slate-200/50 dark:border-white/5 rounded-3xl p-5 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-xl transition-all duration-300"
+                className="bg-white dark:bg-slate-955/30 border border-slate-200/50 dark:border-white/5 rounded-3xl p-5 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex gap-4">
                   <img 
@@ -182,7 +203,7 @@ const DoctorsPage = () => {
             My Consultations
           </h2>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-slate-950/40 border border-slate-205/50 dark:border-white/5 shadow-xl space-y-4">
+          <div className="p-6 rounded-3xl bg-white dark:bg-slate-955/40 border border-slate-205/50 dark:border-white/5 shadow-xl space-y-4">
             <h3 className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider">Scheduled Consultations</h3>
             
             {bookedAppointments.length === 0 ? (
@@ -191,14 +212,16 @@ const DoctorsPage = () => {
                 <p className="text-xs font-bold leading-relaxed">No pending appointments scheduled. Click book to consult an expert nutritionist.</p>
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-4 max-h-[450px] overflow-y-auto pr-1 scrollbar-none">
                 {bookedAppointments.map((ap) => (
-                  <div key={ap.id} className="p-4 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200/50 dark:border-white/5 space-y-2 relative overflow-hidden">
-                    <div className="absolute top-3 right-3 text-emerald-500">
-                      <CheckCircle2 size={16} />
+                  <div key={ap._id || ap.id} className="p-4 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200/50 dark:border-white/5 space-y-2 relative overflow-hidden">
+                    <div className="absolute top-3 right-3">
+                      {ap.status === 'accepted' && <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[8px] font-extrabold uppercase">Accepted</span>}
+                      {ap.status === 'rejected' && <span className="px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-500 text-[8px] font-extrabold uppercase">Rejected</span>}
+                      {ap.status === 'pending' && <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 text-[8px] font-extrabold uppercase animate-pulse">Pending</span>}
                     </div>
                     <div>
-                      <h4 className="text-xs font-black text-slate-800 dark:text-slate-200">{ap.doctor}</h4>
+                      <h4 className="text-xs font-black text-slate-800 dark:text-slate-200">{ap.doctorName}</h4>
                       <span className="text-[9px] font-extrabold text-amber-500 uppercase tracking-wide">{ap.specialty}</span>
                     </div>
                     <div className="text-[10px] text-slate-400 font-bold space-y-0.5">
@@ -238,7 +261,7 @@ const DoctorsPage = () => {
                 <h3 className="font-extrabold text-slate-800 dark:text-white">Schedule Consultation</h3>
                 <button 
                   onClick={() => setIsBookingOpen(false)}
-                  className="text-slate-450 hover:text-slate-700 dark:hover:text-white text-xs font-black"
+                  className="text-slate-455 hover:text-slate-700 dark:hover:text-white text-xs font-black"
                 >
                   ✕
                 </button>
@@ -258,7 +281,7 @@ const DoctorsPage = () => {
 
               <form onSubmit={handleBookingSubmit} className="space-y-4 pt-2">
                 <div className="space-y-1">
-                  <label className="block text-[10px] font-black uppercase text-slate-450 dark:text-slate-500">Appointment Date</label>
+                  <label className="block text-[10px] font-black uppercase text-slate-455 dark:text-slate-500">Appointment Date</label>
                   <input 
                     type="date"
                     required
@@ -269,7 +292,7 @@ const DoctorsPage = () => {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="block text-[10px] font-black uppercase text-slate-450 dark:text-slate-500">Preferred Time Slot</label>
+                  <label className="block text-[10px] font-black uppercase text-slate-455 dark:text-slate-500">Preferred Time Slot</label>
                   <input 
                     type="time"
                     required
@@ -280,7 +303,7 @@ const DoctorsPage = () => {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="block text-[10px] font-black uppercase text-slate-450 dark:text-slate-500">Reason for Consultation</label>
+                  <label className="block text-[10px] font-black uppercase text-slate-455 dark:text-slate-500">Reason for Consultation</label>
                   <textarea 
                     placeholder="Enter details (e.g. insulin tracking support, low heart endurance advice...)"
                     value={bookingReason}
@@ -299,7 +322,7 @@ const DoctorsPage = () => {
                   </button>
                   <button 
                     type="submit"
-                    className="flex-grow py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs rounded-2xl shadow-md transition-all active:scale-95"
+                    className="flex-grow py-3 bg-amber-500 hover:bg-amber-600 text-slate-955 font-black text-xs rounded-2xl shadow-md transition-all active:scale-95"
                   >
                     Confirm Booking
                   </button>
