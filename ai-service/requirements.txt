@@ -11,3 +11,4 @@ pydantic
 motor
 pytest
 httpx
+google-generativeai
