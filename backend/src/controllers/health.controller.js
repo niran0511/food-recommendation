@@ -4,10 +4,10 @@ const { ApiError } = require('../utils/ApiError');
 const { ApiResponse } = require('../utils/ApiResponse');
 
 exports.getHealthMetrics = async (req, res, next) => {
+    const user = req.user;
+    const profile = user.profile;
+    
     try {
-        const user = req.user;
-        const profile = user.profile;
-        
         if (!profile || !profile.age || !profile.height || !profile.weight) {
             return res.status(200).json(new ApiResponse(200, { metrics: null }, 'Profile incomplete'));
         }
@@ -104,10 +104,10 @@ exports.getHealthMetrics = async (req, res, next) => {
 };
 
 exports.getRiskAssessment = async (req, res, next) => {
+    const user = req.user;
+    const profile = user.profile;
+    
     try {
-        const user = req.user;
-        const profile = user.profile;
-        
         const payload = {
             age: profile.age || 30,
             gender: profile.gender || 'Other',
@@ -132,8 +132,6 @@ exports.getRiskAssessment = async (req, res, next) => {
     } catch (error) {
         console.warn("⚠️ AI Service Error in getRiskAssessment, calculating locally as fallback:", error.message);
         
-        const user = req.user;
-        const profile = user.profile;
         const weight = profile.weight || 70;
         const height = profile.height || 170;
         const age = profile.age || 30;
