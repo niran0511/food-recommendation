@@ -78,6 +78,22 @@ exports.sendChatMessage = async (req, res, next) => {
                 } else {
                     reply = `Hello! The AI Nutrition Model is currently offline. Based on your profile, I recommend focusing on whole, unprocessed foods. Let me know if you have specific nutrient goals!`;
                 }
+            } else if (userMsg.includes('exercise') || userMsg.includes('workout') || userMsg.includes('activity') || 
+                       userMsg.includes('fitness') || userMsg.includes('gym') || userMsg.includes('train') || 
+                       userMsg.includes('cardio') || userMsg.includes('run') || userMsg.includes('walk') || 
+                       userMsg.includes('sport') || userMsg.includes('active')) {
+                
+                if (user.profile?.goal === 'Weight Loss' || user.profile?.goal === 'Weight Control') {
+                    reply = `Hi ${user.name || 'there'}! The AI model is currently offline, but since your goal is **Weight Loss**, here are some recommended activities for you:\n\n` +
+                        `• **HIIT Weight Shred** (35 mins) - Great for accelerating caloric deficit and boosting metabolic rate.\n` +
+                        `• **Aerobic Cardiovascular Pace** (30 mins) - Excellent for calorie burn and cardiovascular health.\n` +
+                        `• **Brisk Walking/Jogging** (45 mins) - A sustainable way to increase your daily activity.`;
+                } else {
+                    reply = `Hi ${user.name || 'there'}! Since your goal is **${user.profile?.goal || 'Healthy Eating'}**, here are some suggested activities to keep you active and fit:\n\n` +
+                        `• **Resistance Strength Training** (45 mins) - Focuses on muscle splits and overall body conditioning.\n` +
+                        `• **Moderate Aerobic Run/Walk** (30 mins) - Improves endurance and blood circulation.\n` +
+                        `• **Yoga/Stretching** (20 mins) - Perfect for recovery, mobility, and stress reduction.`;
+                }
             } else {
                 reply = `Hi ${user.name || 'there'}! The AI Nutrition Engine is currently sleeping, but I can see you are aiming for **${user.profile?.goal || 'Weight Loss'}** with a **${user.profile?.dietType || 'Non-Vegetarian'}** diet. Let me know if you would like me to suggest some recipes or healthy foods!`;
             }
