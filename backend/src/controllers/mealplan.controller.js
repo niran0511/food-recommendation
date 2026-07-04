@@ -86,8 +86,26 @@ exports.createDailyMealPlan = async (req, res, next) => {
         try {
             const Food = require('../models/Food');
             const matchQuery = {};
-            if (profile.dietType) {
-                matchQuery.diet_type = profile.dietType;
+            
+            if (profile.dietType === 'Vegan') {
+                matchQuery.diet_type = 'Vegan';
+            } else if (profile.dietType === 'Vegetarian') {
+                matchQuery.diet_type = { $in: ['Vegetarian', 'Vegan'] };
+            }
+            
+            if (profile.diseases && profile.diseases.length > 0) {
+                matchQuery.avoid_for = { $nin: profile.diseases };
+            }
+            
+            if (profile.allergies && profile.allergies.length > 0) {
+                const allergyRegexes = profile.allergies
+                    .filter(a => a && a.toLowerCase() !== 'none')
+                    .map(a => new RegExp(a.trim(), 'i'));
+                
+                if (allergyRegexes.length > 0) {
+                    matchQuery.name = { $nin: allergyRegexes };
+                    matchQuery.ingredients = { $nin: allergyRegexes };
+                }
             }
             
             const breakfastFoods = await Food.aggregate([
@@ -234,8 +252,26 @@ exports.createWeeklyMealPlan = async (req, res, next) => {
         try {
             const Food = require('../models/Food');
             const matchQuery = {};
-            if (profile.dietType) {
-                matchQuery.diet_type = profile.dietType;
+            
+            if (profile.dietType === 'Vegan') {
+                matchQuery.diet_type = 'Vegan';
+            } else if (profile.dietType === 'Vegetarian') {
+                matchQuery.diet_type = { $in: ['Vegetarian', 'Vegan'] };
+            }
+            
+            if (profile.diseases && profile.diseases.length > 0) {
+                matchQuery.avoid_for = { $nin: profile.diseases };
+            }
+            
+            if (profile.allergies && profile.allergies.length > 0) {
+                const allergyRegexes = profile.allergies
+                    .filter(a => a && a.toLowerCase() !== 'none')
+                    .map(a => new RegExp(a.trim(), 'i'));
+                
+                if (allergyRegexes.length > 0) {
+                    matchQuery.name = { $nin: allergyRegexes };
+                    matchQuery.ingredients = { $nin: allergyRegexes };
+                }
             }
             
             const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
