@@ -4,10 +4,10 @@ const { ApiError } = require('../utils/ApiError');
 const { ApiResponse } = require('../utils/ApiResponse');
 
 exports.getRecommendations = async (req, res, next) => {
+    const user = req.user;
+    const profile = user.profile;
+    
     try {
-        const user = req.user;
-        const profile = user.profile;
-        
         if (!profile || !profile.age || !profile.height || !profile.weight) {
             return res.status(200).json(new ApiResponse(200, { recommendations: [] }, 'Profile incomplete'));
         }
@@ -86,10 +86,10 @@ exports.getRecommendations = async (req, res, next) => {
 };
 
 exports.getFoodsToAvoid = async (req, res, next) => {
+    const user = req.user;
+    const profile = user.profile;
+    
     try {
-        const user = req.user;
-        const profile = user.profile;
-        
         if (!profile || !profile.age || !profile.height || !profile.weight) {
             return res.status(200).json(new ApiResponse(200, { foodsToAvoid: [] }, 'Profile incomplete'));
         }
