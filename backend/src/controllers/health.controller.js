@@ -138,12 +138,12 @@ exports.getRiskAssessment = async (req, res, next) => {
         const height_m = height / 100;
         const bmi = weight / (height_m * height_m);
         
-        const obesity_risk = bmi > 30 ? 75.0 : (bmi > 25 ? 45.0 : 15.0);
-        const diabetes_risk = bmi > 30 ? 65.0 : (bmi > 25 ? 35.0 : 10.0);
-        const hypertension_risk = age > 50 ? 55.0 : (bmi > 25 ? 30.0 : 10.0);
-        const heart_disease_risk = age > 50 ? 45.0 : (bmi > 30 ? 40.0 : 15.0);
+        const obesity_risk = bmi > 30 ? 0.75 : (bmi > 25 ? 0.45 : 0.15);
+        const diabetes_risk = bmi > 30 ? 0.65 : (bmi > 25 ? 0.35 : 0.10);
+        const hypertension_risk = age > 50 ? 0.55 : (bmi > 25 ? 0.30 : 0.10);
+        const heart_disease_risk = age > 50 ? 0.45 : (bmi > 30 ? 0.40 : 0.15);
         
-        const overall_health_score = Number((100 - (obesity_risk + diabetes_risk + hypertension_risk + heart_disease_risk) / 4).toFixed(2));
+        const overall_health_score = Number((100 - (obesity_risk + diabetes_risk + hypertension_risk + heart_disease_risk) / 4 * 100).toFixed(2));
         
         const riskAssessment = {
             obesity_risk,

@@ -25,10 +25,10 @@ exports.getMealPlanById = async (req, res, next) => {
 };
 
 exports.createDailyMealPlan = async (req, res, next) => {
+    const user = req.user;
+    const profile = user.profile;
+    
     try {
-        const user = req.user;
-        const profile = user.profile;
-        
         if (!profile || !profile.age || !profile.height || !profile.weight) {
             return res.status(200).json(new ApiResponse(200, { mealPlan: null }, 'Profile incomplete'));
         }
@@ -82,16 +82,78 @@ exports.createDailyMealPlan = async (req, res, next) => {
 
         res.status(201).json(new ApiResponse(201, { mealPlan }));
     } catch (error) {
-        console.error("AI Service Error:", error.message);
-        next(new ApiError(500, 'Failed to fetch meal plan from AI service'));
+        console.warn("⚠️ AI Service Error in createDailyMealPlan, falling back to database query:", error.message);
+        try {
+            const Food = require('../models/Food');
+            const matchQuery = {};
+            if (profile.dietType) {
+                matchQuery.diet_type = profile.dietType;
+            }
+            
+            const breakfastFoods = await Food.aggregate([
+                { $match: { ...matchQuery, category: 'Breakfast' } },
+                { $sample: { size: 1 } }
+            ]);
+            const lunchFoods = await Food.aggregate([
+                { $match: { ...matchQuery, category: 'Lunch' } },
+                { $sample: { size: 1 } }
+            ]);
+            const dinnerFoods = await Food.aggregate([
+                { $match: { ...matchQuery, category: 'Dinner' } },
+                { $sample: { size: 1 } }
+            ]);
+            const snackFoods = await Food.aggregate([
+                { $match: { ...matchQuery, category: 'Snack' } },
+                { $sample: { size: 1 } }
+            ]);
+            
+            const mapFoodsLocal = (foods) => foods.map(f => ({
+                name: f.name,
+                calories: f.calories || 300,
+                protein: f.protein || 15,
+                carbs: f.carbohydrates || 40,
+                fat: f.fat || 10,
+                image: f.image || 'https://via.placeholder.com/300x200?text=Food'
+            }));
+            
+            const breakfastMapped = mapFoodsLocal(breakfastFoods);
+            const lunchMapped = mapFoodsLocal(lunchFoods);
+            const dinnerMapped = mapFoodsLocal(dinnerFoods);
+            const snackMapped = mapFoodsLocal(snackFoods);
+            
+            const totalCalories = (breakfastMapped[0]?.calories || 300) + (lunchMapped[0]?.calories || 400) + (dinnerMapped[0]?.calories || 400) + (snackMapped[0]?.calories || 150);
+            const totalProtein = (breakfastMapped[0]?.protein || 15) + (lunchMapped[0]?.protein || 20) + (dinnerMapped[0]?.protein || 20) + (snackMapped[0]?.protein || 5);
+            const totalCarbs = (breakfastMapped[0]?.carbs || 30) + (lunchMapped[0]?.carbs || 45) + (dinnerMapped[0]?.carbs || 45) + (snackMapped[0]?.carbs || 15);
+            const totalFat = (breakfastMapped[0]?.fat || 10) + (lunchMapped[0]?.fat || 15) + (dinnerMapped[0]?.fat || 15) + (snackMapped[0]?.fat || 5);
+            
+            const mealPlan = await MealPlan.create({
+                userId: user._id,
+                type: 'daily',
+                meals: {
+                    breakfast: breakfastMapped,
+                    lunch: lunchMapped,
+                    dinner: dinnerMapped,
+                    snacks: snackMapped
+                },
+                totalCalories,
+                totalProtein,
+                totalCarbs,
+                totalFat
+            });
+            
+            res.status(201).json(new ApiResponse(201, { mealPlan }, 'Fallback daily meal plan generated locally'));
+        } catch (dbError) {
+            console.error("Database fallback error in createDailyMealPlan:", dbError.message);
+            next(new ApiError(500, 'Failed to fetch meal plan from AI service'));
+        }
     }
 };
 
 exports.createWeeklyMealPlan = async (req, res, next) => {
+    const user = req.user;
+    const profile = user.profile;
+    
     try {
-        const user = req.user;
-        const profile = user.profile;
-        
         if (!profile || !profile.age || !profile.height || !profile.weight) {
             return res.status(200).json(new ApiResponse(200, { mealPlan: null }, 'Profile incomplete'));
         }
@@ -148,7 +210,66 @@ exports.createWeeklyMealPlan = async (req, res, next) => {
 
         res.status(201).json(new ApiResponse(201, { mealPlan }));
     } catch (error) {
-        next(new ApiError(500, 'Failed to fetch weekly plan from AI service'));
+        console.warn("⚠️ AI Service Error in createWeeklyMealPlan, falling back to database query:", error.message);
+        try {
+            const Food = require('../models/Food');
+            const matchQuery = {};
+            if (profile.dietType) {
+                matchQuery.diet_type = profile.dietType;
+            }
+            
+            const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+            const weeklyPlan = [];
+            
+            for (const day of days) {
+                const breakfastFoods = await Food.aggregate([
+                    { $match: { ...matchQuery, category: 'Breakfast' } },
+                    { $sample: { size: 1 } }
+                ]);
+                const lunchFoods = await Food.aggregate([
+                    { $match: { ...matchQuery, category: 'Lunch' } },
+                    { $sample: { size: 1 } }
+                ]);
+                const dinnerFoods = await Food.aggregate([
+                    { $match: { ...matchQuery, category: 'Dinner' } },
+                    { $sample: { size: 1 } }
+                ]);
+                const snackFoods = await Food.aggregate([
+                    { $match: { ...matchQuery, category: 'Snack' } },
+                    { $sample: { size: 1 } }
+                ]);
+                
+                const mapFoodsLocal = (foods) => foods.map(f => ({
+                    name: f.name,
+                    calories: f.calories || 300,
+                    protein: f.protein || 15,
+                    carbs: f.carbohydrates || 40,
+                    fat: f.fat || 10,
+                    image: f.image || 'https://via.placeholder.com/300x200?text=Food'
+                }));
+                
+                weeklyPlan.push({
+                    day,
+                    meals: {
+                        breakfast: mapFoodsLocal(breakfastFoods),
+                        lunch: mapFoodsLocal(lunchFoods),
+                        dinner: mapFoodsLocal(dinnerFoods),
+                        snacks: mapFoodsLocal(snackFoods)
+                    }
+                });
+            }
+            
+            const mealPlan = await MealPlan.create({
+                userId: user._id,
+                type: 'weekly',
+                weeklyPlan
+            });
+            
+            res.status(201).json(new ApiResponse(201, { mealPlan }, 'Fallback weekly meal plan generated locally'));
+        } catch (dbError) {
+            console.error("Database fallback error in createWeeklyMealPlan:", dbError.message);
+            next(new ApiError(500, 'Failed to fetch weekly plan from AI service'));
+        }
     }
 };
 
