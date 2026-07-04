@@ -3,10 +3,10 @@ const { ApiResponse } = require('../utils/ApiResponse');
 const { ApiError } = require('../utils/ApiError');
 
 exports.sendChatMessage = async (req, res, next) => {
+    const { message } = req.body;
+    const user = req.user;
+    
     try {
-        const { message } = req.body;
-        const user = req.user;
-
         // Prepare request body for AI service, supplying user profile context if it exists
         const payload = {
             message,
