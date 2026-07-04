@@ -109,10 +109,10 @@ exports.createDailyMealPlan = async (req, res, next) => {
             
             const mapFoodsLocal = (foods) => foods.map(f => ({
                 name: f.name,
-                calories: f.calories || 300,
-                protein: f.protein || 15,
-                carbs: f.carbohydrates || 40,
-                fat: f.fat || 10,
+                calories: Math.round(f.calories || 300),
+                protein: Number((f.protein || 15).toFixed(1)),
+                carbs: Number((f.carbohydrates || 40).toFixed(1)),
+                fat: Number((f.fat || 10).toFixed(1)),
                 image: f.image || 'https://via.placeholder.com/300x200?text=Food'
             }));
             
@@ -121,10 +121,30 @@ exports.createDailyMealPlan = async (req, res, next) => {
             const dinnerMapped = mapFoodsLocal(dinnerFoods);
             const snackMapped = mapFoodsLocal(snackFoods);
             
-            const totalCalories = (breakfastMapped[0]?.calories || 300) + (lunchMapped[0]?.calories || 400) + (dinnerMapped[0]?.calories || 400) + (snackMapped[0]?.calories || 150);
-            const totalProtein = (breakfastMapped[0]?.protein || 15) + (lunchMapped[0]?.protein || 20) + (dinnerMapped[0]?.protein || 20) + (snackMapped[0]?.protein || 5);
-            const totalCarbs = (breakfastMapped[0]?.carbs || 30) + (lunchMapped[0]?.carbs || 45) + (dinnerMapped[0]?.carbs || 45) + (snackMapped[0]?.carbs || 15);
-            const totalFat = (breakfastMapped[0]?.fat || 10) + (lunchMapped[0]?.fat || 15) + (dinnerMapped[0]?.fat || 15) + (snackMapped[0]?.fat || 5);
+            const totalCalories = Math.round(
+                (breakfastMapped[0]?.calories || 300) + 
+                (lunchMapped[0]?.calories || 400) + 
+                (dinnerMapped[0]?.calories || 400) + 
+                (snackMapped[0]?.calories || 150)
+            );
+            const totalProtein = Number((
+                (breakfastMapped[0]?.protein || 15) + 
+                (lunchMapped[0]?.protein || 20) + 
+                (dinnerMapped[0]?.protein || 20) + 
+                (snackMapped[0]?.protein || 5)
+            ).toFixed(1));
+            const totalCarbs = Number((
+                (breakfastMapped[0]?.carbs || 30) + 
+                (lunchMapped[0]?.carbs || 45) + 
+                (dinnerMapped[0]?.carbs || 45) + 
+                (snackMapped[0]?.carbs || 15)
+            ).toFixed(1));
+            const totalFat = Number((
+                (breakfastMapped[0]?.fat || 10) + 
+                (lunchMapped[0]?.fat || 15) + 
+                (dinnerMapped[0]?.fat || 15) + 
+                (snackMapped[0]?.fat || 5)
+            ).toFixed(1));
             
             const mealPlan = await MealPlan.create({
                 userId: user._id,
@@ -241,10 +261,10 @@ exports.createWeeklyMealPlan = async (req, res, next) => {
                 
                 const mapFoodsLocal = (foods) => foods.map(f => ({
                     name: f.name,
-                    calories: f.calories || 300,
-                    protein: f.protein || 15,
-                    carbs: f.carbohydrates || 40,
-                    fat: f.fat || 10,
+                    calories: Math.round(f.calories || 300),
+                    protein: Number((f.protein || 15).toFixed(1)),
+                    carbs: Number((f.carbohydrates || 40).toFixed(1)),
+                    fat: Number((f.fat || 10).toFixed(1)),
                     image: f.image || 'https://via.placeholder.com/300x200?text=Food'
                 }));
                 
