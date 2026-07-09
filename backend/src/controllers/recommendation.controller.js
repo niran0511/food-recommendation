@@ -4,10 +4,17 @@ const { ApiError } = require('../utils/ApiError');
 const { ApiResponse } = require('../utils/ApiResponse');
 
 exports.getRecommendations = async (req, res, next) => {
+<<<<<<< HEAD
     try {
         const user = req.user;
         const profile = user.profile;
         
+=======
+    const user = req.user;
+    const profile = user.profile;
+    
+    try {
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
         if (!profile || !profile.age || !profile.height || !profile.weight) {
             return res.status(200).json(new ApiResponse(200, { recommendations: [] }, 'Profile incomplete'));
         }
@@ -48,16 +55,78 @@ exports.getRecommendations = async (req, res, next) => {
 
         res.status(200).json(new ApiResponse(200, { recommendations }));
     } catch (error) {
+<<<<<<< HEAD
         console.error("AI Service Error:", error.message);
         next(new ApiError(500, 'Failed to fetch recommendations from AI service'));
+=======
+        console.warn("⚠️ AI Service Error in getRecommendations, falling back to database query:", error.message);
+        try {
+            const Food = require('../models/Food');
+            const matchQuery = {};
+            
+            if (profile.dietType === 'Vegan') {
+                matchQuery.diet_type = 'Vegan';
+            } else if (profile.dietType === 'Vegetarian') {
+                matchQuery.diet_type = { $in: ['Vegetarian', 'Vegan'] };
+            }
+            
+            if (profile.diseases && profile.diseases.length > 0) {
+                matchQuery.avoid_for = { $nin: profile.diseases };
+            }
+            
+            if (profile.allergies && profile.allergies.length > 0) {
+                const allergyRegexes = profile.allergies
+                    .filter(a => a && a.toLowerCase() !== 'none')
+                    .map(a => new RegExp(a.trim(), 'i'));
+                
+                if (allergyRegexes.length > 0) {
+                    matchQuery.name = { $nin: allergyRegexes };
+                    matchQuery.ingredients = { $nin: allergyRegexes };
+                }
+            }
+            
+            const fallbackFoods = await Food.aggregate([
+                { $match: matchQuery },
+                { $sample: { size: 10 } }
+            ]);
+            
+            const recommendations = fallbackFoods.map(f => ({
+                food: f.name,
+                image: f.image || 'https://via.placeholder.com/300x200?text=Food',
+                category: f.category || 'Lunch',
+                cuisine: f.cuisine || 'American',
+                score: 50.0,
+                calories: f.calories || 300,
+                protein: f.protein || 10,
+                carbohydrates: f.carbohydrates || 40,
+                fat: f.fat || 10,
+                fiber: f.fiber || 3,
+                reasons_for: ["Fallback recommendations from database"],
+                reasons_against: [],
+                meal_type: f.meal_type || ['Lunch']
+            }));
+            
+            res.status(200).json(new ApiResponse(200, { recommendations }));
+        } catch (dbError) {
+            console.error("Database fallback error in getRecommendations:", dbError.message);
+            next(new ApiError(500, 'Failed to fetch recommendations from AI service'));
+        }
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
     }
 };
 
 exports.getFoodsToAvoid = async (req, res, next) => {
+<<<<<<< HEAD
     try {
         const user = req.user;
         const profile = user.profile;
         
+=======
+    const user = req.user;
+    const profile = user.profile;
+    
+    try {
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
         if (!profile || !profile.age || !profile.height || !profile.weight) {
             return res.status(200).json(new ApiResponse(200, { foodsToAvoid: [] }, 'Profile incomplete'));
         }
@@ -84,7 +153,55 @@ exports.getFoodsToAvoid = async (req, res, next) => {
         
         res.status(200).json(new ApiResponse(200, { foodsToAvoid: response.data }));
     } catch (error) {
+<<<<<<< HEAD
         next(new ApiError(500, 'Failed to fetch foods to avoid from AI service'));
+=======
+        console.warn("⚠️ AI Service Error in getFoodsToAvoid, falling back to database query:", error.message);
+        try {
+            const Food = require('../models/Food');
+            const conditions = [];
+            
+            if (profile.diseases && profile.diseases.length > 0) {
+                conditions.push({ avoid_for: { $in: profile.diseases } });
+            }
+            
+            if (profile.allergies && profile.allergies.length > 0) {
+                const allergyRegexes = profile.allergies
+                    .filter(a => a && a.toLowerCase() !== 'none')
+                    .map(a => new RegExp(a.trim(), 'i'));
+                
+                if (allergyRegexes.length > 0) {
+                    conditions.push({ name: { $in: allergyRegexes } });
+                    conditions.push({ ingredients: { $in: allergyRegexes } });
+                }
+            }
+            
+            const matchQuery = conditions.length > 0 ? { $or: conditions } : { _id: null };
+            
+            const fallbackAvoidFoods = await Food.find(matchQuery).limit(5);
+            
+            const foodsToAvoid = fallbackAvoidFoods.map(f => ({
+                food: f.name,
+                image: f.image || 'https://via.placeholder.com/300x200?text=Food',
+                category: f.category || 'Lunch',
+                cuisine: f.cuisine || 'American',
+                score: 30.0,
+                calories: f.calories || 300,
+                protein: f.protein || 10,
+                carbohydrates: f.carbohydrates || 40,
+                fat: f.fat || 10,
+                fiber: f.fiber || 3,
+                reasons_for: [],
+                reasons_against: ["Contains ingredients to avoid for your profile conditions"],
+                meal_type: f.meal_type || ['Lunch']
+            }));
+            
+            res.status(200).json(new ApiResponse(200, { foodsToAvoid }));
+        } catch (dbError) {
+            console.error("Database fallback error in getFoodsToAvoid:", dbError.message);
+            next(new ApiError(500, 'Failed to fetch foods to avoid from AI service'));
+        }
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
     }
 };
 

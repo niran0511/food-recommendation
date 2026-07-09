@@ -22,6 +22,7 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
+<<<<<<< HEAD
     const originalRequest = error.config;
     
     // Check if error is 401 and we haven't already retried
@@ -51,6 +52,20 @@ api.interceptors.response.use(
     if (error.response?.status !== 401) {
       toast.error(message);
     }
+=======
+    // If response is 401 Unauthorized, session has expired. Clear local storage and redirect to login.
+    if (error.response?.status === 401) {
+      localStorage.removeItem('accessToken');
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
+      return Promise.reject(error);
+    }
+    
+    // Handle other errors with a hot toast
+    const message = error.response?.data?.message || 'An error occurred';
+    toast.error(message);
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
     
     return Promise.reject(error);
   }

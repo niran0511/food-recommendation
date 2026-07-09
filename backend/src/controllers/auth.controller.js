@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const { ApiError } = require('../utils/ApiError');
 const { ApiResponse } = require('../utils/ApiResponse');
+<<<<<<< HEAD
 const jwt = require('jsonwebtoken');
 
 const sendTokenResponse = async (user, statusCode, res) => {
@@ -41,12 +42,42 @@ exports.register = async (req, res, next) => {
         });
 
         await sendTokenResponse(user, 201, res);
+=======
+
+exports.register = async (req, res, next) => {
+    try {
+        const { name, email, firebaseUid, profile } = req.body;
+
+        let user = await User.findOne({ email: email?.toLowerCase() });
+        if (user) {
+            if (!user.firebaseUid && firebaseUid) {
+                user.firebaseUid = firebaseUid;
+                await user.save();
+            }
+            return res.status(200).json(new ApiResponse(200, { user }, 'User already registered'));
+        }
+
+        const emailLower = email?.toLowerCase();
+        const isAdmin = emailLower === 'admin@foodrec.com' || emailLower === 'niranjanselvakumar0511@gmail.com';
+        user = await User.create({
+            name,
+            email: emailLower,
+            firebaseUid,
+            profile,
+            role: isAdmin ? 'admin' : 'user'
+        });
+
+        res.status(201).json(
+            new ApiResponse(201, { user }, 'User registered successfully')
+        );
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
     } catch (error) {
         next(error);
     }
 };
 
 exports.login = async (req, res, next) => {
+<<<<<<< HEAD
     try {
         const { email, password } = req.body;
 
@@ -65,6 +96,9 @@ exports.login = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+=======
+    res.status(200).json(new ApiResponse(200, {}, 'Firebase Login session verified'));
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
 };
 
 exports.getMe = async (req, res, next) => {
@@ -77,6 +111,7 @@ exports.getMe = async (req, res, next) => {
 };
 
 exports.logout = async (req, res, next) => {
+<<<<<<< HEAD
     try {
         const options = {
             expires: new Date(Date.now() + 10 * 1000),
@@ -119,4 +154,11 @@ exports.refreshToken = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+=======
+    res.status(200).json(new ApiResponse(200, {}, 'User logged out successfully'));
+};
+
+exports.refreshToken = async (req, res, next) => {
+    res.status(200).json(new ApiResponse(200, {}, 'Token refresh managed by client'));
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
 };

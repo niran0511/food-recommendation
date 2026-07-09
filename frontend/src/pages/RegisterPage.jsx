@@ -14,7 +14,11 @@ const RegisterPage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLightOn, setIsLightOn] = useState(false);
+<<<<<<< HEAD
   const { register, user } = useAuth();
+=======
+  const { register, loginWithProvider, user } = useAuth();
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
   const navigate = useNavigate();
 
   const handleSwitchToggle = () => {
@@ -25,6 +29,39 @@ const RegisterPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+<<<<<<< HEAD
+=======
+  const handleSocialLogin = async (provider) => {
+    setIsSubmitting(true);
+    try {
+      const userData = await loginWithProvider(provider);
+      toast.success(`Successfully authenticated with ${provider}!`);
+
+      localStorage.removeItem('dashboard_calories_logged');
+      localStorage.removeItem('dashboard_water_logged');
+      localStorage.removeItem('dashboard_protein_logged');
+      localStorage.removeItem('dashboard_meals_eaten');
+
+      const hasCompletedOnboarding = userData?.profile?.age && 
+                                     userData?.profile?.height && 
+                                     userData?.profile?.weight;
+
+      if (userData && userData.role === 'admin') {
+        navigate('/admin');
+      } else if (!hasCompletedOnboarding) {
+        navigate('/onboarding');
+      } else {
+        navigate('/dashboard');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(`Authentication failed with ${provider}`);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -246,14 +283,26 @@ const RegisterPage = () => {
                 <div className="grid grid-cols-2 gap-3 pt-1">
                   <button
                     type="button"
+<<<<<<< HEAD
                     className="flex items-center justify-center gap-2 py-2.5 px-4 border border-slate-200 rounded-xl bg-slate-50 hover:bg-slate-100 text-xs font-bold text-slate-700 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+=======
+                    onClick={() => handleSocialLogin('google')}
+                    disabled={isSubmitting}
+                    className="flex items-center justify-center gap-2 py-2.5 px-4 border border-slate-200 rounded-xl bg-slate-50 hover:bg-slate-100 text-xs font-bold text-slate-700 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer disabled:opacity-50"
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
                   >
                     <FaGoogle size={14} className="text-red-500" />
                     Google
                   </button>
                   <button
                     type="button"
+<<<<<<< HEAD
                     className="flex items-center justify-center gap-2 py-2.5 px-4 border border-slate-200 rounded-xl bg-slate-50 hover:bg-slate-100 text-xs font-bold text-slate-700 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+=======
+                    onClick={() => handleSocialLogin('github')}
+                    disabled={isSubmitting}
+                    className="flex items-center justify-center gap-2 py-2.5 px-4 border border-slate-200 rounded-xl bg-slate-50 hover:bg-slate-100 text-xs font-bold text-slate-700 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer disabled:opacity-50"
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
                   >
                     <FaGithub size={14} className="text-slate-900" />
                     GitHub

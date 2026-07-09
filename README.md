@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🍽️ AI-Powered Health-Based Food Recommendation System
 
 An intelligent health assistant that analyzes user health profiles and generates personalized food recommendations using Machine Learning and AI techniques.
@@ -310,3 +311,7 @@ MIT License
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+=======
+# food recommendation
+
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
