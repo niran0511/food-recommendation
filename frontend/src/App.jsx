@@ -1,9 +1,4 @@
-// NutriAI - Premium AI Food Recommendation & Pathological Risk Assessment System
-<<<<<<< HEAD
 // GitHub Desktop Commit Verification Success
-=======
-// GitHub Desktop Commit Verification Success - Subfolder Version
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';

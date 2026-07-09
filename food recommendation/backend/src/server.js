@@ -27,11 +27,9 @@ connectDB();
 // Middleware
 app.use(helmet());
 app.use(cors({
-<<<<<<< HEAD
-    origin: process.env.CORS_ORIGIN || '*',
-=======
+
     origin: (origin, callback) => callback(null, true),
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
     credentials: true
 }));
 app.use(express.json());

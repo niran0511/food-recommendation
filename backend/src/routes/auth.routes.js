@@ -9,20 +9,13 @@ const router = express.Router();
 const registerValidation = [
     body('name').notEmpty().withMessage('Name is required'),
     body('email').isEmail().withMessage('Please include a valid email'),
-<<<<<<< HEAD
-    body('password').isLength({ min: 6 }).withMessage('Please enter a password with 6 or more characters')
-];
 
-const loginValidation = [
-    body('email').isEmail().withMessage('Please include a valid email'),
-    body('password').exists().withMessage('Password is required')
-=======
     body('firebaseUid').notEmpty().withMessage('Firebase UID is required')
 ];
 
 const loginValidation = [
     body('email').isEmail().withMessage('Please include a valid email')
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
 ];
 
 router.post('/register', validate(registerValidation), register);

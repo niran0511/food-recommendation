@@ -25,17 +25,12 @@ exports.getMealPlanById = async (req, res, next) => {
 };
 
 exports.createDailyMealPlan = async (req, res, next) => {
-<<<<<<< HEAD
-    try {
-        const user = req.user;
-        const profile = user.profile;
-        
-=======
+
     const user = req.user;
     const profile = user.profile;
     
     try {
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
         if (!profile || !profile.age || !profile.height || !profile.weight) {
             return res.status(200).json(new ApiResponse(200, { mealPlan: null }, 'Profile incomplete'));
         }
@@ -89,10 +84,7 @@ exports.createDailyMealPlan = async (req, res, next) => {
 
         res.status(201).json(new ApiResponse(201, { mealPlan }));
     } catch (error) {
-<<<<<<< HEAD
-        console.error("AI Service Error:", error.message);
-        next(new ApiError(500, 'Failed to fetch meal plan from AI service'));
-=======
+
         console.warn("⚠️ AI Service Error in createDailyMealPlan, falling back to database query:", error.message);
         try {
             const Food = require('../models/Food');
@@ -195,22 +187,17 @@ exports.createDailyMealPlan = async (req, res, next) => {
             console.error("Database fallback error in createDailyMealPlan:", dbError.message);
             next(new ApiError(500, 'Failed to fetch meal plan from AI service'));
         }
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
     }
 };
 
 exports.createWeeklyMealPlan = async (req, res, next) => {
-<<<<<<< HEAD
-    try {
-        const user = req.user;
-        const profile = user.profile;
-        
-=======
+
     const user = req.user;
     const profile = user.profile;
     
     try {
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
         if (!profile || !profile.age || !profile.height || !profile.weight) {
             return res.status(200).json(new ApiResponse(200, { mealPlan: null }, 'Profile incomplete'));
         }
@@ -267,9 +254,7 @@ exports.createWeeklyMealPlan = async (req, res, next) => {
 
         res.status(201).json(new ApiResponse(201, { mealPlan }));
     } catch (error) {
-<<<<<<< HEAD
-        next(new ApiError(500, 'Failed to fetch weekly plan from AI service'));
-=======
+
         console.warn("⚠️ AI Service Error in createWeeklyMealPlan, falling back to database query:", error.message);
         try {
             const Food = require('../models/Food');
@@ -348,7 +333,7 @@ exports.createWeeklyMealPlan = async (req, res, next) => {
             console.error("Database fallback error in createWeeklyMealPlan:", dbError.message);
             next(new ApiError(500, 'Failed to fetch weekly plan from AI service'));
         }
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
     }
 };
 

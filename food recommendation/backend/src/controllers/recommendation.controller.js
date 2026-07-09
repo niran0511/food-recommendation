@@ -4,17 +4,12 @@ const { ApiError } = require('../utils/ApiError');
 const { ApiResponse } = require('../utils/ApiResponse');
 
 exports.getRecommendations = async (req, res, next) => {
-<<<<<<< HEAD
-    try {
-        const user = req.user;
-        const profile = user.profile;
-        
-=======
+
     const user = req.user;
     const profile = user.profile;
     
     try {
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
         if (!profile || !profile.age || !profile.height || !profile.weight) {
             return res.status(200).json(new ApiResponse(200, { recommendations: [] }, 'Profile incomplete'));
         }
@@ -55,10 +50,7 @@ exports.getRecommendations = async (req, res, next) => {
 
         res.status(200).json(new ApiResponse(200, { recommendations }));
     } catch (error) {
-<<<<<<< HEAD
-        console.error("AI Service Error:", error.message);
-        next(new ApiError(500, 'Failed to fetch recommendations from AI service'));
-=======
+
         console.warn("⚠️ AI Service Error in getRecommendations, falling back to database query:", error.message);
         try {
             const Food = require('../models/Food');
@@ -111,22 +103,17 @@ exports.getRecommendations = async (req, res, next) => {
             console.error("Database fallback error in getRecommendations:", dbError.message);
             next(new ApiError(500, 'Failed to fetch recommendations from AI service'));
         }
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
     }
 };
 
 exports.getFoodsToAvoid = async (req, res, next) => {
-<<<<<<< HEAD
-    try {
-        const user = req.user;
-        const profile = user.profile;
-        
-=======
+
     const user = req.user;
     const profile = user.profile;
     
     try {
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
         if (!profile || !profile.age || !profile.height || !profile.weight) {
             return res.status(200).json(new ApiResponse(200, { foodsToAvoid: [] }, 'Profile incomplete'));
         }
@@ -153,9 +140,7 @@ exports.getFoodsToAvoid = async (req, res, next) => {
         
         res.status(200).json(new ApiResponse(200, { foodsToAvoid: response.data }));
     } catch (error) {
-<<<<<<< HEAD
-        next(new ApiError(500, 'Failed to fetch foods to avoid from AI service'));
-=======
+
         console.warn("⚠️ AI Service Error in getFoodsToAvoid, falling back to database query:", error.message);
         try {
             const Food = require('../models/Food');
@@ -201,7 +186,7 @@ exports.getFoodsToAvoid = async (req, res, next) => {
             console.error("Database fallback error in getFoodsToAvoid:", dbError.message);
             next(new ApiError(500, 'Failed to fetch foods to avoid from AI service'));
         }
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
     }
 };
 

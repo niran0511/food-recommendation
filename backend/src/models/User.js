@@ -16,10 +16,8 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-<<<<<<< HEAD
-        required: [true, 'Please add a password'],
-=======
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
+
         minlength: 6,
         select: false
     },
@@ -28,14 +26,13 @@ const UserSchema = new mongoose.Schema({
         enum: ['user', 'admin'],
         default: 'user'
     },
-<<<<<<< HEAD
-=======
+
     firebaseUid: {
         type: String,
         unique: true,
         sparse: true
     },
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
     avatar: String,
     profile: {
         age: Number,

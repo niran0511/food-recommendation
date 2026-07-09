@@ -3,17 +3,12 @@ const { ApiResponse } = require('../utils/ApiResponse');
 const { ApiError } = require('../utils/ApiError');
 
 exports.sendChatMessage = async (req, res, next) => {
-<<<<<<< HEAD
-    try {
-        const { message } = req.body;
-        const user = req.user;
 
-=======
     const { message } = req.body;
     const user = req.user;
     
     try {
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
         // Prepare request body for AI service, supplying user profile context if it exists
         const payload = {
             message,
@@ -37,10 +32,7 @@ exports.sendChatMessage = async (req, res, next) => {
 
         res.status(200).json(new ApiResponse(200, response.data, 'Success'));
     } catch (error) {
-<<<<<<< HEAD
-        console.error("AI Chat Error:", error.message);
-        next(new ApiError(500, 'AI Nutrition assistant is temporarily unavailable'));
-=======
+
         console.warn("⚠️ AI Service Error in sendChatMessage, generating fallback response locally:", error.message);
         try {
             const Food = require('../models/Food');
@@ -116,6 +108,6 @@ exports.sendChatMessage = async (req, res, next) => {
             console.error("Database fallback error in sendChatMessage:", dbError.message);
             next(new ApiError(500, 'AI Nutrition assistant is temporarily unavailable'));
         }
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
     }
 };

@@ -19,15 +19,11 @@ const ProtectedRoute = ({ adminOnly = false }) => {
     return <Navigate to="/login" replace />;
   }
 
-<<<<<<< HEAD
-  // Check if profile is incomplete and we are not on the onboarding page
-  const isProfileComplete = user.profile?.age && user.profile?.height && user.profile?.weight;
-  if (!isProfileComplete && location.pathname !== '/onboarding') {
-=======
+
   // Check if profile is incomplete and we are not on the onboarding page (admins are exempt)
   const isProfileComplete = user.profile?.age && user.profile?.height && user.profile?.weight;
   if (user.role !== 'admin' && !isProfileComplete && location.pathname !== '/onboarding') {
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
     return <Navigate to="/onboarding" replace />;
   }
 

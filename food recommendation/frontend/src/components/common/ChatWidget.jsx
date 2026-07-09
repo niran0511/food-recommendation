@@ -114,11 +114,9 @@ const ChatWidget = () => {
                   <div className={`max-w-[80%] rounded-3xl px-4.5 py-3 text-sm font-semibold shadow-sm leading-relaxed ${
                     msg.isBot 
                       ? 'bg-white dark:bg-slate-855 text-slate-800 dark:text-slate-205 border border-slate-100 dark:border-slate-800/80 rounded-tl-none' 
-<<<<<<< HEAD
-                      : 'bg-gradient-to-r from-amber-450 to-orange-500 text-white rounded-tr-none'
-=======
+
                       : 'bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-tr-none'
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
                   }`}>
                     {msg.text.split('\n').map((line, i) => (
                       <p key={i} className={i > 0 ? 'mt-1.5' : ''}>{line}</p>

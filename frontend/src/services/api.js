@@ -22,37 +22,7 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-<<<<<<< HEAD
-    const originalRequest = error.config;
-    
-    // Check if error is 401 and we haven't already retried
-    if (error.response?.status === 401 && !originalRequest._retry && originalRequest.url !== '/auth/login') {
-      originalRequest._retry = true;
-      
-      try {
-        // Try to refresh token
-        const res = await axios.post(`${API_URL}/auth/refresh-token`, {}, { withCredentials: true });
-        
-        const { accessToken } = res.data.data;
-        localStorage.setItem('accessToken', accessToken);
-        
-        // Update header and retry request
-        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-        return api(originalRequest);
-      } catch (refreshError) {
-        // Refresh failed, logout
-        localStorage.removeItem('accessToken');
-        window.location.href = '/login';
-        return Promise.reject(refreshError);
-      }
-    }
-    
-    // Handle other errors
-    const message = error.response?.data?.message || 'An error occurred';
-    if (error.response?.status !== 401) {
-      toast.error(message);
-    }
-=======
+
     // If response is 401 Unauthorized, session has expired. Clear local storage and redirect to login.
     if (error.response?.status === 401) {
       localStorage.removeItem('accessToken');
@@ -65,7 +35,7 @@ api.interceptors.response.use(
     // Handle other errors with a hot toast
     const message = error.response?.data?.message || 'An error occurred';
     toast.error(message);
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
     
     return Promise.reject(error);
   }

@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-const jwt = require('jsonwebtoken');
-=======
+
 const { verifyFirebaseToken } = require('../config/firebaseAdmin');
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
 const { ApiError } = require('../utils/ApiError');
 const User = require('../models/User');
 
@@ -18,12 +16,7 @@ const protect = async (req, res, next) => {
     }
 
     try {
-<<<<<<< HEAD
-        const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
-        req.user = await User.findById(decoded.id);
-        next();
-    } catch (err) {
-=======
+
         const decoded = await verifyFirebaseToken(token);
         let user = await User.findOne({ firebaseUid: decoded.uid });
         if (!user) {
@@ -48,7 +41,7 @@ const protect = async (req, res, next) => {
         next();
     } catch (err) {
         console.error("Firebase auth verification error", err);
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
         return next(new ApiError(401, 'Not authorized to access this route'));
     }
 };

@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { api } from '../services/api';
-<<<<<<< HEAD
-=======
+
 import { auth } from '../config/firebase';
 import { 
   signInWithEmailAndPassword, 
@@ -12,7 +11,7 @@ import {
   GithubAuthProvider,
   signInWithPopup
 } from 'firebase/auth';
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
 
 const AuthContext = createContext();
 
@@ -24,50 +23,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-<<<<<<< HEAD
-    const fetchUser = async () => {
-      if (token) {
-        try {
-          const res = await api.get('/auth/me');
-          setUser(res.data.data.user);
-        } catch (error) {
-          console.error("Failed to fetch user", error);
-          setToken(null);
-          setUser(null);
-          localStorage.removeItem('accessToken');
-        }
-      }
-      setLoading(false);
-    };
 
-    fetchUser();
-  }, [token]);
-
-  const login = async (email, password) => {
-    const res = await api.post('/auth/login', { email, password });
-    const { user: userData, accessToken } = res.data.data;
-    setUser(userData);
-    setToken(accessToken);
-    localStorage.setItem('accessToken', accessToken);
-    return userData;
-  };
-
-  const register = async (userData) => {
-    const res = await api.post('/auth/register', userData);
-    const { user: newUser, accessToken } = res.data.data;
-    setUser(newUser);
-    setToken(accessToken);
-    localStorage.setItem('accessToken', accessToken);
-    return newUser;
-  };
-
-  const logout = async () => {
-    try {
-      await api.post('/auth/logout');
-    } catch (e) {
-      console.error(e);
-    }
-=======
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         try {
@@ -169,18 +125,16 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     await signOut(auth);
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
     setUser(null);
     setToken(null);
     localStorage.removeItem('accessToken');
   };
 
   return (
-<<<<<<< HEAD
-    <AuthContext.Provider value={{ user, token, loading, login, register, logout }}>
-=======
+
     <AuthContext.Provider value={{ user, token, loading, login, register, logout, loginWithProvider }}>
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
       {children}
     </AuthContext.Provider>
   );

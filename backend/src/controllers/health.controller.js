@@ -4,17 +4,12 @@ const { ApiError } = require('../utils/ApiError');
 const { ApiResponse } = require('../utils/ApiResponse');
 
 exports.getHealthMetrics = async (req, res, next) => {
-<<<<<<< HEAD
-    try {
-        const user = req.user;
-        const profile = user.profile;
-        
-=======
+
     const user = req.user;
     const profile = user.profile;
     
     try {
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
         if (!profile || !profile.age || !profile.height || !profile.weight) {
             return res.status(200).json(new ApiResponse(200, { metrics: null }, 'Profile incomplete'));
         }
@@ -41,10 +36,7 @@ exports.getHealthMetrics = async (req, res, next) => {
         
         res.status(200).json(new ApiResponse(200, { metrics: response.data }));
     } catch (error) {
-<<<<<<< HEAD
-        console.error("AI Service Error in getHealthMetrics:", error.message, error.response?.data);
-        next(new ApiError(500, 'Failed to fetch health metrics from AI service'));
-=======
+
         console.warn("⚠️ AI Service Error in getHealthMetrics, calculating locally as fallback:", error.message);
         
         const weight = profile.weight || 70;
@@ -111,22 +103,17 @@ exports.getHealthMetrics = async (req, res, next) => {
         };
         
         res.status(200).json(new ApiResponse(200, { metrics }, 'Calculated locally as fallback'));
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
     }
 };
 
 exports.getRiskAssessment = async (req, res, next) => {
-<<<<<<< HEAD
-    try {
-        const user = req.user;
-        const profile = user.profile;
-        
-=======
+
     const user = req.user;
     const profile = user.profile;
     
     try {
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
         const payload = {
             age: profile.age || 30,
             gender: profile.gender || 'Other',
@@ -149,9 +136,7 @@ exports.getRiskAssessment = async (req, res, next) => {
         
         res.status(200).json(new ApiResponse(200, { riskAssessment: response.data }));
     } catch (error) {
-<<<<<<< HEAD
-        next(new ApiError(500, 'Failed to fetch risk assessment from AI service'));
-=======
+
         console.warn("⚠️ AI Service Error in getRiskAssessment, calculating locally as fallback:", error.message);
         
         const weight = profile.weight || 70;
@@ -178,7 +163,7 @@ exports.getRiskAssessment = async (req, res, next) => {
         };
         
         res.status(200).json(new ApiResponse(200, { riskAssessment }, 'Calculated locally as fallback'));
->>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
+
     }
 };
 
