@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+scikit-learn
+pandas
+numpy
+xgboost
+joblib
+python-dotenv
+pymongo
+pydantic
+motor
+pytest
+httpx
+<<<<<<< HEAD
+=======
+google-generativeai
+>>>>>>> 843d1be00973b4f1626346e9e427c402c314a65d
