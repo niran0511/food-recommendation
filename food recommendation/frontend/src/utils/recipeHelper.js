@@ -149,17 +149,58 @@ export const getRecipeDetails = (foodName = '') => {
 };
 
 export const getFoodImage = (name = '') => {
-  // Clean the food name to get a pure keyword (e.g. "Sushi Roll Variant 6" -> "sushi,roll")
-  let keyword = name.toLowerCase()
-    .replace(/variant\s+\d+/g, '') // remove "Variant X"
-    .replace(/\d+/g, '')           // remove any numbers
-    .replace(/with|and|style/g, '') // remove filler words
-    .trim()
-    .replace(/\s+/g, ',');        // replace spaces with commas for tag matching
+  const lower = name.toLowerCase();
   
-  if (!keyword) keyword = 'food';
+  // 1. Keyword-based matching for maximum accuracy
+  if (lower.includes('salad')) return 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop';
+  if (lower.includes('oat') || lower.includes('porridge') || lower.includes('berry') || lower.includes('berries')) return 'https://images.unsplash.com/photo-1517881917430-e70dfb3610aa?w=400&h=300&fit=crop';
+  if (lower.includes('sushi') || lower.includes('roll')) return 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400&h=300&fit=crop';
+  if (lower.includes('taco')) return 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=300&fit=crop';
+  if (lower.includes('salmon') || lower.includes('fish') || lower.includes('seafood')) return 'https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=400&h=300&fit=crop';
+  if (lower.includes('curry') || lower.includes('tikka') || lower.includes('masala') || lower.includes('dal')) return 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=300&fit=crop';
+  if (lower.includes('pasta') || lower.includes('spaghetti') || lower.includes('noodle')) return 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&h=300&fit=crop';
+  if (lower.includes('yogurt') || lower.includes('parfait')) return 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop';
+  if (lower.includes('rice') || lower.includes('biryani')) return 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop';
+  if (lower.includes('soup') || lower.includes('stew') || lower.includes('broth')) return 'https://images.unsplash.com/photo-1547592165-e1d17fed6005?w=400&h=300&fit=crop';
+  if (lower.includes('beef') || lower.includes('steak') || lower.includes('meat')) return 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop';
+  if (lower.includes('pancake') || lower.includes('waffle') || lower.includes('french toast')) return 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop';
+  if (lower.includes('smoothie') || lower.includes('juice') || lower.includes('shake') || lower.includes('beverage')) return 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop';
+  if (lower.includes('egg') || lower.includes('omelette') || lower.includes('scramble')) return 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop';
+  if (lower.includes('sandwich') || lower.includes('toast') || lower.includes('bread')) return 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=400&h=300&fit=crop';
+  if (lower.includes('burger')) return 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop';
+  if (lower.includes('fruit') || lower.includes('apple') || lower.includes('banana')) return 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=300&fit=crop';
+  if (lower.includes('nut') || lower.includes('seed') || lower.includes('almond')) return 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop';
+  if (lower.includes('tofu') || lower.includes('veg') || lower.includes('stir fry') || lower.includes('vegetable')) return 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop';
+  if (lower.includes('shrimp') || lower.includes('prawn') || lower.includes('crab')) return 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400&h=300&fit=crop';
   
-  // Return a real, unique, high-quality food image from LoremFlickr matching the keyword!
-  // The lock parameter ensures the same food item always gets the same image.
-  return `https://loremflickr.com/400/300/${keyword}?lock=${name.length}`;
+  // 2. Hash-based fallback to distribute remaining foods across 20 unique images
+  const images = [
+    'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop', // Salad
+    'https://images.unsplash.com/photo-1517881917430-e70dfb3610aa?w=400&h=300&fit=crop', // Oatmeal
+    'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400&h=300&fit=crop', // Sushi
+    'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=300&fit=crop', // Taco
+    'https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=400&h=300&fit=crop', // Salmon
+    'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=300&fit=crop', // Curry
+    'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&h=300&fit=crop', // Pasta
+    'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop', // Yogurt
+    'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop', // Rice
+    'https://images.unsplash.com/photo-1547592165-e1d17fed6005?w=400&h=300&fit=crop', // Soup
+    'https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop', // Steak
+    'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop', // Pancake
+    'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop', // Smoothie
+    'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=400&h=300&fit=crop', // Sandwich
+    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop', // Burger
+    'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=300&fit=crop', // Fruit
+    'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop', // Nuts
+    'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop', // Veggies
+    'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400&h=300&fit=crop', // Seafood
+    'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&h=300&fit=crop'  // Bread
+  ];
+  
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const index = Math.abs(hash) % images.length;
+  return images[index];
 };
