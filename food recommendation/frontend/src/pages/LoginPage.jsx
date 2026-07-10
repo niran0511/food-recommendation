@@ -85,7 +85,9 @@ const LoginPage = () => {
         navigate('/dashboard');
       }
     } catch (error) {
-      // Handled by API interceptor
+      console.error(error);
+      const msg = error.message || 'Login failed. Please verify your credentials.';
+      toast.error(msg);
     } finally {
       setIsSubmitting(false);
     }
