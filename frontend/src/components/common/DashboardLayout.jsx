@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import ChatWidget from './ChatWidget';
 import { motion, AnimatePresence } from 'framer-motion';
+import { api } from '../../services/api';
 
 const DashboardLayout = () => {
   const { user, logout } = useAuth();
@@ -16,9 +17,51 @@ const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [topSearch, setTopSearch] = useState('');
+  const [notifications, setNotifications] = useState([]);
   
   const location = useLocation();
   const navigate = useNavigate();
+
+  const fetchNotifications = async () => {
+    try {
+      const res = await api.get('/notifications');
+      setNotifications(res.data.data || []);
+    } catch (err) {
+      console.error("Failed to load notifications", err);
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      fetchNotifications();
+      const interval = setInterval(fetchNotifications, 15000);
+      return () => clearInterval(interval);
+    }
+  }, [user]);
+
+  const unreadCount = notifications.filter(n => !n.isRead).length;
+
+  const handleMarkAsRead = async (id) => {
+    try {
+      await api.put(`/notifications/${id}/read`);
+      setNotifications(prev => prev.map(n => n._id === id ? { ...n, isRead: true } : n));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleClearAll = async () => {
+    try {
+      for (const n of notifications) {
+        if (!n.isRead) {
+          await api.put(`/notifications/${n._id}/read`);
+        }
+      }
+      setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleLogout = async () => {
     await logout();
@@ -189,8 +232,12 @@ const DashboardLayout = () => {
                 className="p-2.5 rounded-2xl hover:bg-slate-100 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400 relative active:scale-95 transition-all"
               >
                 <Bell size={20} />
-                <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
-                <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-amber-500"></span>
+                {unreadCount > 0 && (
+                  <>
+                    <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+                    <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-amber-500"></span>
+                  </>
+                )}
               </button>
 
               <AnimatePresence>
@@ -202,19 +249,35 @@ const DashboardLayout = () => {
                     className="absolute right-0 mt-3 w-80 bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl shadow-xl p-4 z-50 space-y-3"
                   >
                     <div className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-white/5">
-                      <span className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider">Notifications</span>
+                      <span className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider">Notifications ({unreadCount})</span>
                       <button 
-                        onClick={() => setIsNotificationsOpen(false)}
+                        onClick={handleClearAll}
                         className="text-[10px] font-extrabold text-amber-500 hover:underline"
                       >
-                        Clear All
+                        Clear All Unread
                       </button>
                     </div>
                     <div className="space-y-2.5 max-h-[220px] overflow-y-auto pr-1">
-                      <NotificationItem text="🔥 14-day consistency streak is active! Keep going!" time="2m ago" />
-                      <NotificationItem text="💧 Hydration Alert: You logged water today." time="1h ago" />
-                      <NotificationItem text="🥗 Dinner target suggestion: Chicken Salad." time="3h ago" />
-                      <NotificationItem text="🏅 Badge Unlocked: Protein Master!" time="1d ago" />
+                      {notifications.length === 0 ? (
+                        <div className="text-center py-6 text-xs text-slate-450 dark:text-slate-500">
+                          No notifications yet
+                        </div>
+                      ) : (
+                        notifications.map(n => (
+                          <div 
+                            key={n._id}
+                            onClick={() => handleMarkAsRead(n._id)}
+                            className="cursor-pointer"
+                          >
+                            <NotificationItem 
+                              title={n.title}
+                              text={n.message} 
+                              time={new Date(n.createdAt).toLocaleDateString() + ' ' + new Date(n.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} 
+                              isRead={n.isRead}
+                            />
+                          </div>
+                        ))
+                      )}
                     </div>
                   </motion.div>
                 )}
@@ -244,10 +307,14 @@ const DashboardLayout = () => {
 };
 
 // Notification item row helper
-const NotificationItem = ({ text, time }) => (
-  <div className="p-2 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/5 transition-colors border border-transparent hover:border-slate-100 dark:hover:border-white/5 flex flex-col gap-1">
-    <p className="text-xs font-bold text-slate-750 dark:text-slate-300 leading-relaxed">{text}</p>
-    <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wide">{time}</span>
+const NotificationItem = ({ title, text, time, isRead }) => (
+  <div className={`p-2 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/5 transition-colors border ${isRead ? 'border-transparent' : 'border-amber-100 dark:border-amber-900/30 bg-amber-50/20 dark:bg-amber-900/5'} flex flex-col gap-1`}>
+    <div className="flex justify-between items-center">
+      <span className="text-[10px] font-extrabold text-amber-600 dark:text-amber-400 uppercase tracking-wide">{title}</span>
+      {!isRead && <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>}
+    </div>
+    <p className="text-xs text-slate-750 dark:text-slate-350 leading-relaxed">{text}</p>
+    <span className="text-[9px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-wide">{time}</span>
   </div>
 );
 

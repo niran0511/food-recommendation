@@ -41,6 +41,8 @@ const LoginPage = () => {
 
       if (userData && userData.role === 'admin') {
         navigate('/admin');
+      } else if (userData && userData.role === 'nutritionist') {
+        navigate('/nutritionist');
       } else if (!hasCompletedOnboarding) {
         navigate('/onboarding');
       } else {
@@ -75,6 +77,8 @@ const LoginPage = () => {
 
       if (userData && userData.role === 'admin') {
         navigate('/admin');
+      } else if (userData && userData.role === 'nutritionist') {
+        navigate('/nutritionist');
       } else if (!hasCompletedOnboarding) {
         navigate('/onboarding');
       } else {
@@ -88,7 +92,10 @@ const LoginPage = () => {
   };
 
   if (user) {
-    return <Navigate to={user.role === 'admin' ? "/admin" : "/dashboard"} replace />;
+    let dest = "/dashboard";
+    if (user.role === 'admin') dest = "/admin";
+    else if (user.role === 'nutritionist') dest = "/nutritionist";
+    return <Navigate to={dest} replace />;
   }
 
   return (

@@ -36,9 +36,28 @@ exports.register = async (req, res, next) => {
 };
 
 exports.login = async (req, res, next) => {
-
-    res.status(200).json(new ApiResponse(200, {}, 'Firebase Login session verified'));
-
+    try {
+        const { email, password } = req.body;
+        
+        // If it's a standard email/password login (mostly for nutritionist/admin)
+        if (password) {
+            const user = await User.findOne({ email: email?.toLowerCase() }).select('+password');
+            if (!user) {
+                return next(new ApiError(401, 'Invalid credentials'));
+            }
+            const isMatch = await user.comparePassword(password);
+            if (!isMatch) {
+                return next(new ApiError(401, 'Invalid credentials'));
+            }
+            const token = user.generateAccessToken();
+            // Return user details and signed token
+            return res.status(200).json(new ApiResponse(200, { user, token }, 'Logged in successfully'));
+        }
+        
+        res.status(200).json(new ApiResponse(200, {}, 'Firebase Login session verified'));
+    } catch (error) {
+        next(error);
+    }
 };
 
 exports.getMe = async (req, res, next) => {
@@ -51,11 +70,34 @@ exports.getMe = async (req, res, next) => {
 };
 
 exports.logout = async (req, res, next) => {
-
     res.status(200).json(new ApiResponse(200, {}, 'User logged out successfully'));
 };
 
 exports.refreshToken = async (req, res, next) => {
     res.status(200).json(new ApiResponse(200, {}, 'Token refresh managed by client'));
+};
 
+exports.changePassword = async (req, res, next) => {
+    try {
+        const { currentPassword, newPassword } = req.body;
+        if (!newPassword || newPassword.length < 6) {
+            return next(new ApiError(400, 'Password must be at least 6 characters long'));
+        }
+
+        const user = await User.findById(req.user.id).select('+password');
+        
+        if (user.password) {
+            const isMatch = await user.comparePassword(currentPassword);
+            if (!isMatch) {
+                return next(new ApiError(400, 'Incorrect current password'));
+            }
+        }
+
+        user.password = newPassword;
+        await user.save();
+
+        res.status(200).json(new ApiResponse(200, {}, 'Password updated successfully'));
+    } catch (error) {
+        next(error);
+    }
 };

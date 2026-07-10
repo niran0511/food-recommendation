@@ -45,14 +45,15 @@ def predict_health_risks(user: UserProfile) -> HealthRiskResponse:
     if bmi >= 25 and user.activity_level == 'Sedentary' and user.age > 40:
         diabetes_risk = max(diabetes_risk, 0.7)
         
-    if 'Diabetes' in user.diseases:
+    user_diseases_lower = [d.lower() for d in user.diseases] if user.diseases else []
+    if 'diabetes' in user_diseases_lower:
         diabetes_risk = 1.0
         
-    if 'Hypertension' in user.diseases:
+    if 'hypertension' in user_diseases_lower:
         hyper_risk = 1.0
         heart_risk = max(heart_risk, 0.6)
         
-    if 'Heart Disease' in user.diseases:
+    if 'heart disease' in user_diseases_lower:
         heart_risk = 1.0
         
     overall_health = 100.0 - ((obesity_risk + diabetes_risk + hyper_risk + heart_risk) / 4.0 * 100)

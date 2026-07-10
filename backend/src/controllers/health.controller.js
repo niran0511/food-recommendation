@@ -145,10 +145,23 @@ exports.getRiskAssessment = async (req, res, next) => {
         const height_m = height / 100;
         const bmi = weight / (height_m * height_m);
         
-        const obesity_risk = bmi > 30 ? 0.75 : (bmi > 25 ? 0.45 : 0.15);
-        const diabetes_risk = bmi > 30 ? 0.65 : (bmi > 25 ? 0.35 : 0.10);
-        const hypertension_risk = age > 50 ? 0.55 : (bmi > 25 ? 0.30 : 0.10);
-        const heart_disease_risk = age > 50 ? 0.45 : (bmi > 30 ? 0.40 : 0.15);
+        let obesity_risk = bmi > 30 ? 0.75 : (bmi > 25 ? 0.45 : 0.15);
+        let diabetes_risk = bmi > 30 ? 0.65 : (bmi > 25 ? 0.35 : 0.10);
+        let hypertension_risk = age > 50 ? 0.55 : (bmi > 25 ? 0.30 : 0.10);
+        let heart_disease_risk = age > 50 ? 0.45 : (bmi > 30 ? 0.40 : 0.15);
+        
+        // Match user's existing diseases case-insensitively to sync with ML logic
+        const diseases = (profile.diseases || []).map(d => d.toLowerCase());
+        if (diseases.includes('diabetes')) {
+            diabetes_risk = 1.0;
+        }
+        if (diseases.includes('hypertension')) {
+            hypertension_risk = 1.0;
+            heart_disease_risk = Math.max(heart_disease_risk, 0.6);
+        }
+        if (diseases.includes('heart disease')) {
+            heart_disease_risk = 1.0;
+        }
         
         const overall_health_score = Number((100 - (obesity_risk + diabetes_risk + hypertension_risk + heart_disease_risk) / 4 * 100).toFixed(2));
         

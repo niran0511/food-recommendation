@@ -1,0 +1,61 @@
+const express = require('express');
+const HealthRecord = require('../models/HealthRecord');
+const User = require('../models/User');
+const Notification = require('../models/Notification');
+const { protect, authorize } = require('../middleware/auth');
+
+const router = express.Router();
+
+router.use(protect);
+router.use(authorize('nutritionist'));
+
+// 1. Post health record update for a specific user
+router.post('/records/:userId', async (req, res) => {
+    try {
+        const { weight, caloriesConsumed, caloriesTarget, waterIntake, healthScore, notes } = req.body;
+        const targetUserId = req.params.userId;
+
+        // Check if user exists
+        const user = await User.findById(targetUserId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        // Create health record
+        const record = await HealthRecord.create({
+            userId: targetUserId,
+            weight,
+            caloriesConsumed,
+            caloriesTarget,
+            waterIntake,
+            healthScore,
+            notes,
+            date: new Date()
+        });
+
+        // Update current weight and BMI in User model for active calculation
+        if (weight) {
+            user.profile.weight = weight;
+            if (user.profile.height) {
+                const heightM = user.profile.height / 100;
+                user.profile.bmi = Math.round((weight / (heightM * heightM)) * 10) / 10;
+            }
+            await user.save();
+        }
+
+        // Send a notification to the user
+        await Notification.create({
+            userId: targetUserId,
+            title: 'Health Profile Updated',
+            message: `Nutritionist ${req.user.name} has logged a new health update for you. Notes: ${notes || 'No notes provided.'}`,
+            type: 'success'
+        });
+
+        res.status(201).json({ success: true, data: record });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
+
+module.exports = router;

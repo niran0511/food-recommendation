@@ -23,8 +23,17 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['user', 'admin'],
+        enum: ['user', 'admin', 'nutritionist'],
         default: 'user'
+    },
+    nutritionistProfile: {
+        specialty: String,
+        experience: String,
+        bio: String,
+        location: String,
+        phone: String,
+        availability: String,
+        rating: { type: Number, default: 5.0 }
     },
 
     firebaseUid: {

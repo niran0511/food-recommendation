@@ -25,6 +25,7 @@ import ProfilePage from './pages/ProfilePage';
 import HealthRiskPage from './pages/HealthRiskPage';
 import DoctorsPage from './pages/DoctorsPage';
 import AdminPage from './pages/AdminPage';
+import NutritionistPage from './pages/NutritionistPage';
 
 function App() {
   return (
@@ -41,6 +42,8 @@ function App() {
 function AppContent() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
+  const isNutritionistRoute = location.pathname.startsWith('/nutritionist');
+  const isSpecialRoute = isAdminRoute || isNutritionistRoute;
   const isAuthRoute = ['/login', '/register'].includes(location.pathname);
   const isDashboardLayout = [
     '/dashboard', 
@@ -56,8 +59,8 @@ function AppContent() {
   return (
     <div className="min-h-screen flex flex-col text-[var(--color-text)] transition-colors duration-300 relative overflow-hidden">
       
-      {/* Animated Background Gradients (only show for non-admin routes to preserve dark control look) */}
-      {!isAdminRoute && !isDashboardLayout && !isAuthRoute && (
+      {/* Animated Background Gradients (only show for non-admin/non-special routes) */}
+      {!isSpecialRoute && !isDashboardLayout && !isAuthRoute && (
         <div className="fixed inset-0 z-[-1] bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-emerald-400/20 dark:bg-emerald-600/20 blur-[120px] animate-pulse"></div>
           <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-teal-400/20 dark:bg-teal-600/20 blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
@@ -65,9 +68,9 @@ function AppContent() {
         </div>
       )}
 
-      {!isAdminRoute && !isDashboardLayout && !isAuthRoute && <Navbar />}
+      {!isSpecialRoute && !isDashboardLayout && !isAuthRoute && <Navbar />}
       
-      <main className={`flex-grow ${isAdminRoute || isDashboardLayout || isAuthRoute ? '' : 'pt-24 pb-12'} relative z-10`}>
+      <main className={`flex-grow ${isSpecialRoute || isDashboardLayout || isAuthRoute ? '' : 'pt-24 pb-12'} relative z-10`}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -95,13 +98,16 @@ function AppContent() {
             <Route path="/admin" element={<AdminPage />} />
           </Route>
 
+          {/* Nutritionist Route */}
+          <Route path="/nutritionist" element={<NutritionistPage />} />
+
           {/* Fallback route */}
           <Route path="*" element={<LandingPage />} />
         </Routes>
       </main>
 
-      {!isAdminRoute && !isDashboardLayout && !isAuthRoute && <Footer />}
-      {!isAdminRoute && !isDashboardLayout && !isAuthRoute && <ChatWidget />}
+      {!isSpecialRoute && !isDashboardLayout && !isAuthRoute && <Footer />}
+      {!isSpecialRoute && !isDashboardLayout && !isAuthRoute && <ChatWidget />}
       <Toaster position="top-right" />
     </div>
   );

@@ -21,7 +21,7 @@ const ProtectedRoute = ({ adminOnly = false }) => {
 
   // Check if profile is incomplete and we are not on the onboarding page (admins are exempt)
   const isProfileComplete = user.profile?.age && user.profile?.height && user.profile?.weight;
-  if (user.role !== 'admin' && !isProfileComplete && location.pathname !== '/onboarding') {
+  if (user.role !== 'admin' && user.role !== 'nutritionist' && !isProfileComplete && location.pathname !== '/onboarding') {
     return <Navigate to="/onboarding" replace />;
   }
 

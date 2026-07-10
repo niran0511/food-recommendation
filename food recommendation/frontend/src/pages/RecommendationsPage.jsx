@@ -4,6 +4,8 @@ import { Loader, Sparkles, CheckCircle, XCircle, AlertTriangle, Clock, BookOpen,
 import { getFoodImage, getRecipeDetails } from '../utils/recipeHelper';
 import toast from 'react-hot-toast';
 
+const defaultFoodSvg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='f' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23f59e0b'/><stop offset='100%' stop-color='%23d97706'/></linearGradient></defs><rect width='100' height='100' fill='url(%23f)'/><path d='M30 65c10-5 30-5 40 0v10H30V65z' fill='white'/><circle cx='50' cy='45' r='10' fill='white'/><path d='M48 25h4v15h-4z' fill='white'/></svg>";
+
 const RecommendationsPage = () => {
   const [recommendations, setRecommendations] = useState([]);
   const [foodsToAvoid, setFoodsToAvoid] = useState([]);
@@ -85,6 +87,7 @@ const RecommendationsPage = () => {
           <img 
             src={imageUrl} 
             alt={rec.food} 
+            onError={(e) => { e.target.src = defaultFoodSvg; }}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           {!isAvoid && (
@@ -235,6 +238,7 @@ const RecommendationsPage = () => {
               <img 
                 src={getFoodImage(selectedFood.food)} 
                 alt={selectedFood.food} 
+                onError={(e) => { e.target.src = defaultFoodSvg; }}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent"></div>

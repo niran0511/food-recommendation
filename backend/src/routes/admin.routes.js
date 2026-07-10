@@ -1,5 +1,5 @@
 const express = require('express');
-const { getUsers, getUser, updateUserRole, deleteUser, getStats, getRecommendationLogs } = require('../controllers/admin.controller');
+const { getUsers, getUser, updateUserRole, deleteUser, getStats, getRecommendationLogs, createNutritionist } = require('../controllers/admin.controller');
 const { protect, authorize } = require('../middleware/auth');
 
 const router = express.Router();
@@ -17,5 +17,6 @@ router.route('/users/:id')
     .delete(deleteUser);
 
 router.put('/users/:id/role', updateUserRole);
+router.post('/nutritionists', createNutritionist);
 
 module.exports = router;

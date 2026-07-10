@@ -66,3 +66,12 @@ exports.removeFavorite = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.getNutritionists = async (req, res, next) => {
+    try {
+        const nutritionists = await User.find({ role: 'nutritionist' }).select('-password');
+        res.status(200).json(new ApiResponse(200, { nutritionists }));
+    } catch (error) {
+        next(error);
+    }
+};

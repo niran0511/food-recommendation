@@ -7,7 +7,7 @@ import {
   Plus, Edit, Loader, Check, X, ShieldAlert, Clock,
   Settings, Search, FileDown, Activity, Dna, Settings2, 
   TrendingUp, LogOut, LayoutDashboard, Database, Tags, 
-  ActivitySquare, FileSpreadsheet, Stethoscope
+  ActivitySquare, FileSpreadsheet, Stethoscope, Heart
 } from 'lucide-react';
 import { Bar, Pie, Line, Doughnut } from 'react-chartjs-2';
 import {
@@ -50,6 +50,20 @@ const AdminPage = () => {
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [adminAppointments, setAdminAppointments] = useState([]);
+  const [nutritionists, setNutritionists] = useState([]);
+  const [nutritionistModalOpen, setNutritionistModalOpen] = useState(false);
+  const [nutritionistFormData, setNutritionistFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    specialty: '',
+    experience: '',
+    bio: '',
+    location: '',
+    phone: '',
+    availability: '',
+    avatar: ''
+  });
 
   // Search & pagination
   const [userSearch, setUserSearch] = useState('');
@@ -125,6 +139,8 @@ const AdminPage = () => {
       } else if (activeTab === 'appointments') {
         const res = await api.get('/appointments/admin');
         setAdminAppointments(res.data.data || []);
+      } else if (activeTab === 'nutritionists') {
+        await fetchNutritionists();
       }
     } catch (e) {
       toast.error("Failed to load admin dashboard details");
@@ -170,6 +186,44 @@ const AdminPage = () => {
     const res = await api.get('/foods', { params: { page: foodPage, limit: 10, search: foodSearch } });
     setFoods(res.data.data.foods || []);
     setFoodTotalPages(res.data.data.pagination?.pages || 1);
+  };
+
+  const fetchNutritionists = async () => {
+    try {
+      const res = await api.get('/users/nutritionists');
+      setNutritionists(res.data.data.nutritionists || []);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleNutritionistInputChange = (e) => {
+    const { name, value } = e.target;
+    setNutritionistFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleAddNutritionistSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await api.post('/admin/nutritionists', nutritionistFormData);
+      toast.success("Nutritionist added successfully!");
+      setNutritionistModalOpen(false);
+      setNutritionistFormData({
+        name: '',
+        email: '',
+        password: '',
+        specialty: '',
+        experience: '',
+        bio: '',
+        location: '',
+        phone: '',
+        availability: '',
+        avatar: ''
+      });
+      fetchNutritionists();
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Failed to add nutritionist");
+    }
   };
 
   // User Administration Handlers
@@ -402,6 +456,7 @@ const AdminPage = () => {
         <nav className="flex-grow p-4 space-y-1.5 overflow-y-auto">
           <SidebarLink active={activeTab === 'dashboard'} label="Overview Dashboard" icon={<LayoutDashboard size={18} />} onClick={() => setActiveTab('dashboard')} />
           <SidebarLink active={activeTab === 'users'} label="User Registry" icon={<Users size={18} />} onClick={() => setActiveTab('users')} />
+          <SidebarLink active={activeTab === 'nutritionists'} label="Nutritionist Registry" icon={<Heart size={18} />} onClick={() => setActiveTab('nutritionists')} />
           <SidebarLink active={activeTab === 'foods'} label="Food Database" icon={<Apple size={18} />} onClick={() => { setActiveTab('foods'); setFoodPage(1); }} />
           <SidebarLink active={activeTab === 'categories'} label="Cuisines & Tags" icon={<Tags size={18} />} onClick={() => setActiveTab('categories')} />
           <SidebarLink active={activeTab === 'diseases'} label="Disease Settings" icon={<Dna size={18} />} onClick={() => setActiveTab('diseases')} />
@@ -787,6 +842,72 @@ const AdminPage = () => {
                 </div>
               )}
 
+              {/* TAB 9: NUTRITIONISTS REGISTRY */}
+              {activeTab === 'nutritionists' && (
+                <div className="space-y-6">
+                  <div className="flex justify-between items-center">
+                    <h3 className="font-bold text-sm text-slate-200">Nutritionist Practitioners</h3>
+                    <button
+                      onClick={() => setNutritionistModalOpen(true)}
+                      className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
+                    >
+                      <Plus size={14} /> Add Nutritionist
+                    </button>
+                  </div>
+
+                  <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-left border-collapse text-xs">
+                        <thead>
+                          <tr className="bg-slate-850 text-slate-400 border-b border-slate-800">
+                            <th className="p-4 uppercase tracking-wider font-bold">Nutritionist Details</th>
+                            <th className="p-4 uppercase tracking-wider font-bold">Email</th>
+                            <th className="p-4 uppercase tracking-wider font-bold">Specialty & Experience</th>
+                            <th className="p-4 uppercase tracking-wider font-bold">Availability</th>
+                            <th className="p-4 uppercase tracking-wider font-bold text-right">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {nutritionists.length === 0 ? (
+                            <tr>
+                              <td colSpan="5" className="p-6 text-center text-slate-500 font-bold">No nutritionists added yet.</td>
+                            </tr>
+                          ) : (
+                            nutritionists.map(n => (
+                              <tr key={n._id} className="border-b border-slate-800 hover:bg-slate-850/50">
+                                <td className="p-4 flex items-center gap-3">
+                                  <img 
+                                    src={n.avatar || defaultDocSvg} 
+                                    alt={n.name}
+                                    onError={(e) => { e.target.src = defaultDocSvg; }}
+                                    className="w-8 h-8 rounded-lg object-cover"
+                                  />
+                                  <span className="font-bold text-slate-100">{n.name}</span>
+                                </td>
+                                <td className="p-4 text-slate-400">{n.email}</td>
+                                <td className="p-4">
+                                  <span className="block text-slate-350">{n.nutritionistProfile?.specialty || 'General'}</span>
+                                  <span className="block text-slate-505">{n.nutritionistProfile?.experience || 'N/A'}</span>
+                                </td>
+                                <td className="p-4 text-slate-450">{n.nutritionistProfile?.availability || 'Mon - Fri'}</td>
+                                <td className="p-4 text-right">
+                                  <button
+                                    onClick={() => handleDeleteUser(n._id)}
+                                    className="p-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 rounded-lg inline-flex align-middle cursor-pointer"
+                                  >
+                                    <Trash2 size={14} />
+                                  </button>
+                                </td>
+                              </tr>
+                            ))
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              )}
+
             </div>
           )}
         </div>
@@ -908,6 +1029,91 @@ const AdminPage = () => {
                   className="px-5 py-2.5 border border-slate-800 text-slate-400 rounded-xl hover:bg-slate-850">Cancel</button>
                 <button type="submit"
                   className="px-6 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-lg">Save Record</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* CRUD Nutritionist Modal */}
+      {nutritionistModalOpen && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in text-slate-800 dark:text-slate-100">
+          <div className="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-3xl overflow-hidden shadow-2xl relative max-h-[85vh] flex flex-col">
+            <div className="p-6 border-b border-slate-800 flex justify-between items-center text-slate-100">
+              <h2 className="text-lg font-bold">Add Nutritionist Practitioner</h2>
+              <button onClick={() => setNutritionistModalOpen(false)} className="p-1 hover:bg-slate-800 rounded-full text-slate-400">
+                <X size={18} />
+              </button>
+            </div>
+            
+            <form onSubmit={handleAddNutritionistSubmit} className="p-6 overflow-y-auto space-y-4 flex-grow text-xs text-slate-350">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Full Name</label>
+                  <input type="text" name="name" value={nutritionistFormData.name} onChange={handleNutritionistInputChange} required placeholder="Dr. Jane Doe"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                </div>
+
+                <div>
+                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Email (Login ID)</label>
+                  <input type="email" name="email" value={nutritionistFormData.email} onChange={handleNutritionistInputChange} required placeholder="jane@nutriai.com"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                </div>
+
+                <div>
+                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Default Password</label>
+                  <input type="password" name="password" value={nutritionistFormData.password} onChange={handleNutritionistInputChange} required placeholder="At least 6 chars"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                </div>
+
+                <div>
+                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Specialty Focus</label>
+                  <input type="text" name="specialty" value={nutritionistFormData.specialty} onChange={handleNutritionistInputChange} required placeholder="Clinical Nutrition & Diabetes"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                </div>
+
+                <div>
+                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Experience Level</label>
+                  <input type="text" name="experience" value={nutritionistFormData.experience} onChange={handleNutritionistInputChange} required placeholder="8 yrs experience"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                </div>
+
+                <div>
+                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Location / Suite</label>
+                  <input type="text" name="location" value={nutritionistFormData.location} onChange={handleNutritionistInputChange} required placeholder="Suite 405, Wellness Wing"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                </div>
+
+                <div>
+                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Contact Phone</label>
+                  <input type="text" name="phone" value={nutritionistFormData.phone} onChange={handleNutritionistInputChange} required placeholder="+1 (555) 000-0000"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                </div>
+
+                <div>
+                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Weekly Availability</label>
+                  <input type="text" name="availability" value={nutritionistFormData.availability} onChange={handleNutritionistInputChange} required placeholder="Mon, Wed, Fri (9am - 3pm)"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Picture URL (Optional)</label>
+                  <input type="url" name="avatar" value={nutritionistFormData.avatar} onChange={handleNutritionistInputChange} placeholder="https://unsplash.com/..."
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Clinical Bio</label>
+                  <textarea name="bio" value={nutritionistFormData.bio} onChange={handleNutritionistInputChange} required rows="3" placeholder="Brief background about their focus..."
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none resize-none" />
+                </div>
+              </div>
+
+              <div className="pt-4 flex justify-end gap-3 border-t border-slate-800">
+                <button type="button" onClick={() => setNutritionistModalOpen(false)}
+                  className="px-5 py-2.5 border border-slate-800 text-slate-400 rounded-xl hover:bg-slate-850">Cancel</button>
+                <button type="submit"
+                  className="px-6 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-lg">Create Practitioner</button>
               </div>
             </form>
           </div>

@@ -105,3 +105,34 @@ exports.getRecommendationLogs = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.createNutritionist = async (req, res, next) => {
+    try {
+        const { name, email, password, specialty, experience, bio, location, phone, availability, avatar } = req.body;
+        
+        const userExists = await User.findOne({ email: email?.toLowerCase() });
+        if (userExists) {
+            return next(new ApiError(400, 'User already exists with this email'));
+        }
+
+        const nutritionist = await User.create({
+            name,
+            email: email?.toLowerCase(),
+            password,
+            role: 'nutritionist',
+            avatar: avatar || 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300',
+            nutritionistProfile: {
+                specialty,
+                experience,
+                bio,
+                location,
+                phone,
+                availability
+            }
+        });
+
+        res.status(201).json(new ApiResponse(201, { nutritionist }, 'Nutritionist created successfully'));
+    } catch (error) {
+        next(error);
+    }
+};

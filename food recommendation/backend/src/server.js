@@ -48,6 +48,8 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/appointments', require('./routes/appointment.routes'));
+app.use('/api/notifications', require('./routes/notification.routes'));
+app.use('/api/nutritionist', require('./routes/nutritionist.routes'));
 
 app.get('/health', (req, res) => res.status(200).json({ status: 'healthy' }));
 
