@@ -2,6 +2,26 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import { initializeApp } from 'firebase/app';
+import { getAuth, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+};
+
+let secondaryAuth = null;
+try {
+  const secondaryApp = initializeApp(firebaseConfig, "SecondaryAppInstance");
+  secondaryAuth = getAuth(secondaryApp);
+} catch (err) {
+  console.warn("Secondary Firebase app initialization warning:", err.message);
+}
 import { 
   Users, Apple, Sparkles, BarChart3, Trash2, Shield, 
   Plus, Edit, Loader, Check, X, ShieldAlert, Clock,
@@ -205,7 +225,28 @@ const AdminPage = () => {
   const handleAddNutritionistSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post('/admin/nutritionists', nutritionistFormData);
+      let firebaseUid = null;
+      if (secondaryAuth) {
+        try {
+          const userCredential = await createUserWithEmailAndPassword(
+            secondaryAuth, 
+            nutritionistFormData.email, 
+            nutritionistFormData.password
+          );
+          firebaseUid = userCredential.user.uid;
+          await signOut(secondaryAuth);
+        } catch (fbErr) {
+          console.error("Firebase client auth registration failed:", fbErr.message);
+          toast.error(`Firebase Auth failed: ${fbErr.message}`);
+          return;
+        }
+      }
+
+      await api.post('/admin/nutritionists', {
+        ...nutritionistFormData,
+        firebaseUid
+      });
+
       toast.success("Nutritionist added successfully!");
       setNutritionistModalOpen(false);
       setNutritionistFormData({

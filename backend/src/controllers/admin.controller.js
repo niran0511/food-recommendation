@@ -127,11 +127,14 @@ exports.createNutritionist = async (req, res, next) => {
             return next(new ApiError(400, 'User already exists with this email'));
         }
 
-        let firebaseUid = `mock-uid-${email.toLowerCase()}`;
-        try {
-            firebaseUid = await createFirebaseUser(email, password, name);
-        } catch (fbErr) {
-            console.warn("⚠️ Firebase user creation failed, falling back to local MongoDB entry:", fbErr.message);
+        let firebaseUid = req.body.firebaseUid;
+        if (!firebaseUid) {
+            firebaseUid = `mock-uid-${email.toLowerCase()}`;
+            try {
+                firebaseUid = await createFirebaseUser(email, password, name);
+            } catch (fbErr) {
+                console.warn("⚠️ Firebase user creation failed, falling back to local MongoDB entry:", fbErr.message);
+            }
         }
 
         const nutritionist = await User.create({
