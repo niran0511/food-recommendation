@@ -58,4 +58,25 @@ router.post('/records/:userId', async (req, res) => {
     }
 });
 
+// 2. Get list of patients for directory
+router.get('/users', async (req, res) => {
+    try {
+        const { search } = req.query;
+        let query = { role: 'user' };
+
+        if (search) {
+            query.name = { $regex: search, $options: 'i' };
+        }
+
+        const users = await User.find(query)
+            .select('name email profile createdAt')
+            .sort({ name: 1 });
+
+        res.status(200).json({ success: true, data: { users } });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
+
 module.exports = router;

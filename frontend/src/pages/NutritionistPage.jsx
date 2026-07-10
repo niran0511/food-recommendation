@@ -54,7 +54,7 @@ const NutritionistPage = () => {
   const loadUsers = async () => {
     try {
       // Nutritionist accesses standard registry
-      const res = await api.get('/admin/users', { params: { limit: 100, search: userSearch || undefined } });
+      const res = await api.get('/nutritionist/users', { params: { limit: 100, search: userSearch || undefined } });
       setUsers(res.data.data.users || []);
     } catch (e) {
       toast.error("Failed to load patients list");
