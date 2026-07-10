@@ -72,4 +72,17 @@ const verifyFirebaseToken = async (idToken) => {
     return await admin.auth().verifyIdToken(idToken);
 };
 
-module.exports = { verifyFirebaseToken, isMockMode };
+const createFirebaseUser = async (email, password, name) => {
+    if (isMockMode) {
+        return `mock-uid-${email.toLowerCase()}`;
+    }
+    const userRecord = await admin.auth().createUser({
+        email: email,
+        password: password,
+        displayName: name,
+        emailVerified: true
+    });
+    return userRecord.uid;
+};
+
+module.exports = { verifyFirebaseToken, isMockMode, admin, createFirebaseUser };

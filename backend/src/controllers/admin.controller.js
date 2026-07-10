@@ -3,6 +3,7 @@ const Food = require('../models/Food');
 const RecommendationLog = require('../models/RecommendationLog');
 const { ApiError } = require('../utils/ApiError');
 const { ApiResponse } = require('../utils/ApiResponse');
+const { createFirebaseUser, isMockMode, admin } = require('../config/firebaseAdmin');
 
 exports.getUsers = async (req, res, next) => {
     try {
@@ -69,6 +70,17 @@ exports.deleteUser = async (req, res, next) => {
         if (!user) {
             return next(new ApiError(404, 'User not found'));
         }
+
+        if (user.firebaseUid && !user.firebaseUid.startsWith('mock-')) {
+            try {
+                if (!isMockMode) {
+                    await admin.auth().deleteUser(user.firebaseUid);
+                }
+            } catch (fbErr) {
+                console.warn("⚠️ Failed to delete user from Firebase auth, continuing:", fbErr.message);
+            }
+        }
+
         await user.deleteOne();
         res.status(200).json(new ApiResponse(200, {}, 'User deleted successfully'));
     } catch (error) {
@@ -115,10 +127,18 @@ exports.createNutritionist = async (req, res, next) => {
             return next(new ApiError(400, 'User already exists with this email'));
         }
 
+        let firebaseUid = `mock-uid-${email.toLowerCase()}`;
+        try {
+            firebaseUid = await createFirebaseUser(email, password, name);
+        } catch (fbErr) {
+            console.warn("⚠️ Firebase user creation failed, falling back to local MongoDB entry:", fbErr.message);
+        }
+
         const nutritionist = await User.create({
             name,
             email: email?.toLowerCase(),
             password,
+            firebaseUid,
             role: 'nutritionist',
             avatar: avatar || 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300',
             nutritionistProfile: {
