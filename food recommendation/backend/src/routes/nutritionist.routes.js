@@ -2,6 +2,7 @@ const express = require('express');
 const HealthRecord = require('../models/HealthRecord');
 const User = require('../models/User');
 const Notification = require('../models/Notification');
+const Appointment = require('../models/Appointment');
 const { protect, authorize } = require('../middleware/auth');
 
 const router = express.Router();
@@ -12,7 +13,11 @@ router.use(authorize('nutritionist'));
 // 1. Post health record update for a specific user
 router.post('/records/:userId', async (req, res) => {
     try {
-        const { weight, caloriesConsumed, caloriesTarget, waterIntake, healthScore, notes } = req.body;
+        const { 
+            weight, caloriesConsumed, caloriesTarget, waterIntake, healthScore, notes,
+            bloodPressureSystolic, bloodPressureDiastolic, bloodSugarLevel, heartRate,
+            cholesterolLevel, sleepHours, exerciseMinutes, mood, medications, dietaryCompliance
+        } = req.body;
         const targetUserId = req.params.userId;
 
         // Check if user exists
@@ -30,6 +35,16 @@ router.post('/records/:userId', async (req, res) => {
             waterIntake,
             healthScore,
             notes,
+            bloodPressureSystolic,
+            bloodPressureDiastolic,
+            bloodSugarLevel,
+            heartRate,
+            cholesterolLevel,
+            sleepHours,
+            exerciseMinutes,
+            mood,
+            medications,
+            dietaryCompliance,
             date: new Date()
         });
 
@@ -58,11 +73,22 @@ router.post('/records/:userId', async (req, res) => {
     }
 });
 
-// 2. Get list of patients for directory
+// 2. Get list of patients for directory (only those who booked appointments with this nutritionist)
 router.get('/users', async (req, res) => {
     try {
         const { search } = req.query;
-        let query = { role: 'user' };
+        
+        // Find all appointments booked with this nutritionist
+        const appointments = await Appointment.find({
+            $or: [
+                { doctorId: req.user.id },
+                { doctorName: req.user.name }
+            ]
+        });
+        
+        const userIds = appointments.map(appt => appt.userId);
+        
+        let query = { _id: { $in: userIds }, role: 'user' };
 
         if (search) {
             query.name = { $regex: search, $options: 'i' };

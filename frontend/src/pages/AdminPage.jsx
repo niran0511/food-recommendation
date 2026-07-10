@@ -100,18 +100,22 @@ const AdminPage = () => {
   const [categories, setCategories] = useState(['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Beverage', 'Dessert']);
   const [cuisines, setCuisines] = useState(['Indian', 'Mexican', 'Italian', 'Chinese', 'American', 'Mediterranean']);
   const [allergens, setAllergens] = useState(['Peanut', 'Gluten', 'Lactose', 'Seafood', 'Soy', 'Egg', 'Tree Nuts']);
-  const [diseases, setDiseases] = useState([
-    { name: 'Diabetes', avoid: 'Sugar, Simple Carbs', rich: 'Fiber, Chromium' },
-    { name: 'Hypertension', avoid: 'Sodium, High Salt', rich: 'Potassium, Calcium' },
-    { name: 'Heart Disease', avoid: 'Cholesterol, Saturated Fat', rich: 'Omega 3, Fiber' },
-    { name: 'Obesity', avoid: 'High Calorie, High Sugar', rich: 'Lean Protein, Fiber' },
-    { name: 'Thyroid Disorders', avoid: 'Soy, Gluten', rich: 'Iodine, Selenium' },
-    { name: 'Anemia', avoid: 'Excess Calcium', rich: 'Iron, Vitamin C' }
-  ]);
+  const [diseases, setDiseases] = useState([]);
+
+  // Disease Form state (Create/Edit)
+  const [diseaseModalOpen, setDiseaseModalOpen] = useState(false);
+  const [editingDiseaseId, setEditingDiseaseId] = useState(null);
+  const [diseaseFormData, setDiseaseFormData] = useState({
+    disease: '',
+    avoidNutrients: '',
+    boostNutrients: '',
+    description: ''
+  });
 
   // Food Form state (Create/Edit)
   const [foodModalOpen, setFoodModalOpen] = useState(false);
   const [editingFoodId, setEditingFoodId] = useState(null);
+  const [foodImageSourceType, setFoodImageSourceType] = useState('url');
   const [foodFormData, setFoodFormData] = useState({
     name: '',
     category: 'Breakfast',
@@ -131,7 +135,8 @@ const AdminPage = () => {
     allergens: '',
     suitable_for: '',
     avoid_for: '',
-    diet_type: 'Vegetarian'
+    diet_type: 'Vegetarian',
+    image: ''
   });
 
   const loadData = async () => {
@@ -164,6 +169,8 @@ const AdminPage = () => {
         setAdminAppointments(res.data.data || []);
       } else if (activeTab === 'nutritionists') {
         await fetchNutritionists();
+      } else if (activeTab === 'diseases') {
+        await fetchDiseases();
       }
     } catch (e) {
       toast.error("Failed to load admin dashboard details");
@@ -217,6 +224,77 @@ const AdminPage = () => {
       setNutritionists(res.data.data.nutritionists || []);
     } catch (e) {
       console.error(e);
+    }
+  };
+
+  const fetchDiseases = async () => {
+    try {
+      const res = await api.get('/diseases');
+      setDiseases(res.data.data || []);
+    } catch (e) {
+      toast.error("Failed to load disease settings");
+    }
+  };
+
+  const handleOpenAddDisease = () => {
+    setEditingDiseaseId(null);
+    setDiseaseFormData({
+      disease: '',
+      avoidNutrients: '',
+      boostNutrients: '',
+      description: ''
+    });
+    setDiseaseModalOpen(true);
+  };
+
+  const handleOpenEditDisease = (rule) => {
+    setEditingDiseaseId(rule._id);
+    setDiseaseFormData({
+      disease: rule.disease || '',
+      avoidNutrients: (rule.avoidNutrients || []).join(', '),
+      boostNutrients: (rule.boostNutrients || []).join(', '),
+      description: rule.description || ''
+    });
+    setDiseaseModalOpen(true);
+  };
+
+  const handleDiseaseInputChange = (e) => {
+    const { name, value } = e.target;
+    setDiseaseFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleDiseaseFormSubmit = async (e) => {
+    e.preventDefault();
+    const payload = {
+      disease: diseaseFormData.disease,
+      avoidNutrients: diseaseFormData.avoidNutrients.split(',').map(s => s.trim()).filter(Boolean),
+      boostNutrients: diseaseFormData.boostNutrients.split(',').map(s => s.trim()).filter(Boolean),
+      description: diseaseFormData.description
+    };
+
+    try {
+      if (editingDiseaseId) {
+        await api.put(`/diseases/${editingDiseaseId}`, payload);
+        toast.success("Disease rule updated!");
+      } else {
+        await api.post('/diseases', payload);
+        toast.success("Disease rule created!");
+      }
+      setDiseaseModalOpen(false);
+      fetchDiseases();
+    } catch (e) {
+      toast.error(e.response?.data?.message || "Failed to save disease settings");
+    }
+  };
+
+  const handleDeleteDisease = async (id) => {
+    if (!window.confirm("Permanently delete this disease rule?")) return;
+    try {
+      await api.delete(`/diseases/${id}`);
+      toast.success("Disease rule deleted");
+      fetchDiseases();
+    } catch (e) {
+      toast.error("Failed to delete disease rule");
     }
   };
 
@@ -320,7 +398,8 @@ const AdminPage = () => {
       allergens: '',
       suitable_for: '',
       avoid_for: '',
-      diet_type: 'Vegetarian'
+      diet_type: 'Vegetarian',
+      image: ''
     });
     setFoodModalOpen(true);
   };
@@ -346,7 +425,8 @@ const AdminPage = () => {
       allergens: (food.allergens || []).join(', '),
       suitable_for: (food.suitable_for || []).join(', '),
       avoid_for: (food.avoid_for || []).join(', '),
-      diet_type: (food.diet_type || ['Vegetarian'])[0]
+      diet_type: (food.diet_type || ['Vegetarian'])[0],
+      image: food.image || ''
     });
     setFoodModalOpen(true);
   };
@@ -373,7 +453,7 @@ const AdminPage = () => {
       suitable_for: foodFormData.suitable_for.split(',').map(s => s.trim()).filter(Boolean),
       avoid_for: foodFormData.avoid_for.split(',').map(s => s.trim()).filter(Boolean),
       diet_type: [foodFormData.diet_type],
-      image: `https://via.placeholder.com/300x200?text=${encodeURIComponent(foodFormData.name)}`
+      image: foodFormData.image || `https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=400`
     };
 
     try {
@@ -760,16 +840,45 @@ const AdminPage = () => {
 
               {/* TAB 5: DISEASES */}
               {activeTab === 'diseases' && (
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-                  <h3 className="font-bold text-slate-100 mb-6 flex items-center gap-2"><Dna className="text-rose-500" /> Condition Rules Index</h3>
+                <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-6">
+                  <div className="flex justify-between items-center">
+                    <h3 className="font-bold text-slate-100 flex items-center gap-2">
+                      <Dna className="text-rose-500" /> Condition Rules Index
+                    </h3>
+                    <button
+                      onClick={handleOpenAddDisease}
+                      className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer"
+                    >
+                      <Plus size={14} /> Add Condition Rule
+                    </button>
+                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {diseases.map(d => (
-                      <div key={d.name} className="p-4 bg-slate-950 border border-slate-850 rounded-xl space-y-2">
-                        <span className="font-bold text-sm text-slate-200 flex items-center gap-1.5">
-                          <ShieldAlert size={16} className="text-rose-500" /> {d.name}
-                        </span>
-                        <p className="text-xs text-slate-400">🚫 <strong>Filter out:</strong> {d.avoid}</p>
-                        <p className="text-xs text-slate-400">✅ <strong>Boost Nutrients:</strong> {d.rich}</p>
+                      <div key={d._id} className="p-5 bg-slate-950 border border-slate-850 rounded-2xl flex flex-col justify-between gap-3">
+                        <div className="space-y-2">
+                          <span className="font-bold text-sm text-slate-100 flex items-center gap-1.5">
+                            <ShieldAlert size={16} className="text-rose-500" /> {d.disease}
+                          </span>
+                          {d.description && <p className="text-slate-400 text-[11px] leading-relaxed">{d.description}</p>}
+                          <div className="space-y-1 pt-1">
+                            <p className="text-[10px] text-slate-500">🚫 <strong className="text-slate-400">Avoid Nutrients:</strong> {d.avoidNutrients?.join(', ') || 'None'}</p>
+                            <p className="text-[10px] text-slate-500">✅ <strong className="text-slate-400">Boost Nutrients:</strong> {d.boostNutrients?.join(', ') || 'None'}</p>
+                          </div>
+                        </div>
+                        <div className="flex justify-end gap-2 border-t border-slate-900 pt-3">
+                          <button
+                            onClick={() => handleOpenEditDisease(d)}
+                            className="px-3 py-1.5 bg-slate-900 border border-slate-800 text-[10px] font-bold text-slate-300 rounded-xl hover:bg-slate-800 transition-all cursor-pointer"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteDisease(d._id)}
+                            className="px-3 py-1.5 bg-rose-600/10 border border-rose-500/20 text-[10px] font-bold text-rose-400 rounded-xl hover:bg-rose-600 hover:text-white transition-all cursor-pointer"
+                          >
+                            Delete
+                          </button>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -976,6 +1085,50 @@ const AdminPage = () => {
                     className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
+                <div className="sm:col-span-2 border border-slate-800 p-4 rounded-2xl bg-slate-950/50 space-y-3">
+                  <div className="flex justify-between items-center">
+                    <label className="block text-slate-400 uppercase font-bold text-[10px]">Food Picture</label>
+                    <div className="flex gap-3 text-[10px]">
+                      <label className="flex items-center gap-1.5 cursor-pointer">
+                        <input type="radio" checked={foodImageSourceType === 'url'} onChange={() => setFoodImageSourceType('url')} name="imgSource" className="accent-emerald-500" />
+                        <span>Link URL</span>
+                      </label>
+                      <label className="flex items-center gap-1.5 cursor-pointer">
+                        <input type="radio" checked={foodImageSourceType === 'file'} onChange={() => setFoodImageSourceType('file')} name="imgSource" className="accent-emerald-500" />
+                        <span>Local Upload</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  {foodImageSourceType === 'url' ? (
+                    <input type="text" name="image" value={foodFormData.image} onChange={handleFoodInputChange} placeholder="Paste image link URL (e.g. https://unsplash.com/...)"
+                      className="w-full px-4 py-2 bg-slate-950 border border-slate-850 rounded-xl text-slate-100 outline-none text-[11px]" />
+                  ) : (
+                    <div className="flex items-center gap-3">
+                      <input type="file" accept="image/*" onChange={(e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onloadend = () => {
+                            setFoodFormData(prev => ({ ...prev, image: reader.result }));
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }} className="block w-full text-[10px] text-slate-500 file:mr-4 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-[10px] file:font-semibold file:bg-slate-900 file:text-slate-300 hover:file:bg-slate-800 file:cursor-pointer" />
+                    </div>
+                  )}
+
+                  {foodFormData.image && (
+                    <div className="flex items-center gap-3 bg-slate-950 p-2 rounded-xl border border-slate-850">
+                      <img src={foodFormData.image} alt="Preview" className="w-12 h-12 object-cover rounded-lg border border-slate-800" onError={(e) => { e.target.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231e293b'/></svg>"; }} />
+                      <div className="flex-grow min-w-0">
+                        <p className="text-[10px] text-slate-500 truncate">{foodFormData.image.startsWith('data:') ? 'Base64 Local Image Upload' : foodFormData.image}</p>
+                        <button type="button" onClick={() => setFoodFormData(prev => ({ ...prev, image: '' }))} className="text-[9px] text-rose-400 hover:underline">Clear Image</button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
                 <div>
                   <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Category</label>
                   <select name="category" value={foodFormData.category} onChange={handleFoodInputChange}
@@ -1158,6 +1311,55 @@ const AdminPage = () => {
                   className="px-5 py-2.5 border border-slate-800 text-slate-400 rounded-xl hover:bg-slate-850">Cancel</button>
                 <button type="submit"
                   className="px-6 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-lg">Create Practitioner</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* CRUD Disease Modal */}
+      {diseaseModalOpen && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in text-slate-800 dark:text-slate-100">
+          <div className="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl relative max-h-[85vh] flex flex-col">
+            <div className="p-6 border-b border-slate-800 flex justify-between items-center text-slate-100">
+              <h2 className="text-lg font-bold">{editingDiseaseId ? 'Modify Condition Rule' : 'Create Condition Rule'}</h2>
+              <button onClick={() => setDiseaseModalOpen(false)} className="p-1 hover:bg-slate-800 rounded-full text-slate-400">
+                <X size={18} />
+              </button>
+            </div>
+            
+            <form onSubmit={handleDiseaseFormSubmit} className="p-6 overflow-y-auto space-y-4 flex-grow text-xs text-slate-350">
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Disease / Condition Name</label>
+                  <input type="text" name="disease" value={diseaseFormData.disease} onChange={handleDiseaseInputChange} required placeholder="e.g. Celiac Disease"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                </div>
+
+                <div>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Avoid Nutrients (comma separated)</label>
+                  <input type="text" name="avoidNutrients" value={diseaseFormData.avoidNutrients} onChange={handleDiseaseInputChange} placeholder="e.g. Gluten, Barley, Wheat"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                </div>
+
+                <div>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Boost Nutrients (comma separated)</label>
+                  <input type="text" name="boostNutrients" value={diseaseFormData.boostNutrients} onChange={handleDiseaseInputChange} placeholder="e.g. Fiber, Iron, B Vitamins"
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                </div>
+
+                <div>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Description & Guideline</label>
+                  <textarea name="description" value={diseaseFormData.description} onChange={handleDiseaseInputChange} rows="3" placeholder="Brief clinical explanation or dietary guidelines..."
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none resize-none" />
+                </div>
+              </div>
+
+              <div className="pt-4 flex justify-end gap-3 border-t border-slate-800">
+                <button type="button" onClick={() => setDiseaseModalOpen(false)}
+                  className="px-5 py-2.5 border border-slate-800 text-slate-400 rounded-xl hover:bg-slate-850">Cancel</button>
+                <button type="submit"
+                  className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg">Save Rule</button>
               </div>
             </form>
           </div>

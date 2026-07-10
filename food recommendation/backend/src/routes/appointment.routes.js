@@ -10,7 +10,7 @@ router.use(protect);
 // 1. Create a consultation booking
 router.post('/', async (req, res) => {
     try {
-        const { doctorName, specialty, date, time, reason } = req.body;
+        const { doctorName, specialty, date, time, reason, doctorId } = req.body;
         if (!doctorName || !specialty || !date || !time) {
             return res.status(400).json({ success: false, message: 'All booking fields are required' });
         }
@@ -18,6 +18,7 @@ router.post('/', async (req, res) => {
             userId: req.user.id,
             userName: req.user.name,
             doctorName,
+            doctorId,
             specialty,
             date,
             time,

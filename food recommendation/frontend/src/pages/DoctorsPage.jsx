@@ -7,53 +7,6 @@ import toast from 'react-hot-toast';
 
 const defaultDocSvg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2310b981'/><stop offset='100%' stop-color='%23059669'/></linearGradient></defs><rect width='100' height='100' fill='url(%23g)'/><circle cx='50' cy='35' r='18' fill='white'/><path d='M20 80c0-15 15-22 30-22s30 7 30 22v5H20v-5z' fill='white'/><path d='M40 38h20v4H40v-4z' fill='%23059669'/></svg>";
 
-const doctorsDatabase = [
-  {
-    id: 1,
-    name: "Dr. Sarah Jenkins",
-    specialty: "Endocrinologist (Diabetes Care)",
-    experience: "14 yrs experience",
-    location: "Metabolic Health Clinic, Suite 402",
-    phone: "+1 (555) 321-7890",
-    rating: 4.9,
-    availability: "Mon, Wed, Fri (9:00 AM - 4:00 PM)",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&fit=crop"
-  },
-  {
-    id: 2,
-    name: "Dr. Marcus Vance",
-    specialty: "Cardiologist (Heart Health)",
-    experience: "18 yrs experience",
-    location: "Cardiovascular Wellness Center, Block B",
-    phone: "+1 (555) 789-0123",
-    rating: 4.8,
-    availability: "Tue, Thu (10:00 AM - 5:00 PM)",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&fit=crop"
-  },
-  {
-    id: 3,
-    name: "Dr. Priya Patel",
-    specialty: "Clinical Dietician & Nutritionist",
-    experience: "9 yrs experience",
-    location: "NutriLife Preventive Wellness, Suite 105",
-    phone: "+1 (555) 456-7890",
-    rating: 4.7,
-    availability: "Mon, Tue, Thu, Fri (8:00 AM - 3:00 PM)",
-    image: "https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300&fit=crop"
-  },
-  {
-    id: 4,
-    name: "Dr. Robert Chen",
-    specialty: "Bariatric Specialist (Obesity Management)",
-    experience: "15 yrs experience",
-    location: "Weight Science Institute, Suite 210",
-    phone: "+1 (555) 901-2345",
-    rating: 4.9,
-    availability: "Wed, Thu (1:00 PM - 6:00 PM)",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300&fit=crop"
-  }
-];
-
 const DoctorsPage = () => {
   const { user } = useAuth();
   const [selectedDoctor, setSelectedDoctor] = useState(null);
@@ -85,24 +38,13 @@ const DoctorsPage = () => {
           phone: nut.nutritionistProfile?.phone || "+1 (555) 000-0000",
           availability: nut.nutritionistProfile?.availability || "Mon - Fri",
           rating: nut.nutritionistProfile?.rating || 5.0,
-          image: nut.avatar || "https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300&fit=crop"
+          image: nut.avatar || defaultDocSvg
         }));
 
-        const mergedList = [...mappedNuts, ...doctorsDatabase];
-        const uniqueList = [];
-        const seen = new Set();
-        for (const doc of mergedList) {
-          const lowerName = doc.name.toLowerCase();
-          if (!seen.has(lowerName)) {
-            seen.add(lowerName);
-            uniqueList.push(doc);
-          }
-        }
-
-        setDoctorsList(uniqueList);
+        setDoctorsList(mappedNuts);
       } catch (err) {
         console.error("Failed to load page data", err);
-        setDoctorsList(doctorsDatabase);
+        setDoctorsList([]);
       } finally {
         setLoading(false);
       }
@@ -127,6 +69,7 @@ const DoctorsPage = () => {
     try {
       const res = await api.post('/appointments', {
         doctorName: selectedDoctor.name,
+        doctorId: selectedDoctor.id,
         specialty: selectedDoctor.specialty,
         date: bookingDate,
         time: bookingTime,

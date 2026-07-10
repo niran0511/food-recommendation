@@ -32,7 +32,17 @@ const NutritionistPage = () => {
     caloriesTarget: '2200',
     waterIntake: '2.5',
     healthScore: '85',
-    notes: ''
+    notes: '',
+    bloodPressureSystolic: '',
+    bloodPressureDiastolic: '',
+    bloodSugarLevel: '',
+    heartRate: '',
+    cholesterolLevel: '',
+    sleepHours: '8',
+    exerciseMinutes: '30',
+    mood: 'Good',
+    medications: '',
+    dietaryCompliance: 'Excellent'
   });
 
   // Change Password state
@@ -95,7 +105,17 @@ const NutritionistPage = () => {
         caloriesTarget: '2200',
         waterIntake: '2.5',
         healthScore: '85',
-        notes: ''
+        notes: '',
+        bloodPressureSystolic: '',
+        bloodPressureDiastolic: '',
+        bloodSugarLevel: '',
+        heartRate: '',
+        cholesterolLevel: '',
+        sleepHours: '8',
+        exerciseMinutes: '30',
+        mood: 'Good',
+        medications: '',
+        dietaryCompliance: 'Excellent'
       });
       // reload health records for selected user
       loadUserRecords(selectedUser._id);
@@ -386,19 +406,55 @@ const NutritionistPage = () => {
                           </div>
                         ) : (
                           userRecords.map(r => (
-                            <div key={r._id} className="bg-slate-900 border border-slate-800 p-5 rounded-2xl flex flex-col sm:flex-row justify-between gap-4">
-                              <div className="space-y-2">
+                            <div key={r._id} className="bg-slate-900 border border-slate-800 p-5 rounded-2xl flex flex-col gap-3 text-slate-300">
+                              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                                 <div className="flex items-center gap-2">
                                   <span className="text-xs font-bold text-slate-100">{new Date(r.date).toLocaleDateString()} at {new Date(r.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                   <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[9px] font-extrabold border border-emerald-500/20">Health Score: {r.healthScore}/100</span>
                                 </div>
-                                <p className="text-xs text-slate-350 leading-relaxed font-semibold italic">Clinical Notes: {r.notes || "No notes logged."}</p>
+                                <div className="flex flex-wrap gap-2 text-[9px] font-bold text-slate-400">
+                                  <span className="px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg">Weight: {r.weight || 'N/A'} kg</span>
+                                  <span className="px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg">Water: {r.waterIntake || 'N/A'} L</span>
+                                  <span className="px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg">Calories: {r.caloriesConsumed}/{r.caloriesTarget} kcal</span>
+                                </div>
                               </div>
-                              <div className="flex flex-wrap gap-3 shrink-0 text-[10px] font-bold text-slate-400">
-                                <span className="px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg">Weight: {r.weight || 'N/A'} kg</span>
-                                <span className="px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg">Water: {r.waterIntake || 'N/A'} L</span>
-                                <span className="px-2 py-1 bg-slate-950 border border-slate-800 rounded-lg">Calories: {r.caloriesConsumed}/{r.caloriesTarget} kcal</span>
+
+                              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px] bg-slate-950/40 p-3 rounded-xl border border-slate-850">
+                                <div>
+                                  <span className="text-slate-500 block uppercase text-[8px] font-bold">Clinical Vitals</span>
+                                  <p className="text-slate-350 mt-0.5 font-semibold">
+                                    BP: {r.bloodPressureSystolic && r.bloodPressureDiastolic ? `${r.bloodPressureSystolic}/${r.bloodPressureDiastolic} mmHg` : 'N/A'}<br />
+                                    Sugar: {r.bloodSugarLevel ? `${r.bloodSugarLevel} mg/dL` : 'N/A'}<br />
+                                    HR: {r.heartRate ? `${r.heartRate} bpm` : 'N/A'}<br />
+                                    Cholesterol: {r.cholesterolLevel ? `${r.cholesterolLevel} mg/dL` : 'N/A'}
+                                  </p>
+                                </div>
+
+                                <div>
+                                  <span className="text-slate-500 block uppercase text-[8px] font-bold">Lifestyle</span>
+                                  <p className="text-slate-350 mt-0.5 font-semibold">
+                                    Sleep: {r.sleepHours ? `${r.sleepHours} hrs` : 'N/A'}<br />
+                                    Exercise: {r.exerciseMinutes ? `${r.exerciseMinutes} mins` : 'N/A'}<br />
+                                    Mood: {r.mood || 'N/A'}
+                                  </p>
+                                </div>
+
+                                <div>
+                                  <span className="text-slate-500 block uppercase text-[8px] font-bold">Adherence</span>
+                                  <p className="text-slate-350 mt-0.5 font-semibold">
+                                    Diet Adherence: {r.dietaryCompliance || 'N/A'}
+                                  </p>
+                                </div>
+
+                                <div>
+                                  <span className="text-slate-500 block uppercase text-[8px] font-bold">Medications</span>
+                                  <p className="text-slate-355 mt-0.5 font-semibold truncate hover:text-clip hover:overflow-visible hover:whitespace-normal" title={r.medications}>
+                                    {r.medications || 'None logged'}
+                                  </p>
+                                </div>
                               </div>
+
+                              <p className="text-xs text-slate-350 leading-relaxed font-semibold italic mt-1">Clinical Notes: {r.notes || "No notes logged."}</p>
                             </div>
                           ))
                         )}
@@ -456,50 +512,142 @@ const NutritionistPage = () => {
       {/* Log Health Record Modal */}
       {recordModalOpen && selectedUser && (
         <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm text-slate-800 dark:text-slate-100">
-          <div className="bg-slate-900 border border-slate-800 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl relative flex flex-col">
+          <div className="bg-slate-900 border border-slate-800 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
             <div className="p-6 border-b border-slate-800 flex justify-between items-center text-slate-100">
-              <h2 className="text-md font-bold">Log Update for {selectedUser.name}</h2>
+              <h2 className="text-md font-bold">Log Clinical Health Record Update for {selectedUser.name}</h2>
               <button onClick={() => setRecordModalOpen(false)} className="p-1 hover:bg-slate-800 rounded-full text-slate-400">
                 <X size={18} />
               </button>
             </div>
             
-            <form onSubmit={handleAddRecordSubmit} className="p-6 space-y-4 text-xs text-slate-350">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Weight (kg)</label>
-                  <input type="number" step="0.1" value={recordFormData.weight} onChange={e => setRecordFormData(prev => ({ ...prev, weight: e.target.value }))} required placeholder="e.g. 72.5"
-                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
-                </div>
+            <form onSubmit={handleAddRecordSubmit} className="p-6 space-y-5 text-xs text-slate-350 overflow-y-auto">
+              {/* Section 1: Physical & Nutrition Metrics */}
+              <div className="space-y-3">
+                <h3 className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider">Physical & Nutrition Metrics</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Weight (kg)</label>
+                    <input type="number" step="0.1" value={recordFormData.weight} onChange={e => setRecordFormData(prev => ({ ...prev, weight: e.target.value }))} required placeholder="e.g. 72.5"
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
 
-                <div>
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Health Score (1-100)</label>
-                  <input type="number" min="1" max="100" value={recordFormData.healthScore} onChange={e => setRecordFormData(prev => ({ ...prev, healthScore: e.target.value }))} required placeholder="e.g. 85"
-                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
-                </div>
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Health Score</label>
+                    <input type="number" min="1" max="100" value={recordFormData.healthScore} onChange={e => setRecordFormData(prev => ({ ...prev, healthScore: e.target.value }))} required placeholder="1-100"
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
 
-                <div>
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Calories Consumed</label>
-                  <input type="number" value={recordFormData.caloriesConsumed} onChange={e => setRecordFormData(prev => ({ ...prev, caloriesConsumed: e.target.value }))} required
-                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
-                </div>
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Cal. Consumed</label>
+                    <input type="number" value={recordFormData.caloriesConsumed} onChange={e => setRecordFormData(prev => ({ ...prev, caloriesConsumed: e.target.value }))} required
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
 
-                <div>
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Calories Target</label>
-                  <input type="number" value={recordFormData.caloriesTarget} onChange={e => setRecordFormData(prev => ({ ...prev, caloriesTarget: e.target.value }))} required
-                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
-                </div>
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Cal. Target</label>
+                    <input type="number" value={recordFormData.caloriesTarget} onChange={e => setRecordFormData(prev => ({ ...prev, caloriesTarget: e.target.value }))} required
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
 
-                <div className="col-span-2">
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Water Intake (Liters)</label>
-                  <input type="number" step="0.1" value={recordFormData.waterIntake} onChange={e => setRecordFormData(prev => ({ ...prev, waterIntake: e.target.value }))} required
-                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  <div className="col-span-2 sm:col-span-1">
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Water Intake (L)</label>
+                    <input type="number" step="0.1" value={recordFormData.waterIntake} onChange={e => setRecordFormData(prev => ({ ...prev, waterIntake: e.target.value }))} required
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
                 </div>
+              </div>
 
-                <div className="col-span-2">
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Clinical Progress Notes</label>
-                  <textarea rows="3" value={recordFormData.notes} onChange={e => setRecordFormData(prev => ({ ...prev, notes: e.target.value }))} required placeholder="Enter diagnostic advice or remarks..."
-                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none resize-none" />
+              {/* Section 2: Clinical Vitals */}
+              <div className="space-y-3 pt-3 border-t border-slate-800/50">
+                <h3 className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider">Clinical Vitals (Optional)</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">BP Systolic</label>
+                    <input type="number" value={recordFormData.bloodPressureSystolic} onChange={e => setRecordFormData(prev => ({ ...prev, bloodPressureSystolic: e.target.value }))} placeholder="mmHg"
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">BP Diastolic</label>
+                    <input type="number" value={recordFormData.bloodPressureDiastolic} onChange={e => setRecordFormData(prev => ({ ...prev, bloodPressureDiastolic: e.target.value }))} placeholder="mmHg"
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Blood Sugar</label>
+                    <input type="number" value={recordFormData.bloodSugarLevel} onChange={e => setRecordFormData(prev => ({ ...prev, bloodSugarLevel: e.target.value }))} placeholder="mg/dL"
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Heart Rate</label>
+                    <input type="number" value={recordFormData.heartRate} onChange={e => setRecordFormData(prev => ({ ...prev, heartRate: e.target.value }))} placeholder="bpm"
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
+
+                  <div className="col-span-2 sm:col-span-1">
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Cholesterol</label>
+                    <input type="number" value={recordFormData.cholesterolLevel} onChange={e => setRecordFormData(prev => ({ ...prev, cholesterolLevel: e.target.value }))} placeholder="mg/dL"
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 3: Lifestyle & Adherence */}
+              <div className="space-y-3 pt-3 border-t border-slate-800/50">
+                <h3 className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider">Lifestyle & Adherence</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Sleep Hours</label>
+                    <input type="number" step="0.5" value={recordFormData.sleepHours} onChange={e => setRecordFormData(prev => ({ ...prev, sleepHours: e.target.value }))} placeholder="hrs"
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Exercise (min)</label>
+                    <input type="number" value={recordFormData.exerciseMinutes} onChange={e => setRecordFormData(prev => ({ ...prev, exerciseMinutes: e.target.value }))} placeholder="mins"
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Diet Adherence</label>
+                    <select value={recordFormData.dietaryCompliance} onChange={e => setRecordFormData(prev => ({ ...prev, dietaryCompliance: e.target.value }))}
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none">
+                      <option value="Excellent">Excellent</option>
+                      <option value="Good">Good</option>
+                      <option value="Needs Improvement">Needs Improvement</option>
+                      <option value="Poor">Poor</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Mood State</label>
+                    <select value={recordFormData.mood} onChange={e => setRecordFormData(prev => ({ ...prev, mood: e.target.value }))}
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none">
+                      <option value="Excellent">Excellent</option>
+                      <option value="Good">Good</option>
+                      <option value="Fair">Fair</option>
+                      <option value="Poor">Poor</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 4: Diagnostics, Meds & Notes */}
+              <div className="space-y-3 pt-3 border-t border-slate-800/50">
+                <h3 className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider">Diagnostics & Advice</h3>
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Medications / Prescriptions</label>
+                    <input type="text" value={recordFormData.medications} onChange={e => setRecordFormData(prev => ({ ...prev, medications: e.target.value }))} placeholder="e.g. Metformin 500mg daily, Omega-3 supplements"
+                      className="w-full px-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Clinical Progress Notes</label>
+                    <textarea rows="3" value={recordFormData.notes} onChange={e => setRecordFormData(prev => ({ ...prev, notes: e.target.value }))} required placeholder="Enter diagnostic advice, custom recipe suggestions or general clinical remarks..."
+                      className="w-full px-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none resize-none" />
+                  </div>
                 </div>
               </div>
 

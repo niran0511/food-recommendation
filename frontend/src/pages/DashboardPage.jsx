@@ -43,6 +43,7 @@ const DashboardPage = () => {
   const [history, setHistory] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
   const [selectedFood, setSelectedFood] = useState(null);
+  const [latestHealthRecord, setLatestHealthRecord] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');
   const [loading, setLoading] = useState(true);
@@ -147,12 +148,13 @@ const DashboardPage = () => {
     const fetchDashboardData = async () => {
       try {
         setLoading(true);
-        const [metricsRes, favsRes, historyRes, recsRes, riskRes] = await Promise.all([
+        const [metricsRes, favsRes, historyRes, recsRes, riskRes, recordRes] = await Promise.all([
           api.get('/health/metrics'),
           api.get('/users/favorites').catch(() => ({ data: { data: { favorites: [] } } })),
           api.get('/recommendations/history').catch(() => ({ data: { data: { logs: [] } } })),
           api.post('/recommendations').catch(() => ({ data: { data: { recommendations: [] } } })),
-          api.post('/health/risk-assessment').catch(() => ({ data: { data: { riskAssessment: null } } }))
+          api.post('/health/risk-assessment').catch(() => ({ data: { data: { riskAssessment: null } } })),
+          api.get('/health/latest-record').catch(() => ({ data: { data: { record: null } } }))
         ]);
         
         const activeMetrics = metricsRes.data.data.metrics;
@@ -167,6 +169,10 @@ const DashboardPage = () => {
         
         if (riskRes.data?.data?.riskAssessment) {
           setRiskAssessment(riskRes.data.data.riskAssessment);
+        }
+        
+        if (recordRes.data?.data?.record) {
+          setLatestHealthRecord(recordRes.data.data.record);
         }
         
         const recList = recsRes.data?.data?.recommendations || [];
@@ -511,6 +517,77 @@ const DashboardPage = () => {
           </form>
         </div>
       </motion.section>
+
+      {/* Nutritionist Clinical Health Report Card */}
+      {latestHealthRecord && (
+        <motion.section variants={itemVariants} className="p-6 rounded-3xl bg-slate-900 border border-emerald-500/20 shadow-lg space-y-4 text-xs text-slate-350">
+          <div className="flex justify-between items-center border-b border-slate-800 pb-3">
+            <div className="flex items-center gap-2">
+              <span className="p-1.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <Heart size={16} className="text-emerald-500" />
+              </span>
+              <div>
+                <h3 className="text-sm font-black text-slate-100">Nutritionist Clinical Progress Update</h3>
+                <p className="text-[10px] text-slate-500 font-semibold">Logged on {new Date(latestHealthRecord.date).toLocaleDateString()}</p>
+              </div>
+            </div>
+            <span className="px-3 py-1 rounded-xl bg-emerald-500/10 text-emerald-400 text-[10px] font-extrabold border border-emerald-500/20">
+              Overall Health: {latestHealthRecord.healthScore}/100
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {/* Vitals */}
+            <div className="space-y-1 bg-slate-950/40 p-3 rounded-2xl border border-slate-850">
+              <span className="text-slate-500 uppercase text-[9px] font-bold block">Clinical Vitals</span>
+              <div className="space-y-0.5 font-bold text-slate-200">
+                <p>Weight: <span className="text-emerald-400">{latestHealthRecord.weight || 'N/A'} kg</span></p>
+                <p>Blood Sugar: <span className="text-emerald-400">{latestHealthRecord.bloodSugarLevel ? `${latestHealthRecord.bloodSugarLevel} mg/dL` : 'N/A'}</span></p>
+                <p>BP: <span className="text-emerald-400">{latestHealthRecord.bloodPressureSystolic && latestHealthRecord.bloodPressureDiastolic ? `${latestHealthRecord.bloodPressureSystolic}/${latestHealthRecord.bloodPressureDiastolic}` : 'N/A'}</span></p>
+                <p>Heart Rate: <span className="text-emerald-400">{latestHealthRecord.heartRate ? `${latestHealthRecord.heartRate} bpm` : 'N/A'}</span></p>
+              </div>
+            </div>
+
+            {/* Nutrition Targets */}
+            <div className="space-y-1 bg-slate-950/40 p-3 rounded-2xl border border-slate-850">
+              <span className="text-slate-500 uppercase text-[9px] font-bold block">Nutrition Targets</span>
+              <div className="space-y-0.5 font-bold text-slate-200">
+                <p>Daily Calories: <span className="text-amber-500">{latestHealthRecord.caloriesTarget ? `${latestHealthRecord.caloriesTarget} kcal` : 'N/A'}</span></p>
+                <p>Daily Water: <span className="text-blue-500">{latestHealthRecord.waterIntake ? `${latestHealthRecord.waterIntake} L` : 'N/A'}</span></p>
+                <p>Calories Consumed: <span>{latestHealthRecord.caloriesConsumed ? `${latestHealthRecord.caloriesConsumed} kcal` : 'N/A'}</span></p>
+              </div>
+            </div>
+
+            {/* Lifestyle & Adherence */}
+            <div className="space-y-1 bg-slate-950/40 p-3 rounded-2xl border border-slate-850">
+              <span className="text-slate-500 uppercase text-[9px] font-bold block">Lifestyle & Compliance</span>
+              <div className="space-y-0.5 font-bold text-slate-200">
+                <p>Sleep: <span>{latestHealthRecord.sleepHours ? `${latestHealthRecord.sleepHours} hrs` : 'N/A'}</span></p>
+                <p>Exercise: <span>{latestHealthRecord.exerciseMinutes ? `${latestHealthRecord.exerciseMinutes} mins` : 'N/A'}</span></p>
+                <p>Mood State: <span className="text-emerald-400">{latestHealthRecord.mood || 'N/A'}</span></p>
+                <p>Diet Adherence: <span className="text-emerald-400">{latestHealthRecord.dietaryCompliance || 'N/A'}</span></p>
+              </div>
+            </div>
+
+            {/* Medications */}
+            <div className="space-y-1 bg-slate-950/40 p-3 rounded-2xl border border-slate-850 flex flex-col justify-between">
+              <div>
+                <span className="text-slate-500 uppercase text-[9px] font-bold block">Active Medications</span>
+                <p className="font-bold text-slate-200 mt-1 leading-relaxed">
+                  {latestHealthRecord.medications || 'No active medications logged.'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-slate-955/20 p-4 rounded-2xl border border-slate-800">
+            <span className="text-slate-500 uppercase text-[9px] font-bold block mb-1">Nutritionist Diagnostic Advice & Remarks</span>
+            <p className="text-slate-200 font-semibold italic leading-relaxed">
+              "{latestHealthRecord.notes || 'No clinical notes provided.'}"
+            </p>
+          </div>
+        </motion.section>
+      )}
 
       {/* 1. Daily Nutrition Progress Segment (MUST HAVE) */}
       {metrics && (

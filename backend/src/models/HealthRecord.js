@@ -16,7 +16,25 @@ const HealthRecordSchema = new mongoose.Schema({
     caloriesTarget: Number,
     waterIntake: Number,
     healthScore: Number,
-    notes: String
+    notes: String,
+    
+    // Expanded clinical & lifestyle fields
+    bloodPressureSystolic: Number,
+    bloodPressureDiastolic: Number,
+    bloodSugarLevel: Number,
+    heartRate: Number,
+    cholesterolLevel: Number,
+    sleepHours: Number,
+    exerciseMinutes: Number,
+    mood: {
+        type: String,
+        enum: ['Excellent', 'Good', 'Fair', 'Poor']
+    },
+    medications: String,
+    dietaryCompliance: {
+        type: String,
+        enum: ['Excellent', 'Good', 'Needs Improvement', 'Poor']
+    }
 }, {
     timestamps: true
 });
