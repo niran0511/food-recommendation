@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApp, getApps } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -17,7 +17,10 @@ const firebaseConfig = {
 
 let secondaryAuth = null;
 try {
-  const secondaryApp = initializeApp(firebaseConfig, "SecondaryAppInstance");
+  const name = "SecondaryAppInstance";
+  const secondaryApp = getApps().find(app => app.name === name) 
+    ? getApp(name) 
+    : initializeApp(firebaseConfig, name);
   secondaryAuth = getAuth(secondaryApp);
 } catch (err) {
   console.warn("Secondary Firebase app initialization warning:", err.message);
