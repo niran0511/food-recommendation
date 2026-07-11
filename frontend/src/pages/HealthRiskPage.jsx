@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 const HealthRiskPage = () => {
   const { user } = useAuth();
   const [riskData, setRiskData] = useState(null);
+  const [latestRecord, setLatestRecord] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -17,6 +18,7 @@ const HealthRiskPage = () => {
         setLoading(true);
         const res = await api.post('/health/risk-assessment');
         setRiskData(res.data?.data?.riskAssessment || null);
+        setLatestRecord(res.data?.data?.latestRecord || null);
       } catch (err) {
         console.error(err);
         setError("Failed to retrieve your health risk profile. Ensure your profile metrics are filled.");
@@ -184,6 +186,72 @@ const HealthRiskPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Nutritionist Health Report Card */}
+      {latestRecord && (
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4 text-slate-350 dark:text-slate-300">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
+            <div className="flex items-center gap-2.5">
+              <div className="p-2 bg-rose-500/10 rounded-xl text-rose-500">
+                <Heart className="animate-pulse" size={20} />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-100 text-sm">Nutritionist Clinical Report</h3>
+                <p className="text-[10px] text-slate-500 font-bold">Logged on {new Date(latestRecord.date).toLocaleDateString()} at {new Date(latestRecord.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+              </div>
+            </div>
+            <span className="px-2.5 py-1 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-black uppercase">
+              Health Score: {latestRecord.healthScore}/100
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs font-semibold">
+            {/* Vitals */}
+            <div className="p-4 bg-slate-950/40 border border-slate-850 rounded-2xl space-y-2">
+              <span className="text-slate-500 font-bold uppercase text-[9px] block">Vitals Summary</span>
+              <div className="space-y-1">
+                <p className="flex justify-between"><span>Weight:</span> <strong className="text-slate-200">{latestRecord.weight || 'N/A'} kg</strong></p>
+                <p className="flex justify-between"><span>Blood Sugar:</span> <strong className="text-slate-200">{latestRecord.bloodSugarLevel ? `${latestRecord.bloodSugarLevel} mg/dL` : 'N/A'}</strong></p>
+                <p className="flex justify-between"><span>Blood Pressure:</span> <strong className="text-slate-200">{latestRecord.bloodPressureSystolic && latestRecord.bloodPressureDiastolic ? `${latestRecord.bloodPressureSystolic}/${latestRecord.bloodPressureDiastolic} mmHg` : 'N/A'}</strong></p>
+                <p className="flex justify-between"><span>Heart Rate:</span> <strong className="text-slate-200">{latestRecord.heartRate ? `${latestRecord.heartRate} bpm` : 'N/A'}</strong></p>
+                <p className="flex justify-between"><span>Cholesterol:</span> <strong className="text-slate-200">{latestRecord.cholesterolLevel ? `${latestRecord.cholesterolLevel} mg/dL` : 'N/A'}</strong></p>
+              </div>
+            </div>
+
+            {/* Lifestyle */}
+            <div className="p-4 bg-slate-950/40 border border-slate-850 rounded-2xl space-y-2">
+              <span className="text-slate-500 font-bold uppercase text-[9px] block">Lifestyle & Habits</span>
+              <div className="space-y-1">
+                <p className="flex justify-between"><span>Sleep Hours:</span> <strong className="text-slate-200">{latestRecord.sleepHours ? `${latestRecord.sleepHours} hrs` : 'N/A'}</strong></p>
+                <p className="flex justify-between"><span>Exercise:</span> <strong className="text-slate-200">{latestRecord.exerciseMinutes ? `${latestRecord.exerciseMinutes} mins` : 'N/A'}</strong></p>
+                <p className="flex justify-between"><span>Water Intake:</span> <strong className="text-slate-200">{latestRecord.waterIntake ? `${latestRecord.waterIntake} L` : 'N/A'}</strong></p>
+                <p className="flex justify-between"><span>Mood State:</span> <strong className="text-slate-200">{latestRecord.mood || 'N/A'}</strong></p>
+                <p className="flex justify-between"><span>Diet Adherence:</span> <strong className="text-slate-200">{latestRecord.dietaryCompliance || 'N/A'}</strong></p>
+              </div>
+            </div>
+
+            {/* Nutrition Targets */}
+            <div className="p-4 bg-slate-950/40 border border-slate-850 rounded-2xl space-y-2">
+              <span className="text-slate-500 font-bold uppercase text-[9px] block">Targets & Meds</span>
+              <div className="space-y-1">
+                <p className="flex justify-between"><span>Calorie Target:</span> <strong className="text-emerald-400">{latestRecord.caloriesTarget ? `${latestRecord.caloriesTarget} kcal` : 'N/A'}</strong></p>
+                <p className="flex justify-between"><span>Calories Consumed:</span> <strong className="text-slate-200">{latestRecord.caloriesConsumed ? `${latestRecord.caloriesConsumed} kcal` : 'N/A'}</strong></p>
+                <p className="flex justify-between"><span>Medications:</span> <strong className="text-slate-200 truncate max-w-[90px]" title={latestRecord.medications || 'None'}>{latestRecord.medications || 'None'}</strong></p>
+              </div>
+            </div>
+
+            {/* Diagnostic advice */}
+            <div className="p-4 bg-slate-950/40 border border-slate-850 rounded-2xl space-y-2 flex flex-col justify-between">
+              <div>
+                <span className="text-slate-500 font-bold uppercase text-[9px] block mb-1">Diagnostic advice</span>
+                <p className="text-slate-300 leading-relaxed text-[11px] italic font-semibold">
+                  "{latestRecord.notes || 'No remarks provided by nutritionist practitioner.'}"
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Main Grid: Risks list & factor summaries */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

@@ -135,12 +135,14 @@ exports.getRiskAssessment = async (req, res, next) => {
     const profile = user.profile;
     
     try {
+        const latestRecord = await HealthRecord.findOne({ userId: req.user.id }).sort('-date');
+        const currentWeight = (latestRecord && latestRecord.weight) ? latestRecord.weight : (profile.weight || 70);
 
         const payload = {
             age: profile.age || 30,
             gender: profile.gender || 'Other',
             height: profile.height || 170,
-            weight: profile.weight || 70,
+            weight: currentWeight,
             activity_level: profile.activityLevel || 'Lightly Active',
             goal: profile.goal || 'Healthy Eating',
             diseases: profile.diseases || [],
@@ -153,52 +155,113 @@ exports.getRiskAssessment = async (req, res, next) => {
         };
 
         const aiUrl = process.env.AI_SERVICE_URL || 'http://ai-service:8000';
+        let riskAssessment;
         
-        const response = await axios.post(`${aiUrl}/api/health-risk`, payload);
+        try {
+            const response = await axios.post(`${aiUrl}/api/health-risk`, payload);
+            riskAssessment = response.data;
+        } catch (aiErr) {
+            console.warn("⚠️ AI Service Error in getRiskAssessment, calculating locally as fallback:", aiErr.message);
+            const height = profile.height || 170;
+            const age = profile.age || 30;
+            const height_m = height / 100;
+            const bmi = currentWeight / (height_m * height_m);
+            
+            let obesity_risk = bmi > 30 ? 0.75 : (bmi > 25 ? 0.45 : 0.15);
+            let diabetes_risk = bmi > 30 ? 0.65 : (bmi > 25 ? 0.35 : 0.10);
+            let hypertension_risk = age > 50 ? 0.55 : (bmi > 25 ? 0.30 : 0.10);
+            let heart_disease_risk = age > 50 ? 0.45 : (bmi > 30 ? 0.40 : 0.15);
+            
+            const diseases = (profile.diseases || []).map(d => d.toLowerCase());
+            if (diseases.includes('diabetes')) {
+                diabetes_risk = 1.0;
+            }
+            if (diseases.includes('hypertension')) {
+                hypertension_risk = 1.0;
+                heart_disease_risk = Math.max(heart_disease_risk, 0.6);
+            }
+            if (diseases.includes('heart disease')) {
+                heart_disease_risk = 1.0;
+            }
+            
+            const overall_health_score = Number((100 - (obesity_risk + diabetes_risk + hypertension_risk + heart_disease_risk) / 4 * 100).toFixed(2));
+            
+            riskAssessment = {
+                obesity_risk,
+                diabetes_risk,
+                hypertension_risk,
+                heart_disease_risk,
+                overall_health_score,
+                risk_factors: bmi > 25 ? ["Overweight BMI"] : ["None"],
+                recommendations: ["Maintain a balanced whole-foods diet", "Stay active daily"]
+            };
+        }
+
+        // Apply Nutritionist Health Record overrides and calculations
+        if (latestRecord) {
+            if (latestRecord.healthScore) {
+                riskAssessment.overall_health_score = latestRecord.healthScore;
+            }
+            
+            // Adjust diabetes risk based on blood sugar level
+            if (latestRecord.bloodSugarLevel) {
+                const sugar = latestRecord.bloodSugarLevel;
+                if (sugar >= 126) {
+                    riskAssessment.diabetes_risk = 1.0;
+                    if (!riskAssessment.risk_factors.includes("Diabetic Blood Sugar")) {
+                        riskAssessment.risk_factors.push(`Diabetic Blood Sugar (${sugar} mg/dL)`);
+                    }
+                } else if (sugar >= 100) {
+                    riskAssessment.diabetes_risk = Math.max(riskAssessment.diabetes_risk || 0, 0.70);
+                    if (!riskAssessment.risk_factors.includes("Pre-diabetic Blood Sugar")) {
+                        riskAssessment.risk_factors.push(`Pre-diabetic Blood Sugar (${sugar} mg/dL)`);
+                    }
+                } else {
+                    riskAssessment.diabetes_risk = Math.min(riskAssessment.diabetes_risk || 1, 0.25);
+                }
+            }
+
+            // Adjust hypertension risk based on blood pressure
+            if (latestRecord.bloodPressureSystolic || latestRecord.bloodPressureDiastolic) {
+                const sys = latestRecord.bloodPressureSystolic || 120;
+                const dia = latestRecord.bloodPressureDiastolic || 80;
+                if (sys >= 140 || dia >= 90) {
+                    riskAssessment.hypertension_risk = 1.0;
+                    if (!riskAssessment.risk_factors.includes("Hypertensive Blood Pressure")) {
+                        riskAssessment.risk_factors.push(`Hypertensive Blood Pressure (${sys}/${dia} mmHg)`);
+                    }
+                } else if (sys >= 120 || dia >= 80) {
+                    riskAssessment.hypertension_risk = Math.max(riskAssessment.hypertension_risk || 0, 0.60);
+                    if (!riskAssessment.risk_factors.includes("Elevated Blood Pressure")) {
+                        riskAssessment.risk_factors.push(`Elevated Blood Pressure (${sys}/${dia} mmHg)`);
+                    }
+                } else {
+                    riskAssessment.hypertension_risk = Math.min(riskAssessment.hypertension_risk || 1, 0.25);
+                }
+            }
+
+            // Adjust heart disease risk based on cholesterol
+            if (latestRecord.cholesterolLevel) {
+                const chol = latestRecord.cholesterolLevel;
+                if (chol >= 240) {
+                    riskAssessment.heart_disease_risk = Math.max(riskAssessment.heart_disease_risk || 0, 0.85);
+                    if (!riskAssessment.risk_factors.includes("High Cholesterol")) {
+                        riskAssessment.risk_factors.push(`High Cholesterol (${chol} mg/dL)`);
+                    }
+                } else if (chol >= 200) {
+                    riskAssessment.heart_disease_risk = Math.max(riskAssessment.heart_disease_risk || 0, 0.55);
+                    if (!riskAssessment.risk_factors.includes("Borderline Cholesterol")) {
+                        riskAssessment.risk_factors.push(`Borderline Cholesterol (${chol} mg/dL)`);
+                    }
+                } else {
+                    riskAssessment.heart_disease_risk = Math.min(riskAssessment.heart_disease_risk || 1, 0.25);
+                }
+            }
+        }
         
-        res.status(200).json(new ApiResponse(200, { riskAssessment: response.data }));
+        res.status(200).json(new ApiResponse(200, { riskAssessment, latestRecord }));
     } catch (error) {
-
-        console.warn("⚠️ AI Service Error in getRiskAssessment, calculating locally as fallback:", error.message);
-        
-        const weight = profile.weight || 70;
-        const height = profile.height || 170;
-        const age = profile.age || 30;
-        const height_m = height / 100;
-        const bmi = weight / (height_m * height_m);
-        
-        let obesity_risk = bmi > 30 ? 0.75 : (bmi > 25 ? 0.45 : 0.15);
-        let diabetes_risk = bmi > 30 ? 0.65 : (bmi > 25 ? 0.35 : 0.10);
-        let hypertension_risk = age > 50 ? 0.55 : (bmi > 25 ? 0.30 : 0.10);
-        let heart_disease_risk = age > 50 ? 0.45 : (bmi > 30 ? 0.40 : 0.15);
-        
-        // Match user's existing diseases case-insensitively to sync with ML logic
-        const diseases = (profile.diseases || []).map(d => d.toLowerCase());
-        if (diseases.includes('diabetes')) {
-            diabetes_risk = 1.0;
-        }
-        if (diseases.includes('hypertension')) {
-            hypertension_risk = 1.0;
-            heart_disease_risk = Math.max(heart_disease_risk, 0.6);
-        }
-        if (diseases.includes('heart disease')) {
-            heart_disease_risk = 1.0;
-        }
-        
-        const overall_health_score = Number((100 - (obesity_risk + diabetes_risk + hypertension_risk + heart_disease_risk) / 4 * 100).toFixed(2));
-        
-        const riskAssessment = {
-            obesity_risk,
-            diabetes_risk,
-            hypertension_risk,
-            heart_disease_risk,
-            overall_health_score,
-            risk_factors: bmi > 25 ? ["Overweight BMI"] : ["None"],
-            recommendations: ["Maintain a balanced whole-foods diet", "Stay active daily"]
-        };
-        
-        res.status(200).json(new ApiResponse(200, { riskAssessment }, 'Calculated locally as fallback'));
-
+        next(error);
     }
 };
 
