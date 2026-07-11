@@ -42,6 +42,11 @@ const NutritionistPage = () => {
   const navigate = useNavigate();
   const { logout, user } = useAuth();
   
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
+
   const [activeTab, setActiveTab] = useState('appointments'); 
   const [loading, setLoading] = useState(true);
   const [appointments, setAppointments] = useState([]);
