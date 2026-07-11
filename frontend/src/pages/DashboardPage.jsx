@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../services/api';
@@ -65,6 +65,18 @@ const DashboardPage = () => {
   const [groceryChecked, setGroceryChecked] = useState({});
   const [riskAssessment, setRiskAssessment] = useState(null);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  const [selectedMealDay, setSelectedMealDay] = useState(() => {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return days[new Date().getDay()];
+  });
+  const [nutritionistPlan, setNutritionistPlan] = useState(null);
+  
+  // Chat console states
+  const [nutritionist, setNutritionist] = useState(null);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [chatMessages, setChatMessages] = useState([]);
+  const [chatInput, setChatInput] = useState('');
+  const chatEndRef = useRef(null);
 
   const getDashboardWorkouts = () => {
     if (!riskAssessment) return [];
@@ -148,13 +160,15 @@ const DashboardPage = () => {
     const fetchDashboardData = async () => {
       try {
         setLoading(true);
-        const [metricsRes, favsRes, historyRes, recsRes, riskRes, recordRes] = await Promise.all([
+        const [metricsRes, favsRes, historyRes, recsRes, riskRes, recordRes, planRes, nutRes] = await Promise.all([
           api.get('/health/metrics'),
           api.get('/users/favorites').catch(() => ({ data: { data: { favorites: [] } } })),
           api.get('/recommendations/history').catch(() => ({ data: { data: { logs: [] } } })),
           api.post('/recommendations').catch(() => ({ data: { data: { recommendations: [] } } })),
           api.post('/health/risk-assessment').catch(() => ({ data: { data: { riskAssessment: null } } })),
-          api.get('/health/latest-record').catch(() => ({ data: { data: { record: null } } }))
+          api.get('/health/latest-record').catch(() => ({ data: { data: { record: null } } })),
+          api.get('/meal-plans/my-plan').catch(() => ({ data: { data: { mealPlan: null } } })),
+          api.get('/users/nutritionists').catch(() => ({ data: { data: { nutritionists: [] } } }))
         ]);
         
         const activeMetrics = metricsRes.data.data.metrics;
@@ -174,6 +188,13 @@ const DashboardPage = () => {
         if (recordRes.data?.data?.record) {
           setLatestHealthRecord(recordRes.data.data.record);
         }
+
+        if (planRes.data?.data?.mealPlan) {
+          setNutritionistPlan(planRes.data.data.mealPlan);
+        }
+
+        const activeNut = nutRes.data?.data?.nutritionists?.[0] || null;
+        setNutritionist(activeNut);
         
         const recList = recsRes.data?.data?.recommendations || [];
         setRecommendations(recList);
@@ -402,6 +423,51 @@ const DashboardPage = () => {
       </svg>
     );
   };
+
+  const loadChatMessages = async (nutId) => {
+    if (!nutId) return;
+    try {
+      const res = await api.get(`/chat/history/${nutId}`);
+      setChatMessages(res.data.data.messages || []);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleSendChatMessage = async (e) => {
+    if (e) e.preventDefault();
+    if (!chatInput.trim() || !nutritionist) return;
+    const content = chatInput;
+    setChatInput('');
+    try {
+      const res = await api.post('/chat/send', {
+        receiverId: nutritionist._id,
+        content
+      });
+      setChatMessages(prev => [...prev, res.data.data.message]);
+    } catch (e) {
+      toast.error("Failed to send message");
+    }
+  };
+
+  useEffect(() => {
+    let timer;
+    if (isChatOpen && nutritionist) {
+      loadChatMessages(nutritionist._id);
+      timer = setInterval(() => {
+        loadChatMessages(nutritionist._id);
+      }, 4000);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [isChatOpen, nutritionist]);
+
+  useEffect(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [chatMessages]);
 
   // Stagger variants
   const containerVariants = {
@@ -892,6 +958,161 @@ const DashboardPage = () => {
           </div>
         </motion.section>
       )}
+
+      {/* Weekly Meal Plan Schedule Section */}
+      <motion.section variants={itemVariants} className="bg-white dark:bg-slate-900 border border-slate-205/50 dark:border-white/5 rounded-3xl p-6 shadow-xl space-y-6 print:hidden">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div>
+            <h2 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+              <Apple className="text-amber-500 animate-bounce" size={22} />
+              Weekly Meal Plan Schedule
+            </h2>
+            <p className="text-xs text-slate-500 dark:text-slate-450 mt-1">
+              Compare AI-generated diet insights side-by-side with your nutritionist's custom clinical prescription.
+            </p>
+          </div>
+          
+          {/* Day Selector */}
+          <div className="flex flex-wrap gap-1 bg-slate-50 dark:bg-slate-950 p-1 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+            {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day => (
+              <button
+                key={day}
+                onClick={() => setSelectedMealDay(day)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
+                  selectedMealDay === day
+                    ? 'bg-amber-500 text-white shadow-md'
+                    : 'text-slate-500 dark:text-slate-450 hover:bg-slate-100 dark:hover:bg-white/5'
+                }`}
+              >
+                {day.substring(0, 3)}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Side-by-side columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
+          
+          {/* Column 1: AI Generated Daily Recommendations */}
+          <div className="space-y-4 bg-slate-50/50 dark:bg-slate-955/10 p-5 rounded-2xl border border-dashed border-slate-200/80 dark:border-slate-850">
+            <div className="flex items-center justify-between border-b border-slate-200/50 dark:border-slate-850 pb-2">
+              <span className="text-xs font-black text-slate-800 dark:text-slate-250 uppercase tracking-wider flex items-center gap-1">
+                <Sparkles className="text-amber-500 animate-pulse" size={14} /> AI Recommendation Engine
+              </span>
+              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Default Suggestions</span>
+            </div>
+
+            <div className="space-y-3">
+              {['Breakfast', 'Lunch', 'Dinner', 'Snacks'].map(meal => {
+                const matchedFoods = recommendations.filter(r => 
+                  r.meal_type?.some(m => m.toLowerCase() === meal.toLowerCase())
+                ).slice(0, 1);
+
+                return (
+                  <div key={meal} className="bg-white dark:bg-slate-950 p-3.5 border border-slate-200/50 dark:border-white/5 rounded-2xl flex gap-3.5 items-center">
+                    <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0">
+                      <img 
+                        src={matchedFoods.length > 0 ? getFoodImage(matchedFoods[0].food) : "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=150"} 
+                        alt={meal}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex-grow">
+                      <span className="text-[9px] text-amber-500 dark:text-amber-400 font-black uppercase tracking-wider block">{meal}</span>
+                      {matchedFoods.length > 0 ? (
+                        <>
+                          <h4 className="text-xs font-extrabold text-slate-800 dark:text-white mt-0.5">{matchedFoods[0].food}</h4>
+                          <p className="text-[10px] text-slate-400 font-bold mt-1">
+                            {Math.round(matchedFoods[0].calories)} kcal • P: {Math.round(matchedFoods[0].protein)}g • C: {Math.round(matchedFoods[0].carbohydrates)}g
+                          </p>
+                        </>
+                      ) : (
+                        <p className="text-xs font-medium text-slate-400 dark:text-slate-500 italic mt-0.5">Sufficient nutritional balance</p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Column 2: Nutritionist Custom Prescribed Plan */}
+          <div className="space-y-4 bg-slate-50/50 dark:bg-slate-955/10 p-5 rounded-2xl border border-dashed border-slate-200/80 dark:border-slate-850">
+            <div className="flex items-center justify-between border-b border-slate-200/50 dark:border-slate-850 pb-2">
+              <span className="text-xs font-black text-slate-800 dark:text-slate-250 uppercase tracking-wider flex items-center gap-1">
+                <Heart className="text-rose-500 animate-pulse" size={14} /> Clinician Custom Prescription
+              </span>
+              {nutritionistPlan && (
+                <span className="text-[10px] text-rose-500 font-black uppercase">Dr. Arun Kumar</span>
+              )}
+            </div>
+
+            {!nutritionistPlan ? (
+              <div className="h-full min-h-[260px] flex flex-col items-center justify-center text-center p-6 space-y-4 bg-white dark:bg-slate-950 rounded-2xl border border-slate-200/50 dark:border-white/5">
+                <div className="w-12 h-12 bg-slate-100 dark:bg-white/5 rounded-full flex items-center justify-center text-slate-400">
+                  <Heart size={20} />
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-xs font-extrabold text-slate-800 dark:text-white">No Prescribed Plan Yet</h4>
+                  <p className="text-[10px] text-slate-500 max-w-[220px] mx-auto leading-relaxed">
+                    Book a consultation with our certified nutritionist to receive a clinical diet prescription.
+                  </p>
+                </div>
+                <Link 
+                  to="/doctors" 
+                  className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 text-[10px] font-black rounded-xl transition-all cursor-pointer"
+                >
+                  Find Nutritionist
+                </Link>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {['breakfast', 'lunch', 'dinner', 'snacks'].map(meal => {
+                  const prescribedFoods = nutritionistPlan.weekPlan?.[selectedMealDay]?.[meal] || [];
+
+                  return (
+                    <div key={meal} className="bg-white dark:bg-slate-950 p-3.5 border border-slate-200/50 dark:border-white/5 rounded-2xl flex gap-3.5 items-center">
+                      <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-slate-100 dark:bg-white/5 flex items-center justify-center">
+                        {prescribedFoods.length > 0 ? (
+                          <img 
+                            src={getFoodImage(prescribedFoods[0].name)} 
+                            alt={meal}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <Heart size={16} className="text-slate-300 dark:text-slate-700" />
+                        )}
+                      </div>
+                      <div className="flex-grow">
+                        <span className="text-[9px] text-rose-500 dark:text-rose-450 font-black uppercase tracking-wider block">{meal}</span>
+                        {prescribedFoods.length > 0 ? (
+                          <>
+                            <h4 className="text-xs font-extrabold text-slate-800 dark:text-white mt-0.5">{prescribedFoods[0].name}</h4>
+                            <p className="text-[10px] text-slate-400 font-bold mt-1">
+                              {prescribedFoods[0].calories} kcal • P: {prescribedFoods[0].protein}g • C: {prescribedFoods[0].carbohydrates}g
+                            </p>
+                          </>
+                        ) : (
+                          <p className="text-xs font-bold text-slate-450 dark:text-slate-500 italic mt-0.5">Follow AI recommendation on left</p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+                
+                {/* Notes if any */}
+                {nutritionistPlan.notes && (
+                  <div className="p-3 bg-amber-500/5 border border-amber-500/10 rounded-xl">
+                    <span className="text-[8px] text-amber-600 dark:text-amber-400 font-black uppercase block tracking-wider mb-1">Clinician Advice Remarks</span>
+                    <p className="text-[10px] text-slate-700 dark:text-slate-300 font-bold italic leading-relaxed">"{nutritionistPlan.notes}"</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+        </div>
+      </motion.section>
 
       {/* Filters Area */}
       <motion.section variants={itemVariants} className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
@@ -1448,6 +1669,102 @@ const DashboardPage = () => {
           </div>
         )}
       </AnimatePresence>
+
+      {/* Floating Chat Widget */}
+      {nutritionist && (
+        <div className="fixed bottom-6 right-6 z-50 font-sans print:hidden">
+          {/* Toggle Button */}
+          <button 
+            onClick={() => setIsChatOpen(!isChatOpen)}
+            className="w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 transform active:scale-90 hover:scale-105"
+            title="Chat with your Nutritionist"
+          >
+            {isChatOpen ? <X size={24} /> : <MessageSquare size={24} />}
+          </button>
+
+          {/* Chat Window */}
+          {isChatOpen && (
+            <div className="absolute bottom-18 right-0 w-[330px] sm:w-[350px] bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-white/5 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[420px] animate-in slide-in-from-bottom-5 fade-in duration-200">
+              {/* Header */}
+              <div className="p-4 bg-slate-50 dark:bg-slate-950 border-b border-slate-100 dark:border-white/5 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center font-black text-xs">
+                    {nutritionist.name[0].toUpperCase()}
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-black text-slate-900 dark:text-white">{nutritionist.name}</h4>
+                    <span className="text-[9px] text-emerald-500 font-extrabold uppercase flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" /> Active Clinician
+                    </span>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setIsChatOpen(false)}
+                  className="text-slate-400 hover:text-slate-650"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+
+              {/* Message Timeline */}
+              <div className="flex-grow overflow-y-auto p-4 space-y-3.5 scrollbar-thin">
+                {chatMessages.length === 0 ? (
+                  <div className="h-full flex flex-col items-center justify-center text-center text-slate-450 font-bold p-6">
+                    <MessageSquare size={24} className="text-slate-250 mb-1" />
+                    <p className="text-[9px]">Send a message to start consulting with {nutritionist.name}!</p>
+                  </div>
+                ) : (
+                  chatMessages.map(msg => {
+                    const isMe = msg.senderId === user.id;
+                    return (
+                      <div key={msg._id} className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}>
+                        <div className={`max-w-[75%] p-3 rounded-2xl text-[11px] font-bold leading-relaxed ${
+                          isMe 
+                            ? 'bg-amber-500 text-white rounded-tr-none shadow-sm' 
+                            : 'bg-slate-55 dark:bg-slate-950 text-slate-800 dark:text-slate-200 rounded-tl-none border border-slate-200/50 dark:border-white/5'
+                        }`}>
+                          {msg.content.includes('http') ? (
+                            <p>
+                              Clinical video consultation link initiated.<br />
+                              <a href={msg.content.split(' ').pop()} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 px-3 py-1.5 bg-emerald-500 text-white font-black rounded-lg hover:bg-emerald-600 transition-all uppercase tracking-wide text-[9px] cursor-pointer">
+                                Join Video Consult
+                              </a>
+                            </p>
+                          ) : (
+                            msg.content
+                          )}
+                          <span className="block text-[7px] text-right mt-1 opacity-70 font-semibold">
+                            {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
+                <div ref={chatEndRef} />
+              </div>
+
+              {/* Form Input */}
+              <form onSubmit={handleSendChatMessage} className="p-3 bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-white/5 flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Type message to nutritionist..."
+                  value={chatInput}
+                  onChange={e => setChatInput(e.target.value)}
+                  className="flex-grow px-3 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-800 dark:text-slate-150 outline-none"
+                />
+                <button
+                  type="submit"
+                  className="p-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl transition-all cursor-pointer"
+                >
+                  <Send size={14} />
+                </button>
+              </form>
+
+            </div>
+          )}
+        </div>
+      )}
     </motion.div>
   );
 };

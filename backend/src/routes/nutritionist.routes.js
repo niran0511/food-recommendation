@@ -4,6 +4,7 @@ const User = require('../models/User');
 const Notification = require('../models/Notification');
 const Appointment = require('../models/Appointment');
 const { protect, authorize } = require('../middleware/auth');
+const { getAICopilotAdvice } = require('../controllers/aiCopilot.controller');
 
 const router = express.Router();
 
@@ -104,5 +105,8 @@ router.get('/users', async (req, res) => {
         res.status(500).json({ success: false, message: 'Server error' });
     }
 });
+
+// 3. AI Copilot diagnostic advice helper
+router.post('/ai-copilot', getAICopilotAdvice);
 
 module.exports = router;

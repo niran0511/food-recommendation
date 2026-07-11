@@ -1,16 +1,22 @@
 const mongoose = require('mongoose');
 
-const MealItemSchema = new mongoose.Schema({
-    foodId: {
+const MealDaySchema = new mongoose.Schema({
+    breakfast: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Food'
-    },
-    name: String,
-    calories: Number,
-    protein: Number,
-    carbs: Number,
-    fat: Number,
-    image: String
+    }],
+    lunch: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Food'
+    }],
+    dinner: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Food'
+    }],
+    snacks: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Food'
+    }]
 }, { _id: false });
 
 const MealPlanSchema = new mongoose.Schema({
@@ -19,34 +25,21 @@ const MealPlanSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    date: {
-        type: Date,
-        default: Date.now
-    },
-    type: {
-        type: String,
-        enum: ['daily', 'weekly'],
+    doctorId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
-    meals: {
-        breakfast: [MealItemSchema],
-        lunch: [MealItemSchema],
-        dinner: [MealItemSchema],
-        snacks: [MealItemSchema]
+    weekPlan: {
+        Monday: { type: MealDaySchema, default: () => ({ breakfast: [], lunch: [], dinner: [], snacks: [] }) },
+        Tuesday: { type: MealDaySchema, default: () => ({ breakfast: [], lunch: [], dinner: [], snacks: [] }) },
+        Wednesday: { type: MealDaySchema, default: () => ({ breakfast: [], lunch: [], dinner: [], snacks: [] }) },
+        Thursday: { type: MealDaySchema, default: () => ({ breakfast: [], lunch: [], dinner: [], snacks: [] }) },
+        Friday: { type: MealDaySchema, default: () => ({ breakfast: [], lunch: [], dinner: [], snacks: [] }) },
+        Saturday: { type: MealDaySchema, default: () => ({ breakfast: [], lunch: [], dinner: [], snacks: [] }) },
+        Sunday: { type: MealDaySchema, default: () => ({ breakfast: [], lunch: [], dinner: [], snacks: [] }) }
     },
-    totalCalories: Number,
-    totalProtein: Number,
-    totalCarbs: Number,
-    totalFat: Number,
-    weeklyPlan: [{
-        day: String,
-        meals: {
-            breakfast: [MealItemSchema],
-            lunch: [MealItemSchema],
-            dinner: [MealItemSchema],
-            snacks: [MealItemSchema]
-        }
-    }]
+    notes: String
 }, {
     timestamps: true
 });
