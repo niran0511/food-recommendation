@@ -1,5 +1,5 @@
 const express = require('express');
-const { createOrUpdateMealPlan, getPatientMealPlan, getMyMealPlan } = require('../controllers/mealPlan.controller');
+const { createOrUpdateMealPlan, getPatientMealPlan, getMyMealPlan } = require('../controllers/mealplan.controller');
 const { protect, authorize } = require('../middleware/auth');
 
 const router = express.Router();

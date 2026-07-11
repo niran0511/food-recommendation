@@ -6,7 +6,8 @@ import {
   Activity, Apple, ChevronRight, Droplets, Flame, 
   TrendingUp, Award, Heart, ShieldAlert, BookOpen, Clock,
   Search, Mic, Image, Sparkles, Filter, CheckCircle, ShieldX,
-  FileText, Plus, BarChart2, Star, PlusCircle, ArrowRight, Check, CheckSquare, Square
+  FileText, Plus, BarChart2, Star, PlusCircle, ArrowRight, Check, CheckSquare, Square,
+  X, MessageSquare, Send
 } from 'lucide-react';
 import { getFoodImage, getRecipeDetails } from '../utils/recipeHelper';
 import toast from 'react-hot-toast';
@@ -77,6 +78,51 @@ const DashboardPage = () => {
   const [chatMessages, setChatMessages] = useState([]);
   const [chatInput, setChatInput] = useState('');
   const chatEndRef = useRef(null);
+
+  const loadChatMessages = async (nutId) => {
+    if (!nutId) return;
+    try {
+      const res = await api.get(`/chat/history/${nutId}`);
+      setChatMessages(res.data.data.messages || []);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleSendChatMessage = async (e) => {
+    if (e) e.preventDefault();
+    if (!chatInput.trim() || !nutritionist) return;
+    const content = chatInput;
+    setChatInput('');
+    try {
+      const res = await api.post('/chat/send', {
+        receiverId: nutritionist._id,
+        content
+      });
+      setChatMessages(prev => [...prev, res.data.data.message]);
+    } catch (e) {
+      toast.error("Failed to send message");
+    }
+  };
+
+  useEffect(() => {
+    let timer;
+    if (isChatOpen && nutritionist) {
+      loadChatMessages(nutritionist._id);
+      timer = setInterval(() => {
+        loadChatMessages(nutritionist._id);
+      }, 4000);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [isChatOpen, nutritionist]);
+
+  useEffect(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [chatMessages]);
 
   const getDashboardWorkouts = () => {
     if (!riskAssessment) return [];
@@ -423,51 +469,6 @@ const DashboardPage = () => {
       </svg>
     );
   };
-
-  const loadChatMessages = async (nutId) => {
-    if (!nutId) return;
-    try {
-      const res = await api.get(`/chat/history/${nutId}`);
-      setChatMessages(res.data.data.messages || []);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const handleSendChatMessage = async (e) => {
-    if (e) e.preventDefault();
-    if (!chatInput.trim() || !nutritionist) return;
-    const content = chatInput;
-    setChatInput('');
-    try {
-      const res = await api.post('/chat/send', {
-        receiverId: nutritionist._id,
-        content
-      });
-      setChatMessages(prev => [...prev, res.data.data.message]);
-    } catch (e) {
-      toast.error("Failed to send message");
-    }
-  };
-
-  useEffect(() => {
-    let timer;
-    if (isChatOpen && nutritionist) {
-      loadChatMessages(nutritionist._id);
-      timer = setInterval(() => {
-        loadChatMessages(nutritionist._id);
-      }, 4000);
-    }
-    return () => {
-      if (timer) clearInterval(timer);
-    };
-  }, [isChatOpen, nutritionist]);
-
-  useEffect(() => {
-    if (chatEndRef.current) {
-      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [chatMessages]);
 
   // Stagger variants
   const containerVariants = {
