@@ -111,7 +111,8 @@ const NutritionistPage = () => {
   const loadAppointments = async () => {
     try {
       const res = await api.get('/appointments/nutritionist');
-      setAppointments(res.data.data || []);
+      const data = res.data?.data;
+      setAppointments(Array.isArray(data) ? data : []);
     } catch (e) {
       toast.error("Failed to load appointments");
     }
@@ -120,7 +121,8 @@ const NutritionistPage = () => {
   const loadUsers = async () => {
     try {
       const res = await api.get('/nutritionist/users', { params: { limit: 100, search: userSearch || undefined } });
-      setUsers(res.data.data.users || []);
+      const usersData = res.data?.data?.users;
+      setUsers(Array.isArray(usersData) ? usersData : []);
     } catch (e) {
       toast.error("Failed to load patients list");
     }
@@ -129,7 +131,8 @@ const NutritionistPage = () => {
   const loadUserRecords = async (userId) => {
     try {
       const res = await api.get(`/health/records`, { params: { userId } });
-      setUserRecords(res.data.data.records || []);
+      const records = res.data?.data?.records;
+      setUserRecords(Array.isArray(records) ? records : []);
     } catch (e) {
       toast.error("Failed to load user health updates");
     }
@@ -138,7 +141,7 @@ const NutritionistPage = () => {
   const loadIntakeData = async (userId) => {
     try {
       const res = await api.get(`/intake/patient/${userId}`);
-      setPatientIntake(res.data.data.questionnaire || null);
+      setPatientIntake(res.data?.data?.questionnaire || null);
     } catch (e) {
       console.error(e);
     }
@@ -147,7 +150,7 @@ const NutritionistPage = () => {
   const loadPatientMealPlan = async (userId) => {
     try {
       const res = await api.get(`/meal-plans/patient/${userId}`);
-      if (res.data.data.mealPlan) {
+      if (res.data?.data?.mealPlan) {
         const plan = res.data.data.mealPlan;
         setWeeklyPlan(plan.weekPlan || {
           Monday: { breakfast: [], lunch: [], dinner: [], snacks: [] },
@@ -180,7 +183,8 @@ const NutritionistPage = () => {
     if (!userId) return;
     try {
       const res = await api.get(`/chat/history/${userId}`);
-      setChatMessages(res.data.data.messages || []);
+      const msgs = res.data?.data?.messages;
+      setChatMessages(Array.isArray(msgs) ? msgs : []);
     } catch (e) {
       console.error(e);
     }
@@ -189,7 +193,8 @@ const NutritionistPage = () => {
   const loadAvailableFoods = async () => {
     try {
       const res = await api.get('/foods');
-      setAvailableFoods(res.data.data.foods || []);
+      const foods = res.data?.data?.foods;
+      setAvailableFoods(Array.isArray(foods) ? foods : []);
     } catch (e) {
       console.error(e);
     }
@@ -303,7 +308,8 @@ const NutritionistPage = () => {
         receiverId: selectedUser._id,
         content
       });
-      setChatMessages(prev => [...prev, res.data.data.message]);
+      const msgData = res.data?.data?.message;
+      if (msgData) setChatMessages(prev => [...prev, msgData]);
     } catch (e) {
       toast.error("Failed to send message");
     }
@@ -425,8 +431,8 @@ const NutritionistPage = () => {
     }
   }, [chatMessages]);
 
-  const filteredFoods = availableFoods.filter(f => 
-    f.name.toLowerCase().includes(foodSearchQuery.toLowerCase()) ||
+  const filteredFoods = (Array.isArray(availableFoods) ? availableFoods : []).filter(f => 
+    f.name?.toLowerCase().includes(foodSearchQuery.toLowerCase()) ||
     f.category?.toLowerCase().includes(foodSearchQuery.toLowerCase())
   );
 
@@ -630,7 +636,7 @@ const NutritionistPage = () => {
                 </div>
 
                 <div className="bg-slate-900 border border-slate-800 rounded-2xl p-2 space-y-1 max-h-[60vh] overflow-y-auto">
-                  {users.filter(u => u.role !== 'admin' && u.role !== 'nutritionist').map(u => (
+                  {(Array.isArray(users) ? users : []).filter(u => u.role !== 'admin' && u.role !== 'nutritionist').map(u => (
                     <button
                       key={u._id}
                       onClick={() => handleUserClick(u)}
