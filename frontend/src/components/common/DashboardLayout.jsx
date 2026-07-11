@@ -43,8 +43,19 @@ const DashboardLayout = () => {
 
   const handleMarkAsRead = async (id) => {
     try {
+      const n = notifications.find(x => x._id === id);
       await api.put(`/notifications/${id}/read`);
-      setNotifications(prev => prev.map(n => n._id === id ? { ...n, isRead: true } : n));
+      setNotifications(prev => prev.map(item => item._id === id ? { ...item, isRead: true } : item));
+      setIsNotificationsOpen(false);
+
+      if (n) {
+        const title = n.title.toLowerCase();
+        if (title.includes('profile') || title.includes('health') || title.includes('record')) {
+          navigate('/health-risk');
+        } else if (title.includes('appointment') || title.includes('booking') || title.includes('consult')) {
+          navigate('/doctors');
+        }
+      }
     } catch (err) {
       console.error(err);
     }
@@ -52,11 +63,7 @@ const DashboardLayout = () => {
 
   const handleClearAll = async () => {
     try {
-      for (const n of notifications) {
-        if (!n.isRead) {
-          await api.put(`/notifications/${n._id}/read`);
-        }
-      }
+      await api.put('/notifications/read-all');
       setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
     } catch (err) {
       console.error(err);
