@@ -189,7 +189,7 @@ const NutritionistPage = () => {
   const loadAvailableFoods = async () => {
     try {
       const res = await api.get('/foods');
-      setAvailableFoods(res.data.data || []);
+      setAvailableFoods(res.data.data.foods || []);
     } catch (e) {
       console.error(e);
     }
