@@ -277,7 +277,11 @@ exports.saveHealthRecord = async (req, res, next) => {
 
 exports.getHealthRecords = async (req, res, next) => {
     try {
-        const records = await HealthRecord.find({ userId: req.user.id }).sort('-date');
+        let queryUserId = req.user.id;
+        if ((req.user.role === 'nutritionist' || req.user.role === 'admin') && req.query.userId) {
+            queryUserId = req.query.userId;
+        }
+        const records = await HealthRecord.find({ userId: queryUserId }).sort('-date');
         res.status(200).json(new ApiResponse(200, { records }));
     } catch (error) {
         next(error);
@@ -286,7 +290,11 @@ exports.getHealthRecords = async (req, res, next) => {
 
 exports.getLatestHealthRecord = async (req, res, next) => {
     try {
-        const record = await HealthRecord.findOne({ userId: req.user.id }).sort('-date');
+        let queryUserId = req.user.id;
+        if ((req.user.role === 'nutritionist' || req.user.role === 'admin') && req.query.userId) {
+            queryUserId = req.query.userId;
+        }
+        const record = await HealthRecord.findOne({ userId: queryUserId }).sort('-date');
         res.status(200).json(new ApiResponse(200, { record }));
     } catch (error) {
         next(error);
