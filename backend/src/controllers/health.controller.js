@@ -198,7 +198,14 @@ exports.getRiskAssessment = async (req, res, next) => {
         }
 
         // Apply Nutritionist Health Record overrides and calculations
-        if (latestRecord) {
+        if (latestRecord && riskAssessment) {
+            if (!riskAssessment.risk_factors || !Array.isArray(riskAssessment.risk_factors)) {
+                riskAssessment.risk_factors = [];
+            }
+            if (!riskAssessment.recommendations || !Array.isArray(riskAssessment.recommendations)) {
+                riskAssessment.recommendations = [];
+            }
+
             if (latestRecord.healthScore) {
                 riskAssessment.overall_health_score = latestRecord.healthScore;
             }
