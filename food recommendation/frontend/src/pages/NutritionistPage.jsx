@@ -27,21 +27,21 @@ const NutritionistPage = () => {
   // Record Form state
   const [recordModalOpen, setRecordModalOpen] = useState(false);
   const [recordFormData, setRecordFormData] = useState({
-    weight: '',
+    weight: '76',
     caloriesConsumed: '2000',
     caloriesTarget: '2200',
     waterIntake: '2.5',
-    healthScore: '85',
-    notes: '',
-    bloodPressureSystolic: '',
-    bloodPressureDiastolic: '',
-    bloodSugarLevel: '',
-    heartRate: '',
-    cholesterolLevel: '',
+    healthScore: '80',
+    notes: 'Patient has elevated blood pressure and fasting blood glucose. Advised to reduce sodium intake, avoid simple carbs, and walk for 30 minutes daily. Will monitor vitals weekly.',
+    bloodPressureSystolic: '135',
+    bloodPressureDiastolic: '85',
+    bloodSugarLevel: '115',
+    heartRate: '72',
+    cholesterolLevel: '210',
     sleepHours: '8',
     exerciseMinutes: '30',
     mood: 'Good',
-    medications: '',
+    medications: 'Metformin 500mg daily, Omega-3 supplements',
     dietaryCompliance: 'Excellent'
   });
 
@@ -100,21 +100,21 @@ const NutritionistPage = () => {
       toast.success("Health record logged successfully!");
       setRecordModalOpen(false);
       setRecordFormData({
-        weight: '',
+        weight: '76',
         caloriesConsumed: '2000',
         caloriesTarget: '2200',
         waterIntake: '2.5',
-        healthScore: '85',
-        notes: '',
-        bloodPressureSystolic: '',
-        bloodPressureDiastolic: '',
-        bloodSugarLevel: '',
-        heartRate: '',
-        cholesterolLevel: '',
+        healthScore: '80',
+        notes: 'Patient has elevated blood pressure and fasting blood glucose. Advised to reduce sodium intake, avoid simple carbs, and walk for 30 minutes daily. Will monitor vitals weekly.',
+        bloodPressureSystolic: '135',
+        bloodPressureDiastolic: '85',
+        bloodSugarLevel: '115',
+        heartRate: '72',
+        cholesterolLevel: '210',
         sleepHours: '8',
         exerciseMinutes: '30',
         mood: 'Good',
-        medications: '',
+        medications: 'Metformin 500mg daily, Omega-3 supplements',
         dietaryCompliance: 'Excellent'
       });
       // reload health records for selected user
