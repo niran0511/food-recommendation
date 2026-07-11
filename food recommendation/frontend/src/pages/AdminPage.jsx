@@ -76,16 +76,16 @@ const AdminPage = () => {
   const [nutritionists, setNutritionists] = useState([]);
   const [nutritionistModalOpen, setNutritionistModalOpen] = useState(false);
   const [nutritionistFormData, setNutritionistFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    specialty: '',
-    experience: '',
-    bio: '',
-    location: '',
-    phone: '',
-    availability: '',
-    avatar: ''
+    name: 'Dr. Arun Kumar',
+    email: 'arun@gmail.com',
+    password: 'password123',
+    specialty: 'Clinical Nutrition & Diabetes',
+    experience: '5 years experience',
+    bio: 'Dr. Arun is a dedicated Clinical Dietitian and Nutritionist specializing in metabolic health and diabetes management. With over 4 years of experience, he focuses on designing custom low-glycemic meal plans that assist patients in regulating insulin sensitivity, reversing pre-diabetes, and achieving sustainable lifestyle transformations.',
+    location: 'Suite 405, Wellness Wing',
+    phone: '+1 (555) 019-2834',
+    availability: 'Mon, Wed, Fri (9am - 3pm)',
+    avatar: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600'
   });
 
   // Search & pagination
@@ -331,16 +331,16 @@ const AdminPage = () => {
       toast.success("Nutritionist added successfully!");
       setNutritionistModalOpen(false);
       setNutritionistFormData({
-        name: '',
-        email: '',
-        password: '',
-        specialty: '',
-        experience: '',
-        bio: '',
-        location: '',
-        phone: '',
-        availability: '',
-        avatar: ''
+        name: 'Dr. Arun Kumar',
+        email: 'arun@gmail.com',
+        password: 'password123',
+        specialty: 'Clinical Nutrition & Diabetes',
+        experience: '5 years experience',
+        bio: 'Dr. Arun is a dedicated Clinical Dietitian and Nutritionist specializing in metabolic health and diabetes management. With over 4 years of experience, he focuses on designing custom low-glycemic meal plans that assist patients in regulating insulin sensitivity, reversing pre-diabetes, and achieving sustainable lifestyle transformations.',
+        location: 'Suite 405, Wellness Wing',
+        phone: '+1 (555) 019-2834',
+        availability: 'Mon, Wed, Fri (9am - 3pm)',
+        avatar: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600'
       });
       fetchNutritionists();
     } catch (err) {
