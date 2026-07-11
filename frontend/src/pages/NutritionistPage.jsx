@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { 
   Users, Stethoscope, Clock, Heart, Trash2, Calendar, 
   Check, X, Loader, Search, Key, ChevronRight, Activity, Plus,
-  MessageSquare, Video, ClipboardList, Utensils, Sparkles, Send, Trash, ArrowRight
+  MessageSquare, Video, ClipboardList, Utensils, Sparkles, Send, Trash, ArrowRight, BarChart2
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
