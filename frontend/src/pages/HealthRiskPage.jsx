@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { 
-  ShieldAlert, Activity, Heart, Award, ArrowLeft, Loader2, 
-  CheckCircle2, ChevronRight, Eye, Download, Printer, Search 
+  ShieldAlert, Activity, Heart, ArrowLeft, Loader2, 
+  ChevronRight, Eye, Download, Printer, Search, X 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -14,6 +14,7 @@ const HealthRiskPage = () => {
   const [records, setRecords] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -306,8 +307,11 @@ PRESCRIPTIONS & ADVICE:
                     filteredRecords.map(r => (
                       <tr 
                         key={r._id} 
-                        onClick={() => setSelectedRecord(r)}
-                        className={`hover:bg-slate-50 dark:hover:bg-white/5 transition-colors cursor-pointer ${selectedRecord?._id === r._id ? 'bg-amber-50/20 dark:bg-amber-950/10' : ''}`}
+                        onClick={() => {
+                          setSelectedRecord(r);
+                          setIsModalOpen(true);
+                        }}
+                        className={`hover:bg-slate-50 dark:hover:bg-white/5 transition-colors cursor-pointer ${selectedRecord?._id === r._id ? 'bg-amber-50/20 dark:bg-amber-955/10' : ''}`}
                       >
                         <td className="p-3 text-slate-500">{new Date(r.date).toLocaleDateString()}</td>
                         <td className="p-3 text-slate-900 dark:text-white font-extrabold">Health Update</td>
@@ -316,22 +320,25 @@ PRESCRIPTIONS & ADVICE:
                         <td className="p-3 text-slate-500">{new Date(r.updatedAt || r.date).toLocaleDateString()}</td>
                         <td className="p-3 text-right space-x-2.5 print:hidden" onClick={(e) => e.stopPropagation()}>
                           <button 
-                            onClick={() => setSelectedRecord(r)}
-                            className="p-1.5 bg-slate-100 dark:bg-white/5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 dark:hover:text-slate-950 transition-all cursor-pointer"
+                            onClick={() => {
+                              setSelectedRecord(r);
+                              setIsModalOpen(true);
+                            }}
+                            className="p-1.5 bg-slate-100 dark:bg-white/5 rounded-lg text-slate-555 dark:text-slate-400 hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 dark:hover:text-slate-955 transition-all cursor-pointer"
                             title="View Report"
                           >
                             <Eye size={13} />
                           </button>
                           <button 
                             onClick={() => handleDownloadReport(r)}
-                            className="p-1.5 bg-slate-100 dark:bg-white/5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-emerald-500 hover:text-white dark:hover:bg-emerald-500 dark:hover:text-white transition-all cursor-pointer"
+                            className="p-1.5 bg-slate-100 dark:bg-white/5 rounded-lg text-slate-555 dark:text-slate-400 hover:bg-emerald-500 hover:text-white dark:hover:bg-emerald-500 dark:hover:text-white transition-all cursor-pointer"
                             title="Download TXT Report"
                           >
                             <Download size={13} />
                           </button>
                           <button 
                             onClick={() => handlePrintRecord(r)}
-                            className="p-1.5 bg-slate-100 dark:bg-white/5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-rose-500 hover:text-white dark:hover:bg-rose-500 dark:hover:text-white transition-all cursor-pointer"
+                            className="p-1.5 bg-slate-100 dark:bg-white/5 rounded-lg text-slate-555 dark:text-slate-400 hover:bg-rose-500 hover:text-white dark:hover:bg-rose-500 dark:hover:text-white transition-all cursor-pointer"
                             title="Print Report"
                           >
                             <Printer size={13} />
@@ -354,7 +361,7 @@ PRESCRIPTIONS & ADVICE:
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Obesity Risk */}
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-850 space-y-4">
+              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-955/40 border border-slate-200/50 dark:border-slate-850 space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider">Obesity Index</span>
                   <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase border ${getRiskLabel(riskData.obesity_risk).class}`}>
@@ -518,11 +525,11 @@ PRESCRIPTIONS & ADVICE:
                 <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-3 rounded-2xl border border-slate-200/40 dark:border-slate-850">
                   <span className="text-slate-400 uppercase text-[9px] font-bold block">Overrides & Meds</span>
                   <div className="space-y-1.5">
-                    <p className="flex justify-between"><span>Calorie Target:</span> <strong className="text-emerald-605 dark:text-emerald-450">{selectedRecord.caloriesTarget ? `${selectedRecord.caloriesTarget} kcal` : 'N/A'}</strong></p>
+                    <p className="flex justify-between"><span>Calorie Target:</span> <strong className="text-emerald-600 dark:text-emerald-450">{selectedRecord.caloriesTarget ? `${selectedRecord.caloriesTarget} kcal` : 'N/A'}</strong></p>
                     <p className="flex justify-between"><span>Calories Consumed:</span> <strong className="text-slate-900 dark:text-slate-100">{selectedRecord.caloriesConsumed ? `${selectedRecord.caloriesConsumed} kcal` : 'N/A'}</strong></p>
                     <p className="flex flex-col gap-0.5 pt-1">
                       <span className="text-slate-500">Medications:</span>
-                      <strong className="text-slate-900 dark:text-slate-200 font-bold block bg-white dark:bg-slate-950 p-2.5 rounded-xl border border-slate-200/30 dark:border-white/5">{selectedRecord.medications || 'None'}</strong>
+                      <strong className="text-slate-900 dark:text-slate-200 font-bold block bg-white dark:bg-slate-955 p-2.5 rounded-xl border border-slate-200/30 dark:border-white/5">{selectedRecord.medications || 'None'}</strong>
                     </p>
                   </div>
                 </div>
@@ -530,7 +537,7 @@ PRESCRIPTIONS & ADVICE:
                 {/* Advice Notes */}
                 <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-3 rounded-2xl border border-slate-200/40 dark:border-slate-850">
                   <span className="text-slate-400 uppercase text-[9px] font-bold block">Clinician Diagnostics Notes</span>
-                  <p className="bg-white dark:bg-slate-950 p-3 rounded-xl border border-slate-200/40 dark:border-white/5 leading-relaxed font-bold italic text-slate-800 dark:text-slate-200 text-[11px] shadow-sm">
+                  <p className="bg-white dark:bg-slate-955 p-3 rounded-xl border border-slate-200/40 dark:border-white/5 leading-relaxed font-bold italic text-slate-800 dark:text-slate-200 text-[11px] shadow-sm">
                     "{selectedRecord.notes || 'No notes logged.'}"
                   </p>
                 </div>
@@ -577,7 +584,7 @@ PRESCRIPTIONS & ADVICE:
               <span className="inline-block px-3 py-1 bg-slate-100 border border-slate-200 text-[10px] font-black uppercase text-slate-800 rounded">
                 Official Health Summary
               </span>
-              <p className="text-[10px] text-slate-500 font-bold mt-1">Report Ref: NA-{selectedRecord._id?.substring(18).toUpperCase()}</p>
+              <p className="text-[10px] text-slate-555 font-bold mt-1">Report Ref: NA-{selectedRecord._id?.substring(18).toUpperCase()}</p>
               <p className="text-[9px] text-slate-400">Date: {new Date(selectedRecord.date).toLocaleString()}</p>
             </div>
           </div>
@@ -714,6 +721,205 @@ PRESCRIPTIONS & ADVICE:
               <p className="text-[10px] font-black text-slate-900">Dr. Arun Kumar</p>
               <p className="text-[9px] text-slate-500">Certified Clinical Nutritionist (CCN)</p>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Detailed Clinical Report Modal Overlay */}
+      {isModalOpen && selectedRecord && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm transition-all duration-300">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200/65 dark:border-white/5 w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transition-all duration-500 scale-100">
+            {/* Modal Header */}
+            <div className="flex justify-between items-center px-6 py-4 border-b border-slate-100 dark:border-white/5 bg-slate-50 dark:bg-slate-950">
+              <div className="flex items-center gap-2">
+                <Heart className="text-rose-500 animate-pulse" size={18} />
+                <span className="text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">
+                  Detailed Medical Report Summary
+                </span>
+              </div>
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="p-1.5 bg-slate-200/50 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 text-slate-500 dark:text-slate-400 rounded-xl transition-all cursor-pointer"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 space-y-6 overflow-y-auto text-xs font-semibold text-slate-700 dark:text-slate-350">
+              
+              {/* Lab Header */}
+              <div className="flex justify-between items-center border-b border-slate-100 dark:border-white/5 pb-4">
+                <div>
+                  <h1 className="text-base font-extrabold text-slate-900 dark:text-white uppercase">NutriAI Medical Center</h1>
+                  <p className="text-[9px] text-slate-450 uppercase tracking-wider font-bold">Clinical Nutrition & Diagnostics Division</p>
+                  <p className="text-[9px] text-slate-400 font-medium">121 Wellness Blvd, Suite 400 • Tel: +1 (555) 019-2834</p>
+                </div>
+                <div className="text-right">
+                  <span className="inline-block px-2.5 py-0.5 bg-emerald-500/10 text-emerald-500 text-[8px] font-black uppercase rounded-full">
+                    Official Release
+                  </span>
+                  <p className="text-[9px] text-slate-400 font-bold mt-1">Ref: NA-{selectedRecord._id?.substring(18).toUpperCase()}</p>
+                  <p className="text-[9px] text-slate-400 font-medium">Date: {new Date(selectedRecord.date).toLocaleString()}</p>
+                </div>
+              </div>
+
+              {/* Patient details */}
+              <div className="grid grid-cols-2 gap-4 bg-slate-50 dark:bg-slate-950 p-4 border border-slate-200/40 dark:border-slate-850 rounded-2xl">
+                <div className="space-y-1">
+                  <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Patient Info</p>
+                  <p className="text-xs font-black text-slate-900 dark:text-white">Name: Niranjan S</p>
+                  <p className="text-[10px] text-slate-550 dark:text-slate-400 font-medium">Email: {user?.email || '127003173@sastra.ac.in'}</p>
+                  <p className="text-[10px] text-slate-550 dark:text-slate-400 font-medium">Age / Gender: 21 yrs / Male</p>
+                </div>
+                <div className="space-y-1 text-right">
+                  <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Clinician assessment</p>
+                  <p className="text-[10px] text-slate-550 dark:text-slate-450 font-bold">Height: 175 cm</p>
+                  <p className="text-[10px] text-slate-550 dark:text-slate-455 font-bold">Weight: {selectedRecord.weight || '76'} kg</p>
+                  <p className="text-[10px] text-slate-900 dark:text-white font-black">BMI Status: 24.8 (Normal)</p>
+                </div>
+              </div>
+
+              {/* Vitals Summary */}
+              <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+                <span className="text-slate-400 uppercase text-[9px] font-bold block border-b border-slate-200/40 dark:border-slate-850 pb-1.5 mb-2">Clinical Vitals Assessment</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
+                  <p className="flex justify-between items-center border-b border-slate-100/50 dark:border-white/5 py-1">
+                    <span>Fasting Blood Glucose:</span> 
+                    <strong className={getSugarStatus(selectedRecord.bloodSugarLevel).class}>
+                      {getSugarStatus(selectedRecord.bloodSugarLevel).text}
+                    </strong>
+                  </p>
+                  <p className="flex justify-between items-center border-b border-slate-100/50 dark:border-white/5 py-1">
+                    <span>Blood Pressure:</span> 
+                    <strong className={getBPStatus(selectedRecord.bloodPressureSystolic, selectedRecord.bloodPressureDiastolic).class}>
+                      {getBPStatus(selectedRecord.bloodPressureSystolic, selectedRecord.bloodPressureDiastolic).text}
+                    </strong>
+                  </p>
+                  <p className="flex justify-between items-center border-b border-slate-100/50 dark:border-white/5 py-1">
+                    <span>Total Cholesterol:</span> 
+                    <strong className={getCholesterolStatus(selectedRecord.cholesterolLevel).class}>
+                      {getCholesterolStatus(selectedRecord.cholesterolLevel).text}
+                    </strong>
+                  </p>
+                  <p className="flex justify-between items-center border-b border-slate-100/50 dark:border-white/5 py-1">
+                    <span>Resting Heart Rate:</span> 
+                    <strong className={getHeartRateStatus(selectedRecord.heartRate).class}>
+                      {getHeartRateStatus(selectedRecord.heartRate).text}
+                    </strong>
+                  </p>
+                </div>
+              </div>
+
+              {/* Lifestyle Habits */}
+              <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+                <span className="text-slate-400 uppercase text-[9px] font-bold block border-b border-slate-200/40 dark:border-slate-850 pb-1.5 mb-2">Lifestyle & Compliance logs</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
+                  <p className="flex justify-between items-center border-b border-slate-100/50 dark:border-white/5 py-1">
+                    <span>Sleep Hours:</span> 
+                    <strong className="text-slate-900 dark:text-slate-100">{selectedRecord.sleepHours ? `${selectedRecord.sleepHours} hrs/night` : 'N/A'}</strong>
+                  </p>
+                  <p className="flex justify-between items-center border-b border-slate-100/50 dark:border-white/5 py-1">
+                    <span>Daily Exercise:</span> 
+                    <strong className="text-slate-900 dark:text-slate-100">{selectedRecord.exerciseMinutes ? `${selectedRecord.exerciseMinutes} mins` : 'N/A'}</strong>
+                  </p>
+                  <p className="flex justify-between items-center border-b border-slate-100/50 dark:border-white/5 py-1">
+                    <span>Water Intake:</span> 
+                    <strong className="text-slate-900 dark:text-slate-100">{selectedRecord.waterIntake ? `${selectedRecord.waterIntake} L` : 'N/A'}</strong>
+                  </p>
+                  <p className="flex justify-between items-center border-b border-slate-100/50 dark:border-white/5 py-1">
+                    <span>Mood State:</span> 
+                    <strong className="text-slate-900 dark:text-slate-100">{selectedRecord.mood || 'N/A'}</strong>
+                  </p>
+                  <p className="flex justify-between items-center border-b border-slate-100/50 dark:border-white/5 py-1">
+                    <span>Dietary Compliance:</span> 
+                    <strong className="text-slate-900 dark:text-slate-100">{selectedRecord.dietaryCompliance || 'N/A'}</strong>
+                  </p>
+                </div>
+              </div>
+
+              {/* Overrides & Medications */}
+              <div className="space-y-3 bg-slate-50 dark:bg-slate-955/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+                <span className="text-slate-400 uppercase text-[9px] font-bold block border-b border-slate-200/40 dark:border-slate-850 pb-1.5 mb-2">Prescriptions & Dietary Overrides</span>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <span className="text-slate-400 text-[8px] font-bold uppercase block mb-1">Dietary Target Limits</span>
+                    <p className="text-[11px] py-0.5">Daily Calories: <strong className="text-emerald-600 dark:text-emerald-450">{selectedRecord.caloriesTarget ? `${selectedRecord.caloriesTarget} kcal` : 'N/A'}</strong></p>
+                    <p className="text-[11px] py-0.5">Water Target: <strong className="text-slate-900 dark:text-slate-100">{selectedRecord.waterIntake ? `${selectedRecord.waterIntake} L` : 'N/A'}</strong></p>
+                  </div>
+                  <div>
+                    <span className="text-slate-400 text-[8px] font-bold uppercase block mb-1">Prescribed Medications</span>
+                    <p className="text-[11px] bg-white dark:bg-slate-950 p-2 border border-slate-200/50 dark:border-white/5 rounded-xl font-bold italic text-slate-800 dark:text-slate-200">
+                      {selectedRecord.medications || 'None'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Nutritionist Diagnostics Advice Remarks */}
+              <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+                <span className="text-slate-400 uppercase text-[9px] font-bold block">Nutritionist Remarks & Diagnostics advice</span>
+                <p className="bg-white dark:bg-slate-950 p-3.5 border border-slate-200/50 dark:border-white/5 rounded-xl font-bold italic text-[11px] text-slate-900 dark:text-slate-100 leading-relaxed shadow-sm">
+                  "{selectedRecord.notes || 'No diagnostics notes registered.'}"
+                </p>
+              </div>
+
+              {/* Pathological Risk Summary */}
+              <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+                <span className="text-slate-400 uppercase text-[9px] font-bold block border-b border-slate-200/40 dark:border-slate-850 pb-1.5 mb-2">AI Diagnostic Predicted Risk Factors</span>
+                <div className="grid grid-cols-4 gap-2 text-center text-[10px]">
+                  <div className="p-2 border border-slate-200/50 dark:border-white/5 rounded-xl bg-white dark:bg-slate-950">
+                    <span className="text-slate-400 block text-[8px] font-bold uppercase">Obesity</span>
+                    <strong className="text-slate-900 dark:text-white">{riskData && Math.round((riskData.obesity_risk || 0) * 100)}%</strong>
+                  </div>
+                  <div className="p-2 border border-slate-200/50 dark:border-white/5 rounded-xl bg-white dark:bg-slate-950">
+                    <span className="text-slate-400 block text-[8px] font-bold uppercase">Diabetes</span>
+                    <strong className="text-slate-900 dark:text-white">{riskData && Math.round((riskData.diabetes_risk || 0) * 100)}%</strong>
+                  </div>
+                  <div className="p-2 border border-slate-200/50 dark:border-white/5 rounded-xl bg-white dark:bg-slate-950">
+                    <span className="text-slate-400 block text-[8px] font-bold uppercase">BP High</span>
+                    <strong className="text-slate-900 dark:text-white">{riskData && Math.round((riskData.hypertension_risk || 0) * 100)}%</strong>
+                  </div>
+                  <div className="p-2 border border-slate-200/50 dark:border-white/5 rounded-xl bg-white dark:bg-slate-950">
+                    <span className="text-slate-400 block text-[8px] font-bold uppercase">Heart</span>
+                    <strong className="text-slate-900 dark:text-white">{riskData && Math.round((riskData.heart_disease_risk || 0) * 100)}%</strong>
+                  </div>
+                </div>
+              </div>
+
+              {/* Author signature */}
+              <div className="flex justify-between items-end pt-4 border-t border-slate-100 dark:border-white/5">
+                <p className="text-[8px] text-slate-400 font-bold uppercase tracking-wider">NutriAI Verified Audit Signature Valid</p>
+                <div className="text-right">
+                  <p className="text-xs font-black text-slate-900 dark:text-white">Dr. Arun Kumar</p>
+                  <p className="text-[9px] text-slate-400 font-bold uppercase">Certified Clinical Nutritionist</p>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Modal Actions Footer */}
+            <div className="flex gap-3 px-6 py-4 bg-slate-50 dark:bg-slate-955 border-t border-slate-100 dark:border-white/5 justify-end">
+              <button 
+                onClick={() => handlePrintRecord(selectedRecord)}
+                className="px-5 py-2 bg-rose-600 hover:bg-rose-700 text-white font-extrabold rounded-xl shadow-lg transition-all active:scale-95 text-xs cursor-pointer flex items-center gap-1.5"
+              >
+                <Printer size={13} /> Print Sheet
+              </button>
+              <button 
+                onClick={() => handleDownloadReport(selectedRecord)}
+                className="px-4 py-2 bg-slate-200 hover:bg-slate-300 dark:bg-white/5 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 font-bold rounded-xl transition-all text-xs cursor-pointer flex items-center gap-1"
+              >
+                <Download size={13} /> TXT Download
+              </button>
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white dark:bg-white dark:hover:bg-white/90 dark:text-slate-950 font-black rounded-xl transition-all text-xs cursor-pointer"
+              >
+                Close View
+              </button>
+            </div>
+
           </div>
         </div>
       )}
