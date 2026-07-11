@@ -34,7 +34,7 @@ const DashboardLayout = () => {
   useEffect(() => {
     if (user) {
       fetchNotifications();
-      const interval = setInterval(fetchNotifications, 15000);
+      const interval = setInterval(fetchNotifications, 5000);
       return () => clearInterval(interval);
     }
   }, [user]);
@@ -198,7 +198,7 @@ const DashboardLayout = () => {
       <div className="flex-1 flex flex-col h-screen overflow-hidden relative z-10 min-w-0">
         
         {/* Glassmorphic Top Navigation Bar */}
-        <header className="bg-white/40 dark:bg-[#090d16]/30 backdrop-blur-md border-b border-slate-200/40 dark:border-white/5 px-6 py-4 flex items-center justify-between shrink-0">
+        <header className="bg-white/40 dark:bg-[#090d16]/30 backdrop-blur-md border-b border-slate-200/40 dark:border-white/5 px-6 py-4 flex items-center justify-between shrink-0 relative z-50">
           
           <div className="flex items-center gap-4">
             <button

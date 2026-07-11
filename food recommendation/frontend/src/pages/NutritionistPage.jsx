@@ -163,15 +163,7 @@ const NutritionistPage = () => {
 
   const handleUserClick = async (u) => {
     setSelectedUser(u);
-    // Fetch records
-    try {
-      const res = await api.get('/health/records');
-      // For mock simplicity we filter local user records from all user records
-      const filtered = (res.data.data.records || []).filter(r => r.userId === u._id);
-      setUserRecords(filtered);
-    } catch (e) {
-      setUserRecords([]);
-    }
+    await loadUserRecords(u._id);
   };
 
   const handleLogout = async () => {

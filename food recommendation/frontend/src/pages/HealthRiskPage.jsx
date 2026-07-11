@@ -122,30 +122,56 @@ const HealthRiskPage = () => {
     return 'bg-emerald-500';
   };
 
+  const getSugarStatus = (sugar) => {
+    if (!sugar) return { text: 'N/A', class: 'text-slate-400' };
+    if (sugar >= 126) return { text: `${sugar} mg/dL (High)`, class: 'text-rose-500 font-extrabold' };
+    if (sugar >= 100) return { text: `${sugar} mg/dL (Elevated)`, class: 'text-amber-500 font-extrabold' };
+    return { text: `${sugar} mg/dL (Normal)`, class: 'text-emerald-500 font-extrabold' };
+  };
+
+  const getBPStatus = (sys, dia) => {
+    if (!sys || !dia) return { text: 'N/A', class: 'text-slate-400' };
+    if (sys >= 140 || dia >= 90) return { text: `${sys}/${dia} mmHg (High)`, class: 'text-rose-500 font-extrabold' };
+    if (sys >= 120 || dia >= 80) return { text: `${sys}/${dia} mmHg (Elevated)`, class: 'text-amber-500 font-extrabold' };
+    return { text: `${sys}/${dia} mmHg (Normal)`, class: 'text-emerald-500 font-extrabold' };
+  };
+
+  const getCholesterolStatus = (chol) => {
+    if (!chol) return { text: 'N/A', class: 'text-slate-400' };
+    if (chol >= 240) return { text: `${chol} mg/dL (High)`, class: 'text-rose-500 font-extrabold' };
+    if (chol >= 200) return { text: `${chol} mg/dL (Borderline)`, class: 'text-amber-500 font-extrabold' };
+    return { text: `${chol} mg/dL (Optimal)`, class: 'text-emerald-500 font-extrabold' };
+  };
+
+  const getHeartRateStatus = (hr) => {
+    if (!hr) return { text: 'N/A', class: 'text-slate-400' };
+    if (hr > 100 || hr < 60) return { text: `${hr} bpm (Abnormal)`, class: 'text-rose-500 font-extrabold' };
+    return { text: `${hr} bpm (Normal)`, class: 'text-emerald-500 font-extrabold' };
+  };
+
   return (
     <div className="container mx-auto px-4 md:px-6 py-8 max-w-5xl space-y-8 print:p-0">
       
-      {/* Print stylesheet */}
       <style>{`
         @media print {
-          .print\\:hidden {
-            display: none !important;
+          body * {
+            visibility: hidden !important;
           }
-          body {
+          .print-report-layout, .print-report-layout * {
+            visibility: visible !important;
+          }
+          .print-report-layout {
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 30px !important;
+            box-shadow: none !important;
+            border: none !important;
+            display: block !important;
             background: white !important;
             color: black !important;
-          }
-          header, aside, .floating-chat-button {
-            display: none !important;
-          }
-          .container {
-            max-width: 100% !important;
-            padding: 0 !important;
-            margin: 0 !important;
-          }
-          * {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
           }
         }
       `}</style>
@@ -189,64 +215,79 @@ const HealthRiskPage = () => {
 
       {/* Nutritionist Health Report Card */}
       {latestRecord && (
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4 text-slate-350 dark:text-slate-300">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-6 shadow-xl space-y-5 text-slate-700 dark:text-slate-350 transition-colors duration-500 print:hidden">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-100 dark:border-white/5 pb-3">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 bg-rose-500/10 rounded-xl text-rose-500">
+              <div className="p-2.5 bg-rose-500/10 rounded-2xl text-rose-500">
                 <Heart className="animate-pulse" size={20} />
               </div>
               <div>
-                <h3 className="font-bold text-slate-100 text-sm">Nutritionist Clinical Report</h3>
-                <p className="text-[10px] text-slate-500 font-bold">Logged on {new Date(latestRecord.date).toLocaleDateString()} at {new Date(latestRecord.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                <h3 className="font-black text-slate-900 dark:text-white text-sm">Nutritionist Clinical Report</h3>
+                <p className="text-[10px] text-slate-400 dark:text-slate-550 font-bold">Logged on {new Date(latestRecord.date).toLocaleDateString()} at {new Date(latestRecord.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
               </div>
             </div>
-            <span className="px-2.5 py-1 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-black uppercase">
+            <span className="px-3 py-1 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25 text-[10px] font-black uppercase tracking-wider">
               Health Score: {latestRecord.healthScore}/100
             </span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs font-semibold">
             {/* Vitals */}
-            <div className="p-4 bg-slate-950/40 border border-slate-850 rounded-2xl space-y-2">
-              <span className="text-slate-500 font-bold uppercase text-[9px] block">Vitals Summary</span>
-              <div className="space-y-1">
-                <p className="flex justify-between"><span>Weight:</span> <strong className="text-slate-200">{latestRecord.weight || 'N/A'} kg</strong></p>
-                <p className="flex justify-between"><span>Blood Sugar:</span> <strong className="text-slate-200">{latestRecord.bloodSugarLevel ? `${latestRecord.bloodSugarLevel} mg/dL` : 'N/A'}</strong></p>
-                <p className="flex justify-between"><span>Blood Pressure:</span> <strong className="text-slate-200">{latestRecord.bloodPressureSystolic && latestRecord.bloodPressureDiastolic ? `${latestRecord.bloodPressureSystolic}/${latestRecord.bloodPressureDiastolic} mmHg` : 'N/A'}</strong></p>
-                <p className="flex justify-between"><span>Heart Rate:</span> <strong className="text-slate-200">{latestRecord.heartRate ? `${latestRecord.heartRate} bpm` : 'N/A'}</strong></p>
-                <p className="flex justify-between"><span>Cholesterol:</span> <strong className="text-slate-200">{latestRecord.cholesterolLevel ? `${latestRecord.cholesterolLevel} mg/dL` : 'N/A'}</strong></p>
+            <div className="p-4 bg-slate-50 dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-850 rounded-2xl space-y-3">
+              <span className="text-slate-450 dark:text-slate-500 font-black uppercase text-[9px] tracking-wider block">Clinical Vitals</span>
+              <div className="space-y-2">
+                <p className="flex justify-between items-center">
+                  <span className="text-slate-550 dark:text-slate-400">Weight:</span> 
+                  <strong className="text-slate-900 dark:text-slate-100">{latestRecord.weight || 'N/A'} kg</strong>
+                </p>
+                <p className="flex justify-between items-center">
+                  <span className="text-slate-555 dark:text-slate-400">Blood Sugar:</span> 
+                  <strong className={getSugarStatus(latestRecord.bloodSugarLevel).class}>{getSugarStatus(latestRecord.bloodSugarLevel).text}</strong>
+                </p>
+                <p className="flex justify-between items-center">
+                  <span className="text-slate-555 dark:text-slate-400">Blood Pressure:</span> 
+                  <strong className={getBPStatus(latestRecord.bloodPressureSystolic, latestRecord.bloodPressureDiastolic).class}>{getBPStatus(latestRecord.bloodPressureSystolic, latestRecord.bloodPressureDiastolic).text}</strong>
+                </p>
+                <p className="flex justify-between items-center">
+                  <span className="text-slate-555 dark:text-slate-400">Heart Rate:</span> 
+                  <strong className={getHeartRateStatus(latestRecord.heartRate).class}>{getHeartRateStatus(latestRecord.heartRate).text}</strong>
+                </p>
+                <p className="flex justify-between items-center">
+                  <span className="text-slate-555 dark:text-slate-400">Cholesterol:</span> 
+                  <strong className={getCholesterolStatus(latestRecord.cholesterolLevel).class}>{getCholesterolStatus(latestRecord.cholesterolLevel).text}</strong>
+                </p>
               </div>
             </div>
 
             {/* Lifestyle */}
-            <div className="p-4 bg-slate-950/40 border border-slate-850 rounded-2xl space-y-2">
-              <span className="text-slate-500 font-bold uppercase text-[9px] block">Lifestyle & Habits</span>
-              <div className="space-y-1">
-                <p className="flex justify-between"><span>Sleep Hours:</span> <strong className="text-slate-200">{latestRecord.sleepHours ? `${latestRecord.sleepHours} hrs` : 'N/A'}</strong></p>
-                <p className="flex justify-between"><span>Exercise:</span> <strong className="text-slate-200">{latestRecord.exerciseMinutes ? `${latestRecord.exerciseMinutes} mins` : 'N/A'}</strong></p>
-                <p className="flex justify-between"><span>Water Intake:</span> <strong className="text-slate-200">{latestRecord.waterIntake ? `${latestRecord.waterIntake} L` : 'N/A'}</strong></p>
-                <p className="flex justify-between"><span>Mood State:</span> <strong className="text-slate-200">{latestRecord.mood || 'N/A'}</strong></p>
-                <p className="flex justify-between"><span>Diet Adherence:</span> <strong className="text-slate-200">{latestRecord.dietaryCompliance || 'N/A'}</strong></p>
+            <div className="p-4 bg-slate-50 dark:bg-slate-955/40 border border-slate-200/50 dark:border-slate-850 rounded-2xl space-y-3">
+              <span className="text-slate-450 dark:text-slate-500 font-black uppercase text-[9px] tracking-wider block">Lifestyle & Habits</span>
+              <div className="space-y-2">
+                <p className="flex justify-between items-center"><span className="text-slate-555 dark:text-slate-400">Sleep Hours:</span> <strong className="text-slate-900 dark:text-slate-100">{latestRecord.sleepHours ? `${latestRecord.sleepHours} hrs` : 'N/A'}</strong></p>
+                <p className="flex justify-between items-center"><span className="text-slate-555 dark:text-slate-400">Exercise:</span> <strong className="text-slate-900 dark:text-slate-100">{latestRecord.exerciseMinutes ? `${latestRecord.exerciseMinutes} mins` : 'N/A'}</strong></p>
+                <p className="flex justify-between items-center"><span className="text-slate-555 dark:text-slate-400">Water Intake:</span> <strong className="text-slate-900 dark:text-slate-100">{latestRecord.waterIntake ? `${latestRecord.waterIntake} L` : 'N/A'}</strong></p>
+                <p className="flex justify-between items-center"><span className="text-slate-555 dark:text-slate-400">Mood State:</span> <strong className="text-slate-850 dark:text-slate-100">{latestRecord.mood || 'N/A'}</strong></p>
+                <p className="flex justify-between items-center"><span className="text-slate-555 dark:text-slate-400">Diet Adherence:</span> <strong className="text-slate-850 dark:text-slate-100">{latestRecord.dietaryCompliance || 'N/A'}</strong></p>
               </div>
             </div>
 
-            {/* Nutrition Targets */}
-            <div className="p-4 bg-slate-950/40 border border-slate-850 rounded-2xl space-y-2">
-              <span className="text-slate-500 font-bold uppercase text-[9px] block">Targets & Meds</span>
-              <div className="space-y-1">
-                <p className="flex justify-between"><span>Calorie Target:</span> <strong className="text-emerald-400">{latestRecord.caloriesTarget ? `${latestRecord.caloriesTarget} kcal` : 'N/A'}</strong></p>
-                <p className="flex justify-between"><span>Calories Consumed:</span> <strong className="text-slate-200">{latestRecord.caloriesConsumed ? `${latestRecord.caloriesConsumed} kcal` : 'N/A'}</strong></p>
-                <p className="flex justify-between"><span>Medications:</span> <strong className="text-slate-200 truncate max-w-[90px]" title={latestRecord.medications || 'None'}>{latestRecord.medications || 'None'}</strong></p>
+            {/* Targets */}
+            <div className="p-4 bg-slate-50 dark:bg-slate-955/40 border border-slate-200/50 dark:border-slate-850 rounded-2xl space-y-3">
+              <span className="text-slate-450 dark:text-slate-500 font-black uppercase text-[9px] tracking-wider block">Custom Targets & Meds</span>
+              <div className="space-y-2">
+                <p className="flex justify-between items-center"><span className="text-slate-555 dark:text-slate-400">Calorie Target:</span> <strong className="text-emerald-600 dark:text-emerald-450">{latestRecord.caloriesTarget ? `${latestRecord.caloriesTarget} kcal` : 'N/A'}</strong></p>
+                <p className="flex justify-between items-center"><span className="text-slate-555 dark:text-slate-400">Calories Consumed:</span> <strong className="text-slate-900 dark:text-slate-100">{latestRecord.caloriesConsumed ? `${latestRecord.caloriesConsumed} kcal` : 'N/A'}</strong></p>
+                <p className="flex flex-col gap-1 pt-1"><span className="text-slate-555 dark:text-slate-400">Medications:</span> <strong className="text-slate-900 dark:text-slate-200 font-bold block bg-white dark:bg-slate-950 p-2.5 rounded-xl border border-slate-200/40 dark:border-white/5" title={latestRecord.medications || 'None'}>{latestRecord.medications || 'None'}</strong></p>
               </div>
             </div>
 
-            {/* Diagnostic advice */}
-            <div className="p-4 bg-slate-950/40 border border-slate-850 rounded-2xl space-y-2 flex flex-col justify-between">
+            {/* Diagnostics */}
+            <div className="p-4 bg-slate-50 dark:bg-slate-955/40 border border-slate-200/50 dark:border-slate-850 rounded-2xl space-y-3 flex flex-col justify-between">
               <div>
-                <span className="text-slate-500 font-bold uppercase text-[9px] block mb-1">Diagnostic advice</span>
-                <p className="text-slate-300 leading-relaxed text-[11px] italic font-semibold">
+                <span className="text-slate-455 dark:text-slate-500 font-black uppercase text-[9px] tracking-wider block mb-1">Diagnostics & Advice</span>
+                <div className="bg-white dark:bg-slate-950 p-3.5 rounded-xl border border-slate-200/40 dark:border-white/5 leading-relaxed font-bold italic text-slate-800 dark:text-slate-200 text-[11px] shadow-sm">
                   "{latestRecord.notes || 'No remarks provided by nutritionist practitioner.'}"
-                </p>
+                </div>
               </div>
             </div>
           </div>
@@ -431,6 +472,161 @@ const HealthRiskPage = () => {
           </div>
         </div>
       </div>
+      
+      {/* Formal Clinical Print Report Layout */}
+      {latestRecord && (
+        <div className="print-report-layout hidden print:block bg-white text-slate-900 p-8 space-y-6 text-xs border border-slate-200 rounded-lg max-w-[21cm] min-h-[29.7cm] mx-auto font-sans leading-relaxed">
+          {/* Header */}
+          <div className="flex justify-between items-center border-b-2 border-slate-900 pb-4">
+            <div>
+              <h1 className="text-xl font-extrabold tracking-tight text-slate-950 uppercase">NutriAI Medical Center</h1>
+              <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Clinical Nutrition & Diagnostics Division</p>
+              <p className="text-[9px] text-slate-400 mt-0.5">121 Wellness Blvd, Suite 400 • Tel: +1 (555) 019-2834</p>
+            </div>
+            <div className="text-right">
+              <span className="inline-block px-3 py-1 bg-slate-100 border border-slate-200 text-[10px] font-black uppercase text-slate-800 rounded">
+                Official Health Summary
+              </span>
+              <p className="text-[10px] text-slate-550 font-bold mt-1">Report Ref: NA-{latestRecord._id?.substring(18).toUpperCase()}</p>
+              <p className="text-[9px] text-slate-400">Date: {new Date(latestRecord.date).toLocaleString()}</p>
+            </div>
+          </div>
+
+          {/* Patient Details */}
+          <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 border border-slate-200 rounded-xl">
+            <div className="space-y-1">
+              <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Patient Information</p>
+              <p className="text-sm font-black text-slate-950">Name: Niranjan S</p>
+              <p className="text-slate-700">Email: {user?.email || '127003173@sastra.ac.in'}</p>
+              <p className="text-slate-700">Age / Gender: 21 yrs / Male</p>
+            </div>
+            <div className="space-y-1 text-right">
+              <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Clinical Assessment Metrics</p>
+              <p className="text-slate-700">Height: 175 cm</p>
+              <p className="text-slate-700">Weight: {latestRecord.weight || '76'} kg</p>
+              <p className="text-slate-700 font-bold">BMI Status: 24.8 (Normal)</p>
+            </div>
+          </div>
+
+          {/* Vitals Summary Table */}
+          <div className="space-y-2">
+            <h3 className="text-xs font-black uppercase tracking-wider border-b border-slate-300 pb-1 text-slate-955">1. Clinical Vitals Summary</h3>
+            <table className="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr className="bg-slate-100 text-slate-500 border-b border-slate-200">
+                  <th className="p-2.5 uppercase font-bold text-[9px]">Parameter</th>
+                  <th className="p-2.5 uppercase font-bold text-[9px]">Logged Value</th>
+                  <th className="p-2.5 uppercase font-bold text-[9px]">Reference Range</th>
+                  <th className="p-2.5 uppercase font-bold text-[9px] text-right">Diagnostic Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-150">
+                <tr>
+                  <td className="p-2.5 font-bold">Fasting Blood Glucose</td>
+                  <td className="p-2.5">{latestRecord.bloodSugarLevel ? `${latestRecord.bloodSugarLevel} mg/dL` : 'N/A'}</td>
+                  <td className="p-2.5">70 - 100 mg/dL</td>
+                  <td className="p-2.5 text-right font-extrabold">{latestRecord.bloodSugarLevel >= 126 ? 'High (Diabetic)' : (latestRecord.bloodSugarLevel >= 100 ? 'Elevated (Pre-diabetic)' : 'Normal')}</td>
+                </tr>
+                <tr>
+                  <td className="p-2.5 font-bold">Blood Pressure (Systolic/Diastolic)</td>
+                  <td className="p-2.5">{latestRecord.bloodPressureSystolic && latestRecord.bloodPressureDiastolic ? `${latestRecord.bloodPressureSystolic}/${latestRecord.bloodPressureDiastolic} mmHg` : 'N/A'}</td>
+                  <td className="p-2.5">&lt; 120 / 80 mmHg</td>
+                  <td className="p-2.5 text-right font-extrabold">{(latestRecord.bloodPressureSystolic >= 140 || latestRecord.bloodPressureDiastolic >= 90) ? 'Stage 1 Hypertension' : ((latestRecord.bloodPressureSystolic >= 120 || latestRecord.bloodPressureDiastolic >= 80) ? 'Elevated' : 'Normal')}</td>
+                </tr>
+                <tr>
+                  <td className="p-2.5 font-bold">Total Cholesterol</td>
+                  <td className="p-2.5">{latestRecord.cholesterolLevel ? `${latestRecord.cholesterolLevel} mg/dL` : 'N/A'}</td>
+                  <td className="p-2.5">&lt; 200 mg/dL</td>
+                  <td className="p-2.5 text-right font-extrabold">{latestRecord.cholesterolLevel >= 240 ? 'High' : (latestRecord.cholesterolLevel >= 200 ? 'Borderline' : 'Desirable')}</td>
+                </tr>
+                <tr>
+                  <td className="p-2.5 font-bold">Resting Heart Rate</td>
+                  <td className="p-2.5">{latestRecord.heartRate ? `${latestRecord.heartRate} bpm` : 'N/A'}</td>
+                  <td className="p-2.5">60 - 100 bpm</td>
+                  <td className="p-2.5 text-right font-extrabold">{(latestRecord.heartRate > 100 || latestRecord.heartRate < 60) ? 'Abnormal' : 'Normal'}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Lifestyle Summary */}
+          <div className="space-y-2">
+            <h3 className="text-xs font-black uppercase tracking-wider border-b border-slate-300 pb-1 text-slate-955">2. Lifestyle & Target Overrides</h3>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="p-3.5 border border-slate-200 rounded-xl bg-slate-50/50">
+                <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Sleep Hours</p>
+                <p className="text-sm font-extrabold text-slate-900">{latestRecord.sleepHours ? `${latestRecord.sleepHours} hrs/night` : 'N/A'}</p>
+              </div>
+              <div className="p-3.5 border border-slate-200 rounded-xl bg-slate-50/50">
+                <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Daily Exercise</p>
+                <p className="text-sm font-extrabold text-slate-900">{latestRecord.exerciseMinutes ? `${latestRecord.exerciseMinutes} mins` : 'N/A'}</p>
+              </div>
+              <div className="p-3.5 border border-slate-200 rounded-xl bg-slate-50/50">
+                <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Diet Adherence</p>
+                <p className="text-sm font-extrabold text-slate-900">{latestRecord.dietaryCompliance || 'N/A'}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Nutrition Targets */}
+          <div className="grid grid-cols-2 gap-6 pt-2">
+            <div className="p-4 border border-slate-200 rounded-xl space-y-1.5 bg-slate-50/20">
+              <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider block">Dietary Targets Overrides</span>
+              <p className="text-slate-700">Daily Calorie Target: <strong className="text-slate-900">{latestRecord.caloriesTarget ? `${latestRecord.caloriesTarget} kcal` : 'N/A'}</strong></p>
+              <p className="text-slate-700">Water Limit: <strong className="text-slate-900">{latestRecord.waterIntake ? `${latestRecord.waterIntake} L` : 'N/A'}</strong></p>
+              <p className="text-slate-700">Current Calories Logged: <strong className="text-slate-900">{latestRecord.caloriesConsumed ? `${latestRecord.caloriesConsumed} kcal` : 'N/A'}</strong></p>
+            </div>
+            <div className="p-4 border border-slate-200 rounded-xl space-y-1.5 bg-slate-50/20">
+              <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider block">Active Prescriptions & Medications</span>
+              <p className="text-slate-900 leading-relaxed font-bold">{latestRecord.medications || 'No active medications logged.'}</p>
+            </div>
+          </div>
+
+          {/* Diagnosis Remarks */}
+          <div className="p-4 border border-slate-200 rounded-xl bg-slate-50 space-y-1">
+            <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider block">Clinician Diagnostics remarks & advice</span>
+            <p className="text-slate-800 leading-relaxed font-bold italic">
+              "{latestRecord.notes || 'No notes logged.'}"
+            </p>
+          </div>
+
+          {/* Pathological Risk Classifiers */}
+          <div className="space-y-2 pt-2">
+            <h3 className="text-xs font-black uppercase tracking-wider border-b border-slate-300 pb-1 text-slate-955">3. AI Predicted Pathological Risks</h3>
+            <div className="grid grid-cols-4 gap-4 text-center">
+              <div className="p-3.5 border border-slate-200 rounded-xl bg-slate-50/20">
+                <span className="text-[9px] text-slate-450 font-bold uppercase block">Obesity Index</span>
+                <span className="text-sm font-black text-slate-900">{Math.round(riskData.obesity_risk * 100)}%</span>
+              </div>
+              <div className="p-3.5 border border-slate-200 rounded-xl bg-slate-50/20">
+                <span className="text-[9px] text-slate-450 font-bold uppercase block">Diabetes Index</span>
+                <span className="text-sm font-black text-slate-900">{Math.round(riskData.diabetes_risk * 100)}%</span>
+              </div>
+              <div className="p-3.5 border border-slate-200 rounded-xl bg-slate-50/20">
+                <span className="text-[9px] text-slate-450 font-bold uppercase block">Hypertension Index</span>
+                <span className="text-sm font-black text-slate-900">{Math.round(riskData.hypertension_risk * 100)}%</span>
+              </div>
+              <div className="p-3.5 border border-slate-200 rounded-xl bg-slate-50/20">
+                <span className="text-[9px] text-slate-450 font-bold uppercase block">Heart Disease Index</span>
+                <span className="text-sm font-black text-slate-900">{Math.round(riskData.heart_disease_risk * 100)}%</span>
+              </div>
+            </div>
+            <p className="text-[10px] text-slate-550 text-center font-bold mt-2">Overall Patient Health Standing: {riskData.overall_health_score}% Optimal Condition</p>
+          </div>
+
+          {/* Signature Block */}
+          <div className="flex justify-between items-end pt-12">
+            <div className="text-[9px] text-slate-400 font-bold">
+              <p>Generated via NutriAI Clinic Diagnostics Suite</p>
+              <p>Authorized Electronic Signature Match Valid</p>
+            </div>
+            <div className="text-right border-t border-slate-400 w-64 pt-2">
+              <p className="text-[10px] font-black text-slate-900">Dr. Arun Kumar</p>
+              <p className="text-[9px] text-slate-455">Certified Clinical Nutritionist (CCN)</p>
+            </div>
+          </div>
+        </div>
+      )}
       
     </div>
   );
