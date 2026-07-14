@@ -4,7 +4,7 @@ import { Loader, Search, Sparkles, SlidersHorizontal, BookOpen, Clock, X, Heart 
 import { getFoodImage, getRecipeDetails } from '../utils/recipeHelper';
 import toast from 'react-hot-toast';
 
-const defaultFoodSvg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='f' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23f59e0b'/><stop offset='100%' stop-color='%23d97706'/></linearGradient></defs><rect width='100' height='100' fill='url(%23f)'/><path d='M30 65c10-5 30-5 40 0v10H30V65z' fill='white'/><circle cx='50' cy='45' r='10' fill='white'/><path d='M48 25h4v15h-4z' fill='white'/></svg>";
+const defaultFoodSvg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='f' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2310b981'/><stop offset='100%' stop-color='%23059669'/></linearGradient></defs><rect width='100' height='100' fill='url(%23f)'/><circle cx='50' cy='50' r='30' fill='none' stroke='white' stroke-width='4' opacity='0.9'/><circle cx='50' cy='50' r='22' fill='none' stroke='white' stroke-width='2' opacity='0.6'/><path d='M30 35v20M27 35v10M33 35v10M30 55v15' stroke='white' stroke-width='3' stroke-linecap='round'/><path d='M70 35v20M70 55v15' stroke='white' stroke-width='3' stroke-linecap='round'/><path d='M68 35c2 0 4 5 4 15v5h-8v-5c0-10 2-15 4-15z' fill='white' opacity='0.9'/></svg>";
 
 const CUISINES = ['Indian', 'Mexican', 'Italian', 'Chinese', 'American', 'Mediterranean'];
 const CATEGORIES = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
@@ -214,7 +214,13 @@ const FoodSearchPage = () => {
                     <img
                       src={getFoodImage(food.name)}
                       alt={food.name}
-                      onError={(e) => { e.target.src = defaultFoodSvg; }}
+                      onError={(e) => {
+                        if (!e.target.src.includes('loremflickr')) {
+                          e.target.src = 'https://loremflickr.com/400/300/' + encodeURIComponent(food.name.split(' Variant')[0]);
+                        } else {
+                          e.target.src = defaultFoodSvg;
+                        }
+                      }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <button
