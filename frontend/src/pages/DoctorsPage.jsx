@@ -98,7 +98,7 @@ const DoctorsPage = () => {
         <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
           Clinical Consultation Directory
         </h1>
-        <p className="text-slate-500 dark:text-slate-450 text-sm mt-1">
+        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
           Connect with recommended nutritionists, cardiologists, and endocrinologists matching your vitals.
         </p>
       </div>
@@ -124,7 +124,7 @@ const DoctorsPage = () => {
             {filteredDoctors.map((doc) => (
               <div 
                 key={doc.id}
-                className="bg-white dark:bg-slate-955/30 border border-slate-200/50 dark:border-white/5 rounded-3xl p-5 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-xl transition-all duration-300"
+                className="bg-white dark:bg-slate-950/30 border border-slate-200/50 dark:border-white/5 rounded-3xl p-5 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex gap-4">
                   <img 
@@ -177,11 +177,11 @@ const DoctorsPage = () => {
             My Consultations
           </h2>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-slate-955/40 border border-slate-205/50 dark:border-white/5 shadow-xl space-y-4">
-            <h3 className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider">Scheduled Consultations</h3>
+          <div className="p-6 rounded-3xl bg-white dark:bg-slate-950/40 border border-slate-205/50 dark:border-white/5 shadow-xl space-y-4">
+            <h3 className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider">Scheduled Consultations</h3>
             
             {bookedAppointments.length === 0 ? (
-              <div className="text-center py-8 text-slate-450 space-y-2">
+              <div className="text-center py-8 text-slate-400 space-y-2">
                 <span className="text-3xl block">📅</span>
                 <p className="text-xs font-bold leading-relaxed">No pending appointments scheduled. Click book to consult an expert nutritionist.</p>
               </div>
@@ -201,7 +201,7 @@ const DoctorsPage = () => {
                     <div className="text-[10px] text-slate-400 font-bold space-y-0.5">
                       <p>Date: {ap.date}</p>
                       <p>Time: {ap.time}</p>
-                      <p className="italic text-[9px] mt-1 text-slate-450 truncate">Reason: {ap.reason}</p>
+                      <p className="italic text-[9px] mt-1 text-slate-400 truncate">Reason: {ap.reason}</p>
                     </div>
                   </div>
                 ))}
@@ -222,7 +222,7 @@ const DoctorsPage = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsBookingOpen(false)}
-              className="absolute inset-0 bg-slate-955/60 backdrop-blur-sm"
+              className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
             />
             {/* Modal Box */}
             <motion.div 
@@ -272,7 +272,7 @@ const DoctorsPage = () => {
                     required
                     value={bookingTime}
                     onChange={(e) => setBookingTime(e.target.value)}
-                    className="w-full bg-slate-50 dark:bg-slate-955 border border-slate-200/50 dark:border-white/5 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500 font-bold"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200/50 dark:border-white/5 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500 font-bold"
                   />
                 </div>
 
@@ -282,7 +282,7 @@ const DoctorsPage = () => {
                     placeholder="Enter details (e.g. insulin tracking support, low heart endurance advice...)"
                     value={bookingReason}
                     onChange={(e) => setBookingReason(e.target.value)}
-                    className="w-full bg-slate-50 dark:bg-slate-955 border border-slate-200/50 dark:border-white/5 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500 h-20 font-bold resize-none"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200/50 dark:border-white/5 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-amber-500 h-20 font-bold resize-none"
                   />
                 </div>
 

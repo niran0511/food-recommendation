@@ -175,7 +175,7 @@ const ChatWidget = () => {
                 className={`p-2.5 rounded-2xl transition-all ${
                   isListening 
                     ? 'bg-red-500 text-white animate-pulse' 
-                    : 'bg-slate-50 dark:bg-white/5 text-slate-450 hover:text-slate-800 dark:hover:text-white'
+                    : 'bg-slate-50 dark:bg-white/5 text-slate-400 hover:text-slate-800 dark:hover:text-white'
                 }`}
                 title="Speak question"
               >

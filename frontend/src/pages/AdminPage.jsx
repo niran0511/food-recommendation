@@ -906,7 +906,7 @@ const AdminPage = () => {
                               {log.userId?.name || 'Local User'}
                               <span className="block text-[10px] text-slate-500">{log.userId?.email || ''}</span>
                             </td>
-                            <td className="p-4 text-slate-450 truncate max-w-[200px]">Goal: {log.input?.goal || 'Maintain'} | Age: {log.input?.age || 30}</td>
+                            <td className="p-4 text-slate-400 truncate max-w-[200px]">Goal: {log.input?.goal || 'Maintain'} | Age: {log.input?.age || 30}</td>
                             <td className="p-4 text-slate-350 truncate max-w-[300px]">{(log.recommendations || []).slice(0, 3).map(r => r.food).join(', ')}...</td>
                           </tr>
                         ))}
@@ -961,7 +961,7 @@ const AdminPage = () => {
                                   {ap.date}
                                   <span className="block text-[10px] text-slate-500 font-bold">{ap.time}</span>
                                 </td>
-                                <td className="p-4 text-slate-450 italic truncate max-w-[200px]">{ap.reason}</td>
+                                <td className="p-4 text-slate-400 italic truncate max-w-[200px]">{ap.reason}</td>
                                 <td className="p-4">
                                   {ap.status === 'accepted' && <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[8px] font-extrabold uppercase">Accepted</span>}
                                   {ap.status === 'rejected' && <span className="px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-500 text-[8px] font-extrabold uppercase">Rejected</span>}
@@ -1042,7 +1042,7 @@ const AdminPage = () => {
                                   <span className="block text-slate-350">{n.nutritionistProfile?.specialty || 'General'}</span>
                                   <span className="block text-slate-505">{n.nutritionistProfile?.experience || 'N/A'}</span>
                                 </td>
-                                <td className="p-4 text-slate-450">{n.nutritionistProfile?.availability || 'Mon - Fri'}</td>
+                                <td className="p-4 text-slate-400">{n.nutritionistProfile?.availability || 'Mon - Fri'}</td>
                                 <td className="p-4 text-right">
                                   <button
                                     onClick={() => handleDeleteUser(n._id)}
@@ -1246,61 +1246,61 @@ const AdminPage = () => {
             <form onSubmit={handleAddNutritionistSubmit} className="p-6 overflow-y-auto space-y-4 flex-grow text-xs text-slate-350">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Full Name</label>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Full Name</label>
                   <input type="text" name="name" value={nutritionistFormData.name} onChange={handleNutritionistInputChange} required placeholder="Dr. Jane Doe"
                     className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
                 <div>
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Email (Login ID)</label>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Email (Login ID)</label>
                   <input type="email" name="email" value={nutritionistFormData.email} onChange={handleNutritionistInputChange} required placeholder="jane@nutriai.com"
                     className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
                 <div>
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Default Password</label>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Default Password</label>
                   <input type="password" name="password" value={nutritionistFormData.password} onChange={handleNutritionistInputChange} required placeholder="At least 6 chars"
                     className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
                 <div>
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Specialty Focus</label>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Specialty Focus</label>
                   <input type="text" name="specialty" value={nutritionistFormData.specialty} onChange={handleNutritionistInputChange} required placeholder="Clinical Nutrition & Diabetes"
                     className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
                 <div>
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Experience Level</label>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Experience Level</label>
                   <input type="text" name="experience" value={nutritionistFormData.experience} onChange={handleNutritionistInputChange} required placeholder="8 yrs experience"
                     className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
                 <div>
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Location / Suite</label>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Location / Suite</label>
                   <input type="text" name="location" value={nutritionistFormData.location} onChange={handleNutritionistInputChange} required placeholder="Suite 405, Wellness Wing"
                     className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
                 <div>
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Contact Phone</label>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Contact Phone</label>
                   <input type="text" name="phone" value={nutritionistFormData.phone} onChange={handleNutritionistInputChange} required placeholder="+1 (555) 000-0000"
                     className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
                 <div>
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Weekly Availability</label>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Weekly Availability</label>
                   <input type="text" name="availability" value={nutritionistFormData.availability} onChange={handleNutritionistInputChange} required placeholder="Mon, Wed, Fri (9am - 3pm)"
                     className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Picture URL (Optional)</label>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Picture URL (Optional)</label>
                   <input type="url" name="avatar" value={nutritionistFormData.avatar} onChange={handleNutritionistInputChange} placeholder="https://unsplash.com/..."
                     className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[10px]">Clinical Bio</label>
+                  <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Clinical Bio</label>
                   <textarea name="bio" value={nutritionistFormData.bio} onChange={handleNutritionistInputChange} required rows="3" placeholder="Brief background about their focus..."
                     className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none resize-none" />
                 </div>
@@ -1426,7 +1426,7 @@ const ReportGeneratorCard = ({ title, desc, onClick }) => (
   <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between min-h-[160px]">
     <div>
       <h3 className="font-bold text-sm text-slate-200 mb-2">{title}</h3>
-      <p className="text-xs text-slate-450 leading-relaxed mb-4">{desc}</p>
+      <p className="text-xs text-slate-400 leading-relaxed mb-4">{desc}</p>
     </div>
     <button 
       onClick={onClick}

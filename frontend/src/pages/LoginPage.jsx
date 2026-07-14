@@ -299,7 +299,7 @@ const LoginPage = () => {
 
               {/* Bottom onboarding/create link */}
               <div className="mt-6 text-center border-t border-slate-100 pt-4">
-                <p className="text-xs text-slate-450 font-bold">
+                <p className="text-xs text-slate-400 font-bold">
                   Don't have an account?{' '}
                   <Link to="/register" className="font-extrabold text-amber-600 hover:text-amber-500 transition-colors">
                     Create one

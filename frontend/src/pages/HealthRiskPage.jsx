@@ -301,7 +301,7 @@ PRESCRIPTIONS & ADVICE:
                 <tbody className="divide-y divide-slate-100 dark:divide-white/5 font-semibold text-slate-700 dark:text-slate-350">
                   {filteredRecords.length === 0 ? (
                     <tr>
-                      <td colSpan="6" className="p-8 text-center text-slate-450 dark:text-slate-500 italic">No medical records registered.</td>
+                      <td colSpan="6" className="p-8 text-center text-slate-400 dark:text-slate-500 italic">No medical records registered.</td>
                     </tr>
                   ) : (
                     filteredRecords.map(r => (
@@ -361,7 +361,7 @@ PRESCRIPTIONS & ADVICE:
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Obesity Risk */}
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-955/40 border border-slate-200/50 dark:border-slate-850 space-y-4">
+              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-850 space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider">Obesity Index</span>
                   <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase border ${getRiskLabel(riskData.obesity_risk).class}`}>
@@ -385,7 +385,7 @@ PRESCRIPTIONS & ADVICE:
               </div>
 
               {/* Diabetes Risk */}
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-955/40 border border-slate-200/50 dark:border-slate-850 space-y-4">
+              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-850 space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider">Diabetes (Type 2)</span>
                   <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase border ${getRiskLabel(riskData.diabetes_risk).class}`}>
@@ -409,7 +409,7 @@ PRESCRIPTIONS & ADVICE:
               </div>
 
               {/* Hypertension Risk */}
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-955/40 border border-slate-200/50 dark:border-slate-850 space-y-4">
+              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-850 space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider">Hypertension</span>
                   <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase border ${getRiskLabel(riskData.hypertension_risk).class}`}>
@@ -433,7 +433,7 @@ PRESCRIPTIONS & ADVICE:
               </div>
 
               {/* Heart Disease Risk */}
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-955/40 border border-slate-200/50 dark:border-slate-850 space-y-4">
+              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-850 space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider">Heart Disease</span>
                   <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase border ${getRiskLabel(riskData.heart_disease_risk).class}`}>
@@ -498,7 +498,7 @@ PRESCRIPTIONS & ADVICE:
 
               <div className="space-y-4 text-xs font-semibold">
                 {/* Vitals */}
-                <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-3 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+                <div className="space-y-2 bg-slate-50 dark:bg-slate-950/40 p-3 rounded-2xl border border-slate-200/40 dark:border-slate-850">
                   <span className="text-slate-400 uppercase text-[9px] font-bold block">Clinical Vitals</span>
                   <div className="space-y-1.5">
                     <p className="flex justify-between"><span>Weight:</span> <strong className="text-slate-900 dark:text-slate-100">{selectedRecord.weight || 'N/A'} kg</strong></p>
@@ -510,7 +510,7 @@ PRESCRIPTIONS & ADVICE:
                 </div>
 
                 {/* Lifestyle */}
-                <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-3 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+                <div className="space-y-2 bg-slate-50 dark:bg-slate-950/40 p-3 rounded-2xl border border-slate-200/40 dark:border-slate-850">
                   <span className="text-slate-400 uppercase text-[9px] font-bold block">Lifestyle Habits</span>
                   <div className="space-y-1.5">
                     <p className="flex justify-between"><span>Sleep Hours:</span> <strong className="text-slate-900 dark:text-slate-100">{selectedRecord.sleepHours ? `${selectedRecord.sleepHours} hrs` : 'N/A'}</strong></p>
@@ -522,22 +522,22 @@ PRESCRIPTIONS & ADVICE:
                 </div>
 
                 {/* Overrides */}
-                <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-3 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+                <div className="space-y-2 bg-slate-50 dark:bg-slate-950/40 p-3 rounded-2xl border border-slate-200/40 dark:border-slate-850">
                   <span className="text-slate-400 uppercase text-[9px] font-bold block">Overrides & Meds</span>
                   <div className="space-y-1.5">
                     <p className="flex justify-between"><span>Calorie Target:</span> <strong className="text-emerald-600 dark:text-emerald-450">{selectedRecord.caloriesTarget ? `${selectedRecord.caloriesTarget} kcal` : 'N/A'}</strong></p>
                     <p className="flex justify-between"><span>Calories Consumed:</span> <strong className="text-slate-900 dark:text-slate-100">{selectedRecord.caloriesConsumed ? `${selectedRecord.caloriesConsumed} kcal` : 'N/A'}</strong></p>
                     <p className="flex flex-col gap-0.5 pt-1">
                       <span className="text-slate-500">Medications:</span>
-                      <strong className="text-slate-900 dark:text-slate-200 font-bold block bg-white dark:bg-slate-955 p-2.5 rounded-xl border border-slate-200/30 dark:border-white/5">{selectedRecord.medications || 'None'}</strong>
+                      <strong className="text-slate-900 dark:text-slate-200 font-bold block bg-white dark:bg-slate-950 p-2.5 rounded-xl border border-slate-200/30 dark:border-white/5">{selectedRecord.medications || 'None'}</strong>
                     </p>
                   </div>
                 </div>
 
                 {/* Advice Notes */}
-                <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-3 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+                <div className="space-y-2 bg-slate-50 dark:bg-slate-950/40 p-3 rounded-2xl border border-slate-200/40 dark:border-slate-850">
                   <span className="text-slate-400 uppercase text-[9px] font-bold block">Clinician Diagnostics Notes</span>
-                  <p className="bg-white dark:bg-slate-955 p-3 rounded-xl border border-slate-200/40 dark:border-white/5 leading-relaxed font-bold italic text-slate-800 dark:text-slate-200 text-[11px] shadow-sm">
+                  <p className="bg-white dark:bg-slate-950 p-3 rounded-xl border border-slate-200/40 dark:border-white/5 leading-relaxed font-bold italic text-slate-800 dark:text-slate-200 text-[11px] shadow-sm">
                     "{selectedRecord.notes || 'No notes logged.'}"
                   </p>
                 </div>
@@ -561,7 +561,7 @@ PRESCRIPTIONS & ADVICE:
               </div>
             </div>
           ) : (
-            <div className="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-8 shadow-xl text-center text-slate-450 dark:text-slate-500 font-bold min-h-[300px] flex flex-col items-center justify-center">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl p-8 shadow-xl text-center text-slate-400 dark:text-slate-500 font-bold min-h-[300px] flex flex-col items-center justify-center">
               <Activity className="text-slate-300 dark:text-slate-800 mb-3 animate-pulse" size={40} />
               <p className="text-xs">Select a record from the registry table to view detailed diagnostics advice report.</p>
             </div>
@@ -752,7 +752,7 @@ PRESCRIPTIONS & ADVICE:
               <div className="flex justify-between items-center border-b border-slate-100 dark:border-white/5 pb-4">
                 <div>
                   <h1 className="text-base font-extrabold text-slate-900 dark:text-white uppercase">NutriAI Medical Center</h1>
-                  <p className="text-[9px] text-slate-450 uppercase tracking-wider font-bold">Clinical Nutrition & Diagnostics Division</p>
+                  <p className="text-[9px] text-slate-400 uppercase tracking-wider font-bold">Clinical Nutrition & Diagnostics Division</p>
                   <p className="text-[9px] text-slate-400 font-medium">121 Wellness Blvd, Suite 400 • Tel: +1 (555) 019-2834</p>
                 </div>
                 <div className="text-right">
@@ -774,14 +774,14 @@ PRESCRIPTIONS & ADVICE:
                 </div>
                 <div className="space-y-1 text-right">
                   <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Clinician assessment</p>
-                  <p className="text-[10px] text-slate-550 dark:text-slate-450 font-bold">Height: 175 cm</p>
+                  <p className="text-[10px] text-slate-550 dark:text-slate-400 font-bold">Height: 175 cm</p>
                   <p className="text-[10px] text-slate-550 dark:text-slate-455 font-bold">Weight: {selectedRecord.weight || '76'} kg</p>
                   <p className="text-[10px] text-slate-900 dark:text-white font-black">BMI Status: 24.8 (Normal)</p>
                 </div>
               </div>
 
               {/* Vitals Summary */}
-              <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+              <div className="space-y-2 bg-slate-50 dark:bg-slate-950/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
                 <span className="text-slate-400 uppercase text-[9px] font-bold block border-b border-slate-200/40 dark:border-slate-850 pb-1.5 mb-2">Clinical Vitals Assessment</span>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
                   <p className="flex justify-between items-center border-b border-slate-100/50 dark:border-white/5 py-1">
@@ -812,7 +812,7 @@ PRESCRIPTIONS & ADVICE:
               </div>
 
               {/* Lifestyle Habits */}
-              <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+              <div className="space-y-2 bg-slate-50 dark:bg-slate-950/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
                 <span className="text-slate-400 uppercase text-[9px] font-bold block border-b border-slate-200/40 dark:border-slate-850 pb-1.5 mb-2">Lifestyle & Compliance logs</span>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
                   <p className="flex justify-between items-center border-b border-slate-100/50 dark:border-white/5 py-1">
@@ -839,7 +839,7 @@ PRESCRIPTIONS & ADVICE:
               </div>
 
               {/* Overrides & Medications */}
-              <div className="space-y-3 bg-slate-50 dark:bg-slate-955/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+              <div className="space-y-3 bg-slate-50 dark:bg-slate-950/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
                 <span className="text-slate-400 uppercase text-[9px] font-bold block border-b border-slate-200/40 dark:border-slate-850 pb-1.5 mb-2">Prescriptions & Dietary Overrides</span>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
@@ -857,7 +857,7 @@ PRESCRIPTIONS & ADVICE:
               </div>
 
               {/* Nutritionist Diagnostics Advice Remarks */}
-              <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+              <div className="space-y-2 bg-slate-50 dark:bg-slate-950/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
                 <span className="text-slate-400 uppercase text-[9px] font-bold block">Nutritionist Remarks & Diagnostics advice</span>
                 <p className="bg-white dark:bg-slate-950 p-3.5 border border-slate-200/50 dark:border-white/5 rounded-xl font-bold italic text-[11px] text-slate-900 dark:text-slate-100 leading-relaxed shadow-sm">
                   "{selectedRecord.notes || 'No diagnostics notes registered.'}"
@@ -865,7 +865,7 @@ PRESCRIPTIONS & ADVICE:
               </div>
 
               {/* Pathological Risk Summary */}
-              <div className="space-y-2 bg-slate-50 dark:bg-slate-955/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
+              <div className="space-y-2 bg-slate-50 dark:bg-slate-950/40 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-850">
                 <span className="text-slate-400 uppercase text-[9px] font-bold block border-b border-slate-200/40 dark:border-slate-850 pb-1.5 mb-2">AI Diagnostic Predicted Risk Factors</span>
                 <div className="grid grid-cols-4 gap-2 text-center text-[10px]">
                   <div className="p-2 border border-slate-200/50 dark:border-white/5 rounded-xl bg-white dark:bg-slate-950">
@@ -899,7 +899,7 @@ PRESCRIPTIONS & ADVICE:
             </div>
 
             {/* Modal Actions Footer */}
-            <div className="flex gap-3 px-6 py-4 bg-slate-50 dark:bg-slate-955 border-t border-slate-100 dark:border-white/5 justify-end">
+            <div className="flex gap-3 px-6 py-4 bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-white/5 justify-end">
               <button 
                 onClick={() => handlePrintRecord(selectedRecord)}
                 className="px-5 py-2 bg-rose-600 hover:bg-rose-700 text-white font-extrabold rounded-xl shadow-lg transition-all active:scale-95 text-xs cursor-pointer flex items-center gap-1.5"

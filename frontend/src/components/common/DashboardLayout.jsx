@@ -178,7 +178,7 @@ const DashboardLayout = () => {
               <p className="text-sm font-bold text-slate-800 dark:text-white truncate">
                 {user?.name || 'User Profile'}
               </p>
-              <p className="text-xs font-semibold text-slate-450 dark:text-slate-500 truncate">
+              <p className="text-xs font-semibold text-slate-400 dark:text-slate-500 truncate">
                 {user?.email || 'user@example.com'}
               </p>
             </div>
@@ -256,7 +256,7 @@ const DashboardLayout = () => {
                     className="absolute right-0 mt-3 w-80 bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-white/5 rounded-3xl shadow-xl p-4 z-50 space-y-3"
                   >
                     <div className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-white/5">
-                      <span className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider">Notifications ({unreadCount})</span>
+                      <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider">Notifications ({unreadCount})</span>
                       <button 
                         onClick={handleClearAll}
                         className="text-[10px] font-extrabold text-amber-500 hover:underline"
@@ -266,7 +266,7 @@ const DashboardLayout = () => {
                     </div>
                     <div className="space-y-2.5 max-h-[220px] overflow-y-auto pr-1">
                       {notifications.length === 0 ? (
-                        <div className="text-center py-6 text-xs text-slate-450 dark:text-slate-500">
+                        <div className="text-center py-6 text-xs text-slate-400 dark:text-slate-500">
                           No notifications yet
                         </div>
                       ) : (

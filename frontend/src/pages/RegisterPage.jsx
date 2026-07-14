@@ -305,7 +305,7 @@ const RegisterPage = () => {
 
               {/* Bottom onboarding/create link */}
               <div className="mt-6 text-center border-t border-slate-100 pt-4">
-                <p className="text-xs text-slate-450 font-bold">
+                <p className="text-xs text-slate-400 font-bold">
                   Already have an account?{' '}
                   <Link to="/login" className="font-extrabold text-amber-600 hover:text-amber-500 transition-colors inline-flex items-center gap-0.5">
                     Sign in instead <ArrowRight size={12} />

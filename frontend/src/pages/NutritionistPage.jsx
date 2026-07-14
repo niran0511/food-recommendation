@@ -505,14 +505,14 @@ const NutritionistPage = () => {
 
   if (loading && appointments.length === 0 && users.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-955 text-slate-100">
+      <div className="min-h-screen flex items-center justify-center bg-slate-950 text-slate-100">
         <Loader className="w-10 h-10 text-emerald-500 animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="fixed inset-0 z-[100] bg-slate-955 text-slate-100 flex flex-row overflow-hidden font-sans">
+    <div className="fixed inset-0 z-[100] bg-slate-950 text-slate-100 flex flex-row overflow-hidden font-sans">
       
       {/* 1. SIDEBAR */}
       <aside className="w-[280px] bg-slate-900 border-r border-slate-800 flex flex-col shrink-0">
@@ -590,7 +590,7 @@ const NutritionistPage = () => {
                           <tr key={ap._id} className="border-b border-slate-800 hover:bg-slate-850/50">
                             <td className="p-4 font-bold text-slate-100">{ap.userName}</td>
                             <td className="p-4 text-slate-350 font-semibold">{ap.date} at {ap.time}</td>
-                            <td className="p-4 text-slate-450 italic truncate max-w-[200px]">{ap.reason}</td>
+                            <td className="p-4 text-slate-400 italic truncate max-w-[200px]">{ap.reason}</td>
                             <td className="p-4">
                               {ap.status === 'accepted' && <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[8px] font-extrabold uppercase border border-emerald-500/20">Accepted</span>}
                               {ap.status === 'rejected' && <span className="px-2.5 py-0.5 rounded-full bg-rose-500/10 text-rose-450 text-[8px] font-extrabold uppercase border border-rose-500/20">Rejected</span>}
@@ -700,7 +700,7 @@ const NutritionistPage = () => {
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                        <div className="p-4 bg-slate-955/20 border border-slate-800/40 rounded-xl">
+                        <div className="p-4 bg-slate-950/20 border border-slate-800/40 rounded-xl">
                           <span className="block text-[10px] uppercase font-extrabold text-slate-500 mb-2">Diseases & Conditions</span>
                           <div className="flex flex-wrap gap-1.5">
                             {selectedUser.profile?.diseases?.length > 0 ? (
@@ -709,7 +709,7 @@ const NutritionistPage = () => {
                           </div>
                         </div>
 
-                        <div className="p-4 bg-slate-955/20 border border-slate-800/40 rounded-xl">
+                        <div className="p-4 bg-slate-950/20 border border-slate-800/40 rounded-xl">
                           <span className="block text-[10px] uppercase font-extrabold text-slate-500 mb-2">Allergies & Deficiencies</span>
                           <div className="flex flex-wrap gap-1.5">
                             {selectedUser.profile?.allergies?.length > 0 ? (
@@ -779,7 +779,7 @@ const NutritionistPage = () => {
                                   </div>
                                 </div>
 
-                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px] bg-slate-955/40 p-3 rounded-xl border border-slate-850">
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px] bg-slate-950/40 p-3 rounded-xl border border-slate-850">
                                   <div>
                                     <span className="text-slate-500 block uppercase text-[8px] font-bold">Clinical Vitals</span>
                                     <p className="text-slate-350 mt-0.5 font-semibold">
@@ -835,27 +835,27 @@ const NutritionistPage = () => {
                               <p className="text-slate-200 text-xs leading-relaxed">{patientIntake.dietaryPreferences || 'None'}</p>
                             </div>
                             
-                            <div className="p-4 bg-slate-955/40 border border-slate-800 rounded-xl space-y-1">
+                            <div className="p-4 bg-slate-950/40 border border-slate-800 rounded-xl space-y-1">
                               <span className="text-[9px] text-amber-500 uppercase font-black tracking-wider block">Allergies & Sensitivities</span>
                               <p className="text-slate-200 text-xs leading-relaxed">{patientIntake.allergies || 'None logged'}</p>
                             </div>
 
-                            <div className="p-4 bg-slate-955/40 border border-slate-800 rounded-xl space-y-1">
+                            <div className="p-4 bg-slate-950/40 border border-slate-800 rounded-xl space-y-1">
                               <span className="text-[9px] text-slate-400 uppercase font-black tracking-wider block">Daily Schedule & Timing</span>
                               <p className="text-slate-200 text-xs leading-relaxed">{patientIntake.dailySchedule || 'Not logged'}</p>
                             </div>
 
-                            <div className="p-4 bg-slate-955/40 border border-slate-800 rounded-xl space-y-1">
+                            <div className="p-4 bg-slate-950/40 border border-slate-800 rounded-xl space-y-1">
                               <span className="text-[9px] text-slate-400 uppercase font-black tracking-wider block">Budgetary Considerations</span>
                               <p className="text-slate-200 text-xs leading-relaxed">{patientIntake.budgetPreference || 'None specified'}</p>
                             </div>
 
-                            <div className="p-4 bg-slate-955/40 border border-slate-800 rounded-xl space-y-1">
+                            <div className="p-4 bg-slate-950/40 border border-slate-800 rounded-xl space-y-1">
                               <span className="text-[9px] text-emerald-450 uppercase font-black tracking-wider block">Specific Fitness & Health Goals</span>
                               <p className="text-slate-205 text-xs leading-relaxed">{patientIntake.fitnessGoals || 'General well-being'}</p>
                             </div>
 
-                            <div className="p-4 bg-slate-955/40 border border-slate-800 rounded-xl space-y-1">
+                            <div className="p-4 bg-slate-950/40 border border-slate-800 rounded-xl space-y-1">
                               <span className="text-[9px] text-rose-450 uppercase font-black tracking-wider block">Barriers To Progress & Obstacles</span>
                               <p className="text-slate-200 text-xs leading-relaxed">{patientIntake.barriersToProgress || 'None'}</p>
                             </div>
@@ -876,7 +876,7 @@ const NutritionistPage = () => {
                         ) : (
                           <div className="space-y-8">
                             {/* Weight Progress chart */}
-                            <div className="p-4 bg-slate-955 border border-slate-850 rounded-2xl">
+                            <div className="p-4 bg-slate-950 border border-slate-850 rounded-2xl">
                               <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400 block mb-3">Weight loss trajectory (kg)</span>
                               <div className="h-60">
                                 <Line data={getVitalsChartData().weight} options={{ responsive: true, maintainAspectRatio: false }} />
@@ -884,7 +884,7 @@ const NutritionistPage = () => {
                             </div>
 
                             {/* Glucose & Cholesterol */}
-                            <div className="p-4 bg-slate-955 border border-slate-850 rounded-2xl">
+                            <div className="p-4 bg-slate-950 border border-slate-850 rounded-2xl">
                               <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400 block mb-3">Sugar & Cholesterol Levels comparison</span>
                               <div className="h-60">
                                 <Line data={getVitalsChartData().bloodVitals} options={{ responsive: true, maintainAspectRatio: false }} />
@@ -892,7 +892,7 @@ const NutritionistPage = () => {
                             </div>
 
                             {/* Blood pressure */}
-                            <div className="p-4 bg-slate-955 border border-slate-850 rounded-2xl">
+                            <div className="p-4 bg-slate-950 border border-slate-850 rounded-2xl">
                               <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400 block mb-3">Blood pressure trends (Systolic / Diastolic)</span>
                               <div className="h-60">
                                 <Line data={getVitalsChartData().bp} options={{ responsive: true, maintainAspectRatio: false }} />
@@ -999,7 +999,7 @@ const NutritionistPage = () => {
 
                         {/* Meal notes */}
                         <div className="space-y-2 border-t border-slate-800/50 pt-4">
-                          <label className="block text-slate-450 uppercase font-bold text-[9px]">Clinician Diet remarks & notes</label>
+                          <label className="block text-slate-400 uppercase font-bold text-[9px]">Clinician Diet remarks & notes</label>
                           <textarea
                             value={mealNotes}
                             onChange={e => setMealNotes(e.target.value)}
@@ -1104,19 +1104,19 @@ const NutritionistPage = () => {
                 <div>
                   <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Current Password</label>
                   <input type="password" value={pwdFormData.currentPassword} onChange={e => setPwdFormData(prev => ({ ...prev, currentPassword: e.target.value }))} required placeholder="••••••••"
-                    className="w-full px-4 py-2.5 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
                 <div>
                   <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">New Password</label>
                   <input type="password" value={pwdFormData.newPassword} onChange={e => setPwdFormData(prev => ({ ...prev, newPassword: e.target.value }))} required placeholder="Minimum 6 characters"
-                    className="w-full px-4 py-2.5 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
                 <div>
                   <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[10px]">Confirm New Password</label>
                   <input type="password" value={pwdFormData.confirmPassword} onChange={e => setPwdFormData(prev => ({ ...prev, confirmPassword: e.target.value }))} required placeholder="••••••••"
-                    className="w-full px-4 py-2.5 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                    className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                 </div>
 
                 <button
@@ -1149,33 +1149,33 @@ const NutritionistPage = () => {
                 <h3 className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider">Physical & Nutrition Metrics</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Weight (kg)</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Weight (kg)</label>
                     <input type="number" step="0.1" value={recordFormData.weight} onChange={e => setRecordFormData(prev => ({ ...prev, weight: e.target.value }))} required placeholder="e.g. 72.5"
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
 
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Health Score</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Health Score</label>
                     <input type="number" min="1" max="100" value={recordFormData.healthScore} onChange={e => setRecordFormData(prev => ({ ...prev, healthScore: e.target.value }))} required placeholder="1-100"
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
 
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Cal. Consumed</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Cal. Consumed</label>
                     <input type="number" value={recordFormData.caloriesConsumed} onChange={e => setRecordFormData(prev => ({ ...prev, caloriesConsumed: e.target.value }))} required
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
 
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Cal. Target</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Cal. Target</label>
                     <input type="number" value={recordFormData.caloriesTarget} onChange={e => setRecordFormData(prev => ({ ...prev, caloriesTarget: e.target.value }))} required
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
 
                   <div className="col-span-2 sm:col-span-1">
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Water Intake (L)</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Water Intake (L)</label>
                     <input type="number" step="0.1" value={recordFormData.waterIntake} onChange={e => setRecordFormData(prev => ({ ...prev, waterIntake: e.target.value }))} required
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
                 </div>
               </div>
@@ -1195,33 +1195,33 @@ const NutritionistPage = () => {
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">BP Systolic</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">BP Systolic</label>
                     <input type="number" value={recordFormData.bloodPressureSystolic} onChange={e => setRecordFormData(prev => ({ ...prev, bloodPressureSystolic: e.target.value }))} placeholder="mmHg"
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
 
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">BP Diastolic</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">BP Diastolic</label>
                     <input type="number" value={recordFormData.bloodPressureDiastolic} onChange={e => setRecordFormData(prev => ({ ...prev, bloodPressureDiastolic: e.target.value }))} placeholder="mmHg"
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
 
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Blood Sugar</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Blood Sugar</label>
                     <input type="number" value={recordFormData.bloodSugarLevel} onChange={e => setRecordFormData(prev => ({ ...prev, bloodSugarLevel: e.target.value }))} placeholder="mg/dL"
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
 
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Heart Rate</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Heart Rate</label>
                     <input type="number" value={recordFormData.heartRate} onChange={e => setRecordFormData(prev => ({ ...prev, heartRate: e.target.value }))} placeholder="bpm"
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
 
                   <div className="col-span-2 sm:col-span-1">
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Cholesterol</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Cholesterol</label>
                     <input type="number" value={recordFormData.cholesterolLevel} onChange={e => setRecordFormData(prev => ({ ...prev, cholesterolLevel: e.target.value }))} placeholder="mg/dL"
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
                 </div>
               </div>
@@ -1231,21 +1231,21 @@ const NutritionistPage = () => {
                 <h3 className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider">Lifestyle & Adherence</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Sleep Hours</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Sleep Hours</label>
                     <input type="number" step="0.5" value={recordFormData.sleepHours} onChange={e => setRecordFormData(prev => ({ ...prev, sleepHours: e.target.value }))} placeholder="hrs"
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
 
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Exercise (min)</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Exercise (min)</label>
                     <input type="number" value={recordFormData.exerciseMinutes} onChange={e => setRecordFormData(prev => ({ ...prev, exerciseMinutes: e.target.value }))} placeholder="mins"
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
 
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Diet Adherence</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Diet Adherence</label>
                     <select value={recordFormData.dietaryCompliance} onChange={e => setRecordFormData(prev => ({ ...prev, dietaryCompliance: e.target.value }))}
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none">
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none">
                       <option value="Excellent">Excellent</option>
                       <option value="Good">Good</option>
                       <option value="Needs Improvement">Needs Improvement</option>
@@ -1254,9 +1254,9 @@ const NutritionistPage = () => {
                   </div>
 
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Mood State</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Mood State</label>
                     <select value={recordFormData.mood} onChange={e => setRecordFormData(prev => ({ ...prev, mood: e.target.value }))}
-                      className="w-full px-3 py-2 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none">
+                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none">
                       <option value="Excellent">Excellent</option>
                       <option value="Good">Good</option>
                       <option value="Fair">Fair</option>
@@ -1271,15 +1271,15 @@ const NutritionistPage = () => {
                 <h3 className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider">Prescriptions & Advice</h3>
                 <div className="space-y-3">
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Active Medications</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Active Medications</label>
                     <input type="text" value={recordFormData.medications} onChange={e => setRecordFormData(prev => ({ ...prev, medications: e.target.value }))} placeholder="e.g. Metformin 500mg daily"
-                      className="w-full px-3 py-2.5 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none" />
+                      className="w-full px-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none" />
                   </div>
 
                   <div>
-                    <label className="block text-slate-450 mb-1.5 uppercase font-bold text-[9px]">Clinician Remarks & Notes</label>
+                    <label className="block text-slate-400 mb-1.5 uppercase font-bold text-[9px]">Clinician Remarks & Notes</label>
                     <textarea value={recordFormData.notes} onChange={e => setRecordFormData(prev => ({ ...prev, notes: e.target.value }))} required placeholder="Notes..."
-                      className="w-full px-3 py-2.5 bg-slate-955 border border-slate-800 rounded-xl text-slate-100 outline-none h-20 resize-none" />
+                      className="w-full px-3 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-100 outline-none h-20 resize-none" />
                   </div>
                 </div>
               </div>

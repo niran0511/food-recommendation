@@ -499,7 +499,7 @@ const DashboardPage = () => {
           <h1 className="text-2xl font-black text-slate-850 dark:text-white">
             {getGreeting()}, {user?.name?.split(' ')[0] || 'Explorer'}!
           </h1>
-          <p className="text-xs font-semibold text-slate-450 dark:text-slate-500">
+          <p className="text-xs font-semibold text-slate-400 dark:text-slate-500">
             Let's maintain your health goals today.
           </p>
         </div>
@@ -647,7 +647,7 @@ const DashboardPage = () => {
             </div>
           </div>
 
-          <div className="bg-slate-955/20 p-4 rounded-2xl border border-slate-800">
+          <div className="bg-slate-950/20 p-4 rounded-2xl border border-slate-800">
             <span className="text-slate-500 uppercase text-[9px] font-bold block mb-1">Nutritionist Diagnostic Advice & Remarks</span>
             <p className="text-slate-200 font-semibold italic leading-relaxed">
               "{latestHealthRecord.notes || 'No clinical notes provided.'}"
@@ -662,7 +662,7 @@ const DashboardPage = () => {
           {/* Caloric Intake Progress */}
           <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-205/50 dark:border-white/5 shadow-sm space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider">Calories Intake</span>
+              <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider">Calories Intake</span>
               <Flame className="text-orange-500" size={18} />
             </div>
             <div className="space-y-3">
@@ -692,7 +692,7 @@ const DashboardPage = () => {
                   +250 kcal
                 </button>
               </div>
-              <p className="text-[10px] text-slate-450 font-medium">
+              <p className="text-[10px] text-slate-400 font-medium">
                 {Math.round(metrics.daily_calories - caloriesLogged) > 0 
                   ? `${Math.round(metrics.daily_calories - caloriesLogged)} kcal remaining for today`
                   : 'Daily Calorie target completed!'}
@@ -703,7 +703,7 @@ const DashboardPage = () => {
           {/* Protein Goal Progress */}
           <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-205/50 dark:border-white/5 shadow-sm space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider">Protein Progress</span>
+              <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider">Protein Progress</span>
               <Apple className="text-amber-500" size={18} />
             </div>
             <div className="space-y-3">
@@ -744,7 +744,7 @@ const DashboardPage = () => {
           {/* Water Hydration Tracker */}
           <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-205/50 dark:border-white/5 shadow-sm space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider">Hydration Tracker</span>
+              <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider">Hydration Tracker</span>
               <Droplets className="text-cyan-500" size={18} />
             </div>
             <div className="space-y-3">
@@ -784,7 +784,7 @@ const DashboardPage = () => {
         
         {/* Health Alerts Card */}
         <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-205/50 dark:border-white/5 shadow-sm space-y-4 col-span-1">
-          <h3 className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider flex items-center gap-1.5">
+          <h3 className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider flex items-center gap-1.5">
             <ShieldAlert size={14} className="text-amber-500" />
             Health Alerts
           </h3>
@@ -824,7 +824,7 @@ const DashboardPage = () => {
 
         {/* Today's Meal Checklist Timeline */}
         <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-205/50 dark:border-white/5 shadow-sm space-y-4 col-span-1">
-          <h3 className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider flex items-center gap-1.5">
+          <h3 className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider flex items-center gap-1.5">
             <CheckSquare size={14} className="text-amber-500" />
             Today's Meal Checklist
           </h3>
@@ -841,7 +841,7 @@ const DashboardPage = () => {
                   ) : (
                     <div className="w-4 h-4 rounded-full border-2 border-slate-350 dark:border-slate-600" />
                   )}
-                  <span className={`text-xs font-bold ${mealsEaten[meal] ? 'text-slate-450 line-through font-semibold' : 'text-slate-700 dark:text-slate-300'}`}>
+                  <span className={`text-xs font-bold ${mealsEaten[meal] ? 'text-slate-400 line-through font-semibold' : 'text-slate-700 dark:text-slate-300'}`}>
                     {meal}
                   </span>
                 </div>
@@ -855,7 +855,7 @@ const DashboardPage = () => {
 
         {/* Health Goal Weight Tracker */}
         <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-205/50 dark:border-white/5 shadow-sm space-y-4 col-span-1">
-          <h3 className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider flex items-center gap-1.5">
+          <h3 className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider flex items-center gap-1.5">
             <TrendingUp size={14} className="text-amber-500" />
             Goal Progress
           </h3>
@@ -886,7 +886,7 @@ const DashboardPage = () => {
 
         {/* BMI circular widget */}
         <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-205/50 dark:border-white/5 shadow-sm space-y-4 col-span-1">
-          <h3 className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider flex items-center gap-1.5">
+          <h3 className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider flex items-center gap-1.5">
             <Activity size={14} className="text-amber-500" />
             Body Mass Index (BMI)
           </h3>
@@ -968,7 +968,7 @@ const DashboardPage = () => {
               <Apple className="text-amber-500 animate-bounce" size={22} />
               Weekly Meal Plan Schedule
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-450 mt-1">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
               Compare AI-generated diet insights side-by-side with your nutritionist's custom clinical prescription.
             </p>
           </div>
@@ -982,7 +982,7 @@ const DashboardPage = () => {
                 className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
                   selectedMealDay === day
                     ? 'bg-amber-500 text-white shadow-md'
-                    : 'text-slate-500 dark:text-slate-450 hover:bg-slate-100 dark:hover:bg-white/5'
+                    : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5'
                 }`}
               >
                 {day.substring(0, 3)}
@@ -995,7 +995,7 @@ const DashboardPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
           
           {/* Column 1: AI Generated Daily Recommendations */}
-          <div className="space-y-4 bg-slate-50/50 dark:bg-slate-955/10 p-5 rounded-2xl border border-dashed border-slate-200/80 dark:border-slate-850">
+          <div className="space-y-4 bg-slate-50/50 dark:bg-slate-950/10 p-5 rounded-2xl border border-dashed border-slate-200/80 dark:border-slate-850">
             <div className="flex items-center justify-between border-b border-slate-200/50 dark:border-slate-850 pb-2">
               <span className="text-xs font-black text-slate-800 dark:text-slate-250 uppercase tracking-wider flex items-center gap-1">
                 <Sparkles className="text-amber-500 animate-pulse" size={14} /> AI Recommendation Engine
@@ -1038,7 +1038,7 @@ const DashboardPage = () => {
           </div>
 
           {/* Column 2: Nutritionist Custom Prescribed Plan */}
-          <div className="space-y-4 bg-slate-50/50 dark:bg-slate-955/10 p-5 rounded-2xl border border-dashed border-slate-200/80 dark:border-slate-850">
+          <div className="space-y-4 bg-slate-50/50 dark:bg-slate-950/10 p-5 rounded-2xl border border-dashed border-slate-200/80 dark:border-slate-850">
             <div className="flex items-center justify-between border-b border-slate-200/50 dark:border-slate-850 pb-2">
               <span className="text-xs font-black text-slate-800 dark:text-slate-250 uppercase tracking-wider flex items-center gap-1">
                 <Heart className="text-rose-500 animate-pulse" size={14} /> Clinician Custom Prescription
@@ -1094,7 +1094,7 @@ const DashboardPage = () => {
                             </p>
                           </>
                         ) : (
-                          <p className="text-xs font-bold text-slate-450 dark:text-slate-500 italic mt-0.5">Follow AI recommendation on left</p>
+                          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 italic mt-0.5">Follow AI recommendation on left</p>
                         )}
                       </div>
                     </div>
@@ -1117,7 +1117,7 @@ const DashboardPage = () => {
 
       {/* Filters Area */}
       <motion.section variants={itemVariants} className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
-        <div className="p-2.5 rounded-2xl bg-white dark:bg-slate-950/40 border border-slate-200/50 dark:border-white/5 text-slate-450 shrink-0">
+        <div className="p-2.5 rounded-2xl bg-white dark:bg-slate-950/40 border border-slate-200/50 dark:border-white/5 text-slate-400 shrink-0">
           <Filter size={16} />
         </div>
         {filterChips.map(chip => (
@@ -1153,7 +1153,7 @@ const DashboardPage = () => {
 
           {filteredRecs.length === 0 ? (
             <div className="p-12 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/50 dark:border-white/5">
-              <p className="text-slate-450 font-semibold mb-2">No recommended foods match the filter "{activeFilter}"</p>
+              <p className="text-slate-400 font-semibold mb-2">No recommended foods match the filter "{activeFilter}"</p>
               <button 
                 onClick={() => setActiveFilter('All')}
                 className="text-sm font-bold text-amber-500 hover:underline"
@@ -1209,7 +1209,7 @@ const DashboardPage = () => {
                             {rec.food}
                           </h3>
                         </div>
-                        <p className="text-xs font-bold text-slate-450 dark:text-slate-500 mb-3 uppercase tracking-wider">
+                        <p className="text-xs font-bold text-slate-400 dark:text-slate-500 mb-3 uppercase tracking-wider">
                           {rec.cuisine} • {rec.category}
                         </p>
 
@@ -1217,15 +1217,15 @@ const DashboardPage = () => {
                         <div className="grid grid-cols-3 gap-2 text-center">
                           <div className="p-2 rounded-xl bg-slate-50 dark:bg-white/5">
                             <span className="block text-xs font-black text-slate-700 dark:text-slate-350">{Math.round(rec.calories)}</span>
-                            <span className="text-[10px] text-slate-450 dark:text-slate-500 font-bold uppercase">kcal</span>
+                            <span className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase">kcal</span>
                           </div>
                           <div className="p-2 rounded-xl bg-slate-50 dark:bg-white/5">
                             <span className="block text-xs font-black text-slate-700 dark:text-slate-350">{Math.round(rec.protein)}g</span>
-                            <span className="text-[10px] text-slate-450 dark:text-slate-500 font-bold uppercase">Pro</span>
+                            <span className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase">Pro</span>
                           </div>
                           <div className="p-2 rounded-xl bg-slate-50 dark:bg-white/5">
                             <span className="block text-xs font-black text-slate-700 dark:text-slate-350">{Math.round(rec.carbohydrates)}g</span>
-                            <span className="text-[10px] text-slate-450 dark:text-slate-500 font-bold uppercase">Carb</span>
+                            <span className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase">Carb</span>
                           </div>
                         </div>
                       </div>
@@ -1287,7 +1287,7 @@ const DashboardPage = () => {
 
                 {/* Explainable AI Timeline */}
                 <div className="space-y-5">
-                  <h4 className="text-xs font-black text-slate-450 dark:text-slate-500 tracking-wider uppercase">
+                  <h4 className="text-xs font-black text-slate-400 dark:text-slate-500 tracking-wider uppercase">
                     Why we recommend this meal
                   </h4>
 
@@ -1320,7 +1320,7 @@ const DashboardPage = () => {
 
                   {/* Macro breakdown progress indicators */}
                   <div className="space-y-3">
-                    <h4 className="text-xs font-black text-slate-450 dark:text-slate-500 tracking-wider uppercase">
+                    <h4 className="text-xs font-black text-slate-400 dark:text-slate-500 tracking-wider uppercase">
                       Nutritional Footprint
                     </h4>
                     <div className="grid grid-cols-2 gap-4">
@@ -1336,7 +1336,7 @@ const DashboardPage = () => {
               {/* 4. Smart Grocery List (based on selected recipe ingredients) */}
               {selectedFoodDetails && selectedFoodDetails.ingredients && (
                 <div className="p-6 rounded-3xl bg-white dark:bg-slate-950/40 border border-slate-205/50 dark:border-white/5 shadow-xl space-y-4">
-                  <h3 className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider flex items-center gap-1.5">
+                  <h3 className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider flex items-center gap-1.5">
                     <FileText size={14} className="text-amber-500" />
                     Smart Grocery List
                   </h3>
@@ -1364,14 +1364,14 @@ const DashboardPage = () => {
               {/* 5. Smart Swaps */}
               {smartSwaps.length > 0 && (
                 <div className="p-6 rounded-3xl bg-white dark:bg-slate-950/40 border border-slate-205/50 dark:border-white/5 shadow-xl space-y-4">
-                  <h3 className="text-xs font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider flex items-center gap-1.5">
+                  <h3 className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider flex items-center gap-1.5">
                     <Sparkles size={14} className="text-amber-500" />
                     AI Smart Swaps
                   </h3>
                   <div className="space-y-3">
                     {smartSwaps.map((swap, idx) => (
                       <div key={idx} className="text-xs space-y-1">
-                        <div className="flex items-center gap-2 text-slate-450 font-semibold">
+                        <div className="flex items-center gap-2 text-slate-400 font-semibold">
                           <span className="line-through">{swap.from}</span>
                           <span className="text-amber-500">➔</span>
                           <span className="font-extrabold text-slate-800 dark:text-slate-200">{swap.to}</span>
@@ -1497,7 +1497,7 @@ const DashboardPage = () => {
                     <p className="text-xs font-bold text-slate-700 dark:text-slate-300 truncate">
                       Viewed {item.recommendations?.length || 0} AI Suggestions
                     </p>
-                    <span className="text-[10px] text-slate-450 font-medium">
+                    <span className="text-[10px] text-slate-400 font-medium">
                       {new Date(item.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </span>
                   </div>
@@ -1563,7 +1563,7 @@ const DashboardPage = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsDetailsModalOpen(false)}
-              className="absolute inset-0 bg-slate-955/60 backdrop-blur-sm"
+              className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
             />
             {/* Modal Body */}
             <motion.div 
@@ -1599,26 +1599,26 @@ const DashboardPage = () => {
                 <div className="grid grid-cols-4 gap-4 text-center">
                   <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/5">
                     <span className="block text-sm font-black text-slate-800 dark:text-white">{Math.round(selectedFood.calories)}</span>
-                    <span className="text-[10px] text-slate-450 font-bold uppercase">Calories</span>
+                    <span className="text-[10px] text-slate-400 font-bold uppercase">Calories</span>
                   </div>
                   <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/5">
                     <span className="block text-sm font-black text-slate-800 dark:text-white">{Math.round(selectedFood.protein)}g</span>
-                    <span className="text-[10px] text-slate-450 font-bold uppercase">Protein</span>
+                    <span className="text-[10px] text-slate-400 font-bold uppercase">Protein</span>
                   </div>
                   <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/5">
                     <span className="block text-sm font-black text-slate-800 dark:text-white">{Math.round(selectedFood.carbohydrates)}g</span>
-                    <span className="text-[10px] text-slate-450 font-bold uppercase">Carbs</span>
+                    <span className="text-[10px] text-slate-400 font-bold uppercase">Carbs</span>
                   </div>
                   <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/5">
                     <span className="block text-sm font-black text-slate-800 dark:text-white">{Math.round(selectedFood.fat)}g</span>
-                    <span className="text-[10px] text-slate-450 font-bold uppercase">Fats</span>
+                    <span className="text-[10px] text-slate-400 font-bold uppercase">Fats</span>
                   </div>
                 </div>
 
                 {/* Recipe Ingredients */}
                 {selectedFoodDetails && selectedFoodDetails.ingredients && (
                   <div className="space-y-3">
-                    <h4 className="text-sm font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider">Ingredients Checklist</h4>
+                    <h4 className="text-sm font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider">Ingredients Checklist</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {selectedFoodDetails.ingredients.map((item, idx) => (
                         <div key={idx} className="flex items-center gap-2 text-xs font-bold text-slate-750 dark:text-slate-300">
@@ -1633,7 +1633,7 @@ const DashboardPage = () => {
                 {/* Cooking Instructions */}
                 {selectedFoodDetails && selectedFoodDetails.instructions && (
                   <div className="space-y-3">
-                    <h4 className="text-sm font-black uppercase text-slate-450 dark:text-slate-500 tracking-wider">Preparation Steps</h4>
+                    <h4 className="text-sm font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider">Preparation Steps</h4>
                     <div className="space-y-3">
                       {selectedFoodDetails.instructions.map((step, idx) => (
                         <div key={idx} className="flex gap-3 items-start text-xs font-bold text-slate-700 dark:text-slate-350">
@@ -1710,7 +1710,7 @@ const DashboardPage = () => {
               {/* Message Timeline */}
               <div className="flex-grow overflow-y-auto p-4 space-y-3.5 scrollbar-thin">
                 {chatMessages.length === 0 ? (
-                  <div className="h-full flex flex-col items-center justify-center text-center text-slate-450 font-bold p-6">
+                  <div className="h-full flex flex-col items-center justify-center text-center text-slate-400 font-bold p-6">
                     <MessageSquare size={24} className="text-slate-250 mb-1" />
                     <p className="text-[9px]">Send a message to start consulting with {nutritionist.name}!</p>
                   </div>
@@ -1796,7 +1796,7 @@ const ActionCard = ({ title, desc, icon, to }) => (
     </div>
     <div>
       <h4 className="text-sm font-extrabold text-slate-855 dark:text-white line-clamp-1 group-hover:text-amber-505 transition-colors">{title}</h4>
-      <p className="text-[10px] font-semibold text-slate-450 dark:text-slate-500">{desc}</p>
+      <p className="text-[10px] font-semibold text-slate-400 dark:text-slate-500">{desc}</p>
     </div>
   </Link>
 );

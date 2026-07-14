@@ -226,12 +226,12 @@ const ProfilePage = () => {
               <div>
                 <label className="block font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase">Age</label>
                 <input type="number" name="age" value={formData.age} onChange={handleChange} required min="10" max="120"
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-955 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100" />
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100" />
               </div>
               <div>
                 <label className="block font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase">Gender</label>
                 <select name="gender" value={formData.gender} onChange={handleChange}
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-955 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100">
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100">
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
@@ -241,12 +241,12 @@ const ProfilePage = () => {
                 <div>
                   <label className="block font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase">Height (cm)</label>
                   <input type="number" name="height" value={formData.height} onChange={handleChange} required min="50" max="300"
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-955 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100" />
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100" />
                 </div>
                 <div>
                   <label className="block font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase">Weight (kg)</label>
                   <input type="number" name="weight" value={formData.weight} onChange={handleChange} required min="20" max="300"
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-955 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100" />
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100" />
                 </div>
               </div>
             </div>
@@ -261,7 +261,7 @@ const ProfilePage = () => {
               <div>
                 <label className="block font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase">Activity Level</label>
                 <select name="activityLevel" value={formData.activityLevel} onChange={handleChange}
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-955 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100">
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100">
                   <option value="Sedentary">Sedentary (Little or no exercise)</option>
                   <option value="Lightly Active">Lightly Active (Light exercise 1-3 days/week)</option>
                   <option value="Moderately Active">Moderately Active (Moderate exercise 3-5 days/week)</option>
@@ -272,7 +272,7 @@ const ProfilePage = () => {
               <div>
                 <label className="block font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase">Primary Goal</label>
                 <select name="goal" value={formData.goal} onChange={handleChange}
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-955 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100">
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100">
                   <option value="Weight Loss">Weight Loss</option>
                   <option value="Weight Gain">Weight Gain</option>
                   <option value="Muscle Gain">Muscle Gain</option>
@@ -292,7 +292,7 @@ const ProfilePage = () => {
             <div>
               <label className="block font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase">Diet Type</label>
               <select name="dietType" value={formData.dietType} onChange={handleChange}
-                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-955 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100">
+                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100">
                 <option value="Vegetarian">Vegetarian</option>
                 <option value="Vegan">Vegan</option>
                 <option value="Eggetarian">Eggetarian</option>
@@ -310,25 +310,25 @@ const ProfilePage = () => {
               <div>
                 <label className="block font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase">Health Condition</label>
                 <select name="diseaseSelection" value={formData.diseaseSelection} onChange={handleChange}
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-955 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all mb-3 font-bold text-slate-900 dark:text-slate-100">
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all mb-3 font-bold text-slate-900 dark:text-slate-100">
                   {COMMON_DISEASES.map(d => <option key={d} value={d}>{d}</option>)}
                 </select>
                 {formData.diseaseSelection === 'Other' && (
                   <input type="text" name="customDisease" value={formData.customDisease} onChange={handleChange}
                     placeholder="Specify health condition"
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-955 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100" />
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100" />
                 )}
               </div>
               <div>
                 <label className="block font-bold text-slate-700 dark:text-slate-300 mb-2 uppercase">Allergy</label>
                 <select name="allergySelection" value={formData.allergySelection} onChange={handleChange}
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-955 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all mb-3 font-bold text-slate-900 dark:text-slate-100">
+                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all mb-3 font-bold text-slate-900 dark:text-slate-100">
                   {COMMON_ALLERGIES.map(a => <option key={a} value={a}>{a}</option>)}
                 </select>
                 {formData.allergySelection === 'Other' && (
                   <input type="text" name="customAllergy" value={formData.customAllergy} onChange={handleChange}
                     placeholder="Specify allergy"
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-955 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100" />
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all font-bold text-slate-900 dark:text-slate-100" />
                 )}
               </div>
             </div>
