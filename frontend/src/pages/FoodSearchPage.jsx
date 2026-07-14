@@ -4,7 +4,7 @@ import { Loader, Search, Sparkles, SlidersHorizontal, BookOpen, Clock, X, Heart 
 import { getFoodImage, getRecipeDetails } from '../utils/recipeHelper';
 import toast from 'react-hot-toast';
 
-const defaultFoodSvg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='f' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2310b981'/><stop offset='100%' stop-color='%23059669'/></linearGradient></defs><rect width='100' height='100' fill='url(%23f)'/><circle cx='50' cy='50' r='30' fill='none' stroke='white' stroke-width='4' opacity='0.9'/><circle cx='50' cy='50' r='22' fill='none' stroke='white' stroke-width='2' opacity='0.6'/><path d='M30 35v20M27 35v10M33 35v10M30 55v15' stroke='white' stroke-width='3' stroke-linecap='round'/><path d='M70 35v20M70 55v15' stroke='white' stroke-width='3' stroke-linecap='round'/><path d='M68 35c2 0 4 5 4 15v5h-8v-5c0-10 2-15 4-15z' fill='white' opacity='0.9'/></svg>";
+const defaultFoodSvg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImYiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxMGI5ODEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwNTk2NjkiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0idXJsKCNmKSIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjMwIiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjQiIG9wYWNpdHk9IjAuOSIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjIyIiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNiIvPjxwYXRoIGQ9Ik0zMCAzNXYyME0yNyAzNXYxME0zMyAzNXYxME0zMCA1NXYxNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNNzAgMzV2MjBNNzAgNTV2MTUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTY4IDM1YzIgMCA0IDUgNCAxNXY1aC04di01YzAtMTAgMi0xNSA0LTE1eiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOSIvPjwvc3ZnPg==";
 
 const CUISINES = ['Indian', 'Mexican', 'Italian', 'Chinese', 'American', 'Mediterranean'];
 const CATEGORIES = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
@@ -215,7 +215,8 @@ const FoodSearchPage = () => {
                       src={getFoodImage(food.name)}
                       alt={food.name}
                       onError={(e) => {
-                        if (!e.target.src.includes('loremflickr')) {
+                        if (e.target.src.startsWith('data:')) return;
+                      if (!e.target.src.includes('loremflickr')) {
                           e.target.src = 'https://loremflickr.com/400/300/' + encodeURIComponent(food.name.split(' Variant')[0]);
                         } else {
                           e.target.src = defaultFoodSvg;
