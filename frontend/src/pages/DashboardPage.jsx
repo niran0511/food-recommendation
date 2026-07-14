@@ -13,6 +13,8 @@ import { getFoodImage, getRecipeDetails } from '../utils/recipeHelper';
 import toast from 'react-hot-toast';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const defaultFoodSvg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='f' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2310b981'/><stop offset='100%' stop-color='%23059669'/></linearGradient></defs><circle cx='50' cy='50' r='30' fill='none' stroke='white' stroke-width='4' opacity='0.9'/><circle cx='50' cy='50' r='22' fill='none' stroke='white' stroke-width='2' opacity='0.6'/><path d='M30 35v20M27 35v10M33 35v10M30 55v15' stroke='white' stroke-width='3' stroke-linecap='round'/><path d='M70 35v20M70 55v15' stroke='white' stroke-width='3' stroke-linecap='round'/><path d='M68 35c2 0 4 5 4 15v5h-8v-5c0-10 2-15 4-15z' fill='white' opacity='0.9'/></svg>";
+
 // ChartJS import and setup
 import { Bar, Doughnut } from 'react-chartjs-2';
 import {
@@ -1015,6 +1017,17 @@ const DashboardPage = () => {
                       <img 
                         src={matchedFoods.length > 0 ? getFoodImage(matchedFoods[0].food) : "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=150"} 
                         alt={meal}
+                        onError={(e) => {
+                          if (matchedFoods.length > 0) {
+                            if (!e.target.src.includes('loremflickr')) {
+                              e.target.src = 'https://loremflickr.com/400/300/' + encodeURIComponent(matchedFoods[0].food.split(' Variant')[0]);
+                            } else {
+                              e.target.src = defaultFoodSvg;
+                            }
+                          } else {
+                            e.target.src = defaultFoodSvg;
+                          }
+                        }}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -1078,6 +1091,13 @@ const DashboardPage = () => {
                           <img 
                             src={getFoodImage(prescribedFoods[0].name)} 
                             alt={meal}
+                            onError={(e) => {
+                              if (!e.target.src.includes('loremflickr')) {
+                                e.target.src = 'https://loremflickr.com/400/300/' + encodeURIComponent(prescribedFoods[0].name.split(' Variant')[0]);
+                              } else {
+                                e.target.src = defaultFoodSvg;
+                              }
+                            }}
                             className="w-full h-full object-cover"
                           />
                         ) : (
@@ -1182,6 +1202,13 @@ const DashboardPage = () => {
                       <img 
                         src={imageUrl} 
                         alt={rec.food}
+                        onError={(e) => {
+                          if (!e.target.src.includes('loremflickr')) {
+                            e.target.src = 'https://loremflickr.com/400/300/' + encodeURIComponent(rec.food.split(' Variant')[0]);
+                          } else {
+                            e.target.src = defaultFoodSvg;
+                          }
+                        }}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-extrabold shadow-sm text-amber-600 dark:text-amber-400">
@@ -1269,6 +1296,13 @@ const DashboardPage = () => {
                   <img 
                     src={getFoodImage(selectedFood.food)} 
                     alt={selectedFood.food} 
+                    onError={(e) => {
+                      if (!e.target.src.includes('loremflickr')) {
+                        e.target.src = 'https://loremflickr.com/400/300/' + encodeURIComponent(selectedFood.food.split(' Variant')[0]);
+                      } else {
+                        e.target.src = defaultFoodSvg;
+                      }
+                    }}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
@@ -1577,6 +1611,13 @@ const DashboardPage = () => {
                 <img 
                   src={getFoodImage(selectedFood.food)} 
                   alt={selectedFood.food} 
+                  onError={(e) => {
+                    if (!e.target.src.includes('loremflickr')) {
+                      e.target.src = 'https://loremflickr.com/400/300/' + encodeURIComponent(selectedFood.food.split(' Variant')[0]);
+                    } else {
+                      e.target.src = defaultFoodSvg;
+                    }
+                  }}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
