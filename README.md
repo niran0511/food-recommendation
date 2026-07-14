@@ -1,5 +1,7 @@
 # NutriAI — Personalized Food Recommendation & Nutritionist Portal
 
+**Live Application**: [https://healthybiteai.vercel.app/](https://healthybiteai.vercel.app/)
+
 NutriAI is an advanced web application designed to offer automated, personalized food recommendations alongside a professional, feature-rich nutritionist consultation platform. It enables users to track daily vitals, get ML-driven diet recommendations, complete pre-consultation intake forms, and hold telehealth/chat appointments with qualified nutritionists.
 
 ---
