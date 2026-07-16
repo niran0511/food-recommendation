@@ -1,7 +1,8 @@
 from app.schemas.models import ChatRequest, ChatResponse
 import re
-
 import os
+import urllib.request
+import json
 
 # Initialize Gemini if API key is provided
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
@@ -16,54 +17,105 @@ if GEMINI_API_KEY:
     except Exception as e:
         print(f"Failed to initialize Gemini API Client: {e}")
 
+def call_openai_compatible_api(url: str, api_key: str, model: str, prompt: str) -> str:
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "model": model,
+        "messages": [
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.7
+    }
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(data).encode("utf-8"),
+        headers=headers,
+        method="POST"
+    )
+    with urllib.request.urlopen(req, timeout=10) as response:
+        res_data = json.loads(response.read().decode("utf-8"))
+        return res_data["choices"][0]["message"]["content"]
+
 def get_chatbot_response(request: ChatRequest) -> ChatResponse:
     message = request.message
     user = request.user
 
-    # If Gemini is available, use it for dynamic conversational nutrition advice
+    # Build context about the user's health profile
+    user_context = ""
+    if user:
+        diseases_str = ", ".join(user.diseases) if user.diseases else "None"
+        allergies_str = ", ".join(user.allergies) if user.allergies else "None"
+        cuisine_str = ", ".join(user.cuisine_preference) if user.cuisine_preference else "No preference"
+        deficiencies_str = ", ".join(user.deficiencies) if user.deficiencies else "None"
+        user_context = f"""
+        You are talking to a user with the following health profile:
+        - Age: {user.age}
+        - Gender: {user.gender}
+        - Height: {user.height} cm
+        - Weight: {user.weight} kg
+        - Activity Level: {user.activity_level}
+        - Goal: {user.goal}
+        - Diet Type: {user.diet_type}
+        - Diseases/Conditions: {diseases_str}
+        - Allergies: {allergies_str}
+        - Deficiencies: {deficiencies_str}
+        - Preferred Cuisines: {cuisine_str}
+        - Budget Category: {user.budget}
+        """
+
+    system_instruction = f"""
+    You are NutriAI, a medical-grade, highly encouraging and empathetic AI Nutritionist and Health Assistant.
+    Your goal is to answer user questions about clinical nutrition, meal planning, calorie intake, workouts, and diet.
+    {user_context}
+    
+    Guidelines:
+    - Keep your responses concise (no more than 3 paragraphs or a few bullet points).
+    - Use bullet points and bold text where appropriate to make information easy to read.
+    - Provide clear, scientifically-backed, and practical health recommendations.
+    - If the user asks about foods to eat or avoid, cross-reference their diseases and allergies.
+    - Do not prescribe medical treatments or diagnoses. Always focus on lifestyle, diet, and nutrition.
+    """
+
+    prompt = f"{system_instruction}\n\nUser Question: {message}\n\nAI Response:"
+
+    # 1. Try Gemini
     if gemini_model:
         try:
-            # Build context about the user's health profile
-            user_context = ""
-            if user:
-                diseases_str = ", ".join(user.diseases) if user.diseases else "None"
-                allergies_str = ", ".join(user.allergies) if user.allergies else "None"
-                cuisine_str = ", ".join(user.cuisine_preference) if user.cuisine_preference else "No preference"
-                deficiencies_str = ", ".join(user.deficiencies) if user.deficiencies else "None"
-                user_context = f"""
-                You are talking to a user with the following health profile:
-                - Age: {user.age}
-                - Gender: {user.gender}
-                - Height: {user.height} cm
-                - Weight: {user.weight} kg
-                - Activity Level: {user.activity_level}
-                - Goal: {user.goal}
-                - Diet Type: {user.diet_type}
-                - Diseases/Conditions: {diseases_str}
-                - Allergies: {allergies_str}
-                - Deficiencies: {deficiencies_str}
-                - Preferred Cuisines: {cuisine_str}
-                - Budget Category: {user.budget}
-                """
-
-            system_instruction = f"""
-            You are NutriAI, a medical-grade, highly encouraging and empathetic AI Nutritionist and Health Assistant.
-            Your goal is to answer user questions about clinical nutrition, meal planning, calorie intake, workouts, and diet.
-            {user_context}
-            
-            Guidelines:
-            - Keep your responses concise (no more than 3 paragraphs or a few bullet points).
-            - Use bullet points and bold text where appropriate to make information easy to read.
-            - Provide clear, scientifically-backed, and practical health recommendations.
-            - If the user asks about foods to eat or avoid, cross-reference their diseases and allergies.
-            - Do not prescribe medical treatments or diagnoses. Always focus on lifestyle, diet, and nutrition.
-            """
-
-            prompt = f"{system_instruction}\n\nUser Question: {message}\n\nAI Response:"
             response = gemini_model.generate_content(prompt)
             return ChatResponse(response=response.text.strip())
         except Exception as e:
-            print(f"Gemini API invocation error: {e}. Falling back to rule-based engine.")
+            print(f"Gemini API invocation error: {e}. Trying other models.")
+
+    # 2. Try Groq
+    GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+    if GROQ_API_KEY:
+        try:
+            content = call_openai_compatible_api(
+                "https://api.groq.com/openai/v1/chat/completions",
+                GROQ_API_KEY,
+                "llama3-8b-8192",
+                prompt
+            )
+            return ChatResponse(response=content.strip())
+        except Exception as e:
+            print(f"Groq API invocation error: {e}. Trying other models.")
+
+    # 3. Try OpenAI
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    if OPENAI_API_KEY:
+        try:
+            content = call_openai_compatible_api(
+                "https://api.openai.com/v1/chat/completions",
+                OPENAI_API_KEY,
+                "gpt-4o-mini",
+                prompt
+            )
+            return ChatResponse(response=content.strip())
+        except Exception as e:
+            print(f"OpenAI API invocation error: {e}. Falling back to rule-based engine.")
 
     # Fallback to local rule-based matching if Gemini is not set up or fails
     message_lower = message.lower().strip()
