@@ -58,38 +58,36 @@ class RecommendationService {
 
     const startTime = Date.now();
 
-    try {
-      const response = await axios.post(
-        `${this.aiBaseUrl}/api/recommend`,
-        requestPayload,
-        { timeout: 30000 }
-      );
-
-      const responseTime = Date.now() - startTime;
-
-      // Log the recommendation
-      await RecommendationLog.create({
-        userId,
-        input: requestPayload,
-        recommendations: response.data.recommendations || response.data.data || [],
-        type: 'general',
-        responseTime,
-      });
-
-      return response.data;
-    } catch (error) {
-      if (error.response) {
-        throw new ApiError(
-          error.response.status,
-          `AI Service Error: ${error.response.data.message || 'Failed to get recommendations'}`
-        );
+    // Try models in order of preference, falling back if one fails
+    const modelOrder = ['gemini', 'openai', 'cohere'];
+    let aiResponse;
+    for (const model of modelOrder) {
+      try {
+        const payload = { ...requestPayload, model };
+        aiResponse = await axios.post(`${this.aiBaseUrl}/api/recommend`, payload, { timeout: 30000 });
+        // Successful response, break out of loop
+        break;
+      } catch (err) {
+        // If this was the last model, rethrow the error
+        if (model === modelOrder[modelOrder.length - 1]) {
+          throw err;
+        }
+        // Otherwise continue to next model
       }
-      if (error.code === 'ECONNREFUSED') {
-        throw ApiError.internal('AI recommendation service is unavailable. Please try again later.');
-      }
-      throw ApiError.internal('Failed to connect to recommendation service: ' + error.message);
     }
-  }
+
+    const responseTime = Date.now() - startTime;
+
+    // Log the recommendation
+    await RecommendationLog.create({
+      userId,
+      input: requestPayload,
+      recommendations: aiResponse.data.recommendations || aiResponse.data.data || [],
+      type: 'general',
+      responseTime,
+    });
+
+    return aiResponse.data;  }
 
   /**
    * Gets the user's recommendation history.
@@ -141,37 +139,36 @@ class RecommendationService {
     const profilePayload = this._buildProfilePayload(user);
     const startTime = Date.now();
 
-    try {
-      const response = await axios.post(
-        `${this.aiBaseUrl}/api/foods-to-avoid`,
-        profilePayload,
-        { timeout: 30000 }
-      );
-
-      const responseTime = Date.now() - startTime;
-
-      // Log
-      await RecommendationLog.create({
-        userId,
-        input: profilePayload,
-        recommendations: response.data.foods_to_avoid || response.data.data || [],
-        type: 'foods-to-avoid',
-        responseTime,
-      });
-
-      return response.data;
-    } catch (error) {
-      if (error.response) {
-        throw new ApiError(
-          error.response.status,
-          `AI Service Error: ${error.response.data.message || 'Failed to get foods to avoid'}`
-        );
+    // Try models in order of preference, falling back if one fails
+    const modelOrder = ['gemini', 'openai', 'cohere'];
+    let aiResponse;
+    for (const model of modelOrder) {
+      try {
+        const payload = { ...profilePayload, model };
+        aiResponse = await axios.post(`${this.aiBaseUrl}/api/foods-to-avoid`, payload, { timeout: 30000 });
+        // Successful response, break out of loop
+        break;
+      } catch (err) {
+        if (model === modelOrder[modelOrder.length - 1]) {
+          // Last model, rethrow error
+          throw err;
+        }
+        // otherwise continue to next model
       }
-      if (error.code === 'ECONNREFUSED') {
-        throw ApiError.internal('AI recommendation service is unavailable. Please try again later.');
-      }
-      throw ApiError.internal('Failed to connect to recommendation service: ' + error.message);
     }
+
+    const responseTime = Date.now() - startTime;
+
+    // Log the recommendation
+    await RecommendationLog.create({
+      userId,
+      input: profilePayload,
+      recommendations: aiResponse.data.foods_to_avoid || aiResponse.data.data || [],
+      type: 'foods-to-avoid',
+      responseTime,
+    });
+
+    return aiResponse.data;
   }
 }
 
