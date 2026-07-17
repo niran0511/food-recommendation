@@ -12,7 +12,7 @@ if GEMINI_API_KEY:
     try:
         import google.generativeai as genai
         genai.configure(api_key=GEMINI_API_KEY)
-        gemini_model = genai.GenerativeModel('gemini-1.5-flash')
+        gemini_model = genai.GenerativeModel('gemini-2.0-flash')
         print("Gemini API Client successfully initialized for Chatbot.")
     except Exception as e:
         print(f"Failed to initialize Gemini API Client: {e}")
@@ -115,9 +115,33 @@ def get_chatbot_response(request: ChatRequest) -> ChatResponse:
             )
             return ChatResponse(response=content.strip())
         except Exception as e:
-            print(f"OpenAI API invocation error: {e}. Falling back to rule-based engine.")
+            print(f"OpenAI API invocation error: {e}. Trying other models.")
 
-    # Fallback to local rule-based matching if Gemini is not set up or fails
+    # 4. Try Cohere
+    COHERE_API_KEY = os.getenv("COHERE_API_KEY")
+    if COHERE_API_KEY:
+        try:
+            cohere_headers = {
+                "Authorization": f"Bearer {COHERE_API_KEY}",
+                "Content-Type": "application/json"
+            }
+            cohere_data = {
+                "model": "command-r",
+                "message": prompt,
+            }
+            cohere_req = urllib.request.Request(
+                "https://api.cohere.com/v1/chat",
+                data=json.dumps(cohere_data).encode("utf-8"),
+                headers=cohere_headers,
+                method="POST"
+            )
+            with urllib.request.urlopen(cohere_req, timeout=15) as cohere_resp:
+                cohere_res = json.loads(cohere_resp.read().decode("utf-8"))
+                return ChatResponse(response=cohere_res.get("text", "").strip())
+        except Exception as e:
+            print(f"Cohere API invocation error: {e}. Falling back to rule-based engine.")
+
+    # Fallback to local rule-based matching if all AI providers fail
     message_lower = message.lower().strip()
     
     # 1. Greetings
